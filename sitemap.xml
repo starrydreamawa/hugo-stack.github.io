@@ -2,35 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/</loc>
+    <lastmod>2025-09-08T09:23:21+08:00</lastmod>
+  </url><url>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/p/250908/</loc>
+    <lastmod>2025-09-08T09:23:21+08:00</lastmod>
+  </url><url>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/post/</loc>
+    <lastmod>2025-09-08T09:23:21+08:00</lastmod>
+  </url><url>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/</loc>
     <lastmod>2025-09-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/p/test-chinese/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/categories/</loc>
     <lastmod>2025-09-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/categories/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2025-09-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/post/</loc>
-    <lastmod>2025-09-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/categories/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2025-09-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/page/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/archives/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/tags/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/tags/</loc>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/%E5%85%B3%E4%BA%8E/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/%E5%85%B3%E4%BA%8E/</loc>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/search/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/search/</loc>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/categories/matrix/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/categories/matrix/</loc>
   </url><url>
-    <loc>https://github.com/starrydreamawa/hugo-stack/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</loc>
+    <loc>https://starrydreamawa.github.io/hugo-stack.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</loc>
   </url>
 </urlset>

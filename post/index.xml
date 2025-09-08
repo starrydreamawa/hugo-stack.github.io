@@ -2,27 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Starry的时间记录站</title>
-        <link>https://github.com/starrydreamawa/hugo-stack/post/</link>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/post/</link>
         <description>Recent content in Posts on Starry的时间记录站</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Sun, 07 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://github.com/starrydreamawa/hugo-stack/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 08 Sep 2025 09:23:21 +0800</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250908</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250908/</link>
+        <pubDate>Mon, 08 Sep 2025 09:23:21 +0800</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250908/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>250907</title>
-        <link>https://github.com/starrydreamawa/hugo-stack/p/test-chinese/</link>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/</link>
         <pubDate>Sun, 07 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://github.com/starrydreamawa/hugo-stack/p/test-chinese/</guid>
-        <description>&lt;img src="https://github.com/starrydreamawa/hugo-stack/p/test-chinese/title.jpg" alt="Featured image of post 250907" /&gt;&lt;h2 id=&#34;我会写标题啦&#34;&gt;我会写标题啦
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/title.jpg" alt="Featured image of post 250907" /&gt;&lt;h2 id=&#34;我会写标题啦&#34;&gt;我会写标题啦
 &lt;/h2&gt;&lt;p&gt;我会写正文啦💡&lt;/p&gt;
 &lt;p&gt;而且还会打数学符号 $\sum_k^n \alpha_k\sin\theta_k$&lt;/p&gt;
 &lt;p&gt;还有&lt;a class=&#34;link&#34; href=&#34;https://baidu.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;超链接&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;甚至还会加图片&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/starrydreamawa/hugo-stack/p/test-chinese/test.gif&#34;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/test.gif&#34;
 	width=&#34;352&#34;
 	height=&#34;352&#34;
-	srcset=&#34;https://github.com/starrydreamawa/hugo-stack/p/test-chinese/test_hu_30c99e29520cd034.gif 480w, https://github.com/starrydreamawa/hugo-stack/p/test-chinese/test_hu_b41bc01462c57eb7.gif 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/test_hu_30c99e29520cd034.gif 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/test-chinese/test_hu_b41bc01462c57eb7.gif 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;这里可以显示文字耶&#34;

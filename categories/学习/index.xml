@@ -7,7 +7,46 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Tue, 09 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250910</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/title.jpg" alt="Featured image of post 250910" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;判断两个集合相等需要证明$A \subseteq B$且$B \subseteq A$ &lt;br&gt;
+向量构成矩阵是按列排布的，别写反了T_T&lt;/p&gt;
+&lt;h2 id=&#34;论文写作&#34;&gt;论文写作
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;paperswithcode.com]&#34; &gt;开源论文网站&lt;/a&gt; &lt;br&gt;
+有了idea可以先乱写放arxiv预印本平台之后再补&lt;br&gt;
+影响因子（IF）：前N年发表论文被引次数/前N年发表论文数，小于0.1会被踢&lt;br&gt;
+中科院A区含金量高（和我真的有关系吗&amp;hellip;）&lt;br&gt;
+sci-hub绕过所有科研论文收费，可以免费找论文\&lt;/p&gt;
+&lt;p&gt;读论文建议记笔记&lt;br&gt;
+论文解决什么问题？&lt;br&gt;
+用了什么方法？&lt;br&gt;
+达到什么效果？&lt;br&gt;
+精读：每个段讲了什么？&lt;br&gt;
+创新点、关键点、启发点\&lt;/p&gt;
+&lt;p&gt;写论文相关：
+&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article.jpg&#34;
+	width=&#34;922&#34;
+	height=&#34;575&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article_hu_3a07c52adb02bcf9.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article_hu_41bd96333727e8ee.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;
+在总结之前尽量不要用“了”表示完成时&lt;br&gt;
+acknowledgements可以让老师写&lt;br&gt;
+参考文献尊重时效性和质量，尽量凑5的整数&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>250909</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/</link>
         <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>

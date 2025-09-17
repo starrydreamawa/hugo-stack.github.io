@@ -7,7 +7,32 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Tue, 16 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E5%A4%A7%E6%96%B9%E5%90%91/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E5%A4%A7%E6%96%B9%E5%90%91/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250917</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</link>
+        <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;向量的内积（都忘光了说是）&lt;/p&gt;
+&lt;p&gt;酉矩阵的判定：&lt;br&gt;
+$&amp;lt;x,y&amp;gt;=\overline{&amp;lt;y,x&amp;gt;}$，&lt;br&gt;
+$&amp;lt;kx,y&amp;gt;=k&amp;lt;x,y&amp;gt;$，&lt;br&gt;
+$&amp;lt;x+y,z&amp;gt;=&amp;lt;x,z&amp;gt;+&amp;lt;y,z&amp;gt;$，&lt;br&gt;
+$&amp;lt;x,x&amp;gt;\geq 0$,当且仅当$x=0$时取等&lt;/p&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他
+&lt;/h2&gt;&lt;p&gt;今天第一天从早上来工位呆到晚上十点离开&lt;br&gt;
+同样都是一个人呆着，工位接水不方便，有蚊虫，相对比较没苦硬吃&lt;br&gt;
+或许以后有项目了大伙一起做的时候会找到来工位的意义吧&lt;/p&gt;
+&lt;p&gt;找导师联系了负责带我(们)的博士生学长，并且询问了综述的写法&lt;br&gt;
+当初不想麻烦别人的孩子也是长大了&lt;br&gt;
+虽然我不喜欢这种长大，但时间从不给人机会，能留下部分留念已然足够慷慨&lt;br&gt;
+明天继续学习吧&lt;/p&gt;
+&lt;p&gt;顺便从论文写作老师那知道Chinese被退回的论文数达到了全球一半，尤其是2019年后&lt;br&gt;
+个人觉得米国打压和外国NGO的影响占大头，不过没有数据支撑，权当笑谈吧&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>250916</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/</link>
         <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>

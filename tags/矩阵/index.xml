@@ -9,11 +9,11 @@
         <copyright>starrydream</copyright>
         <lastBuildDate>Wed, 17 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%9F%A9%E9%98%B5/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>250917</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/250917/</link>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</link>
         <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/250917/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
 &lt;/h2&gt;&lt;p&gt;向量的内积（都忘光了说是）&lt;/p&gt;
 &lt;p&gt;酉矩阵的判定：&lt;br&gt;
 $&amp;lt;x,y&amp;gt;=\overline{&amp;lt;y,x&amp;gt;}$，&lt;br&gt;
@@ -30,6 +30,257 @@ $&amp;lt;x,x&amp;gt;\geq 0$,当且仅当$x=0$时取等&lt;/p&gt;
 明天继续学习吧&lt;/p&gt;
 &lt;p&gt;顺便从论文写作老师那知道Chinese被退回的论文数达到了全球一半，尤其是2019年后&lt;br&gt;
 个人觉得米国打压和外国NGO的影响占大头，不过没有数据支撑，权当笑谈吧&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>250911</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250911/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250911/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250911/title.jpg" alt="Featured image of post 250911" /&gt;&lt;h2 id=&#34;概率论&#34;&gt;概率论
+&lt;/h2&gt;&lt;p&gt;一到n维我就懵&lt;br&gt;
+记一道例题吧&lt;/p&gt;
+&lt;p&gt;有$N$个顾客，每个顾客消费数量为$X_i$，且$N$与$X_i$之间相互独立，求平均营业额$X$。
+&lt;/p&gt;
+$$\begin{aligned}
+X   &amp;= E(\sum_{i=1}^NX_i) \\
+    &amp;= \sum_n^{\infty} E(\sum_{i=1}^nX_i | N=n)P(N=n) \space 由相互独立得\\
+    &amp;= \sum_n^{\infty} nEX_iP(N=n) \\
+    &amp;= EX_i\sum_n^{\infty}nP(N=n) \\
+    &amp;= EX_iEN \\
+\end{aligned}$$&lt;p&gt;公式都能看懂，就是不会做题&lt;br&gt;
+下面这位更是公式也看不懂&lt;/p&gt;
+&lt;h2 id=&#34;矩阵&#34;&gt;矩阵
+&lt;/h2&gt;&lt;p&gt;矩阵A的值域/列空间R(A)是对任意能乘的x，Ax的空间&lt;br&gt;
+矩阵A的零空间/化零子空间N(A)是零Ax=0的所有x的空间&lt;/p&gt;
+&lt;p&gt;deepseek：矩阵A是烤面包机，R(A)是它能烤出的所有面包，N(A)是它不能处理（输出为0）的所有原料组合&lt;/p&gt;
+&lt;p&gt;$\alpha$和$\beta$是V1和V2的基，T是V1→V2上的线性映射，且T在$\alpha$和$\beta$下的矩阵是A，V1中向量$\xi$在$\alpha$基下坐标是$x$，V2中向量$\eta$在$\beta$基下坐标是$y$，则$\xi$是R(T)的基的充要条件是$x$是R(A)的基，$\eta$是N(T)的基的充要条件是$y$是N(A)的基&lt;/p&gt;
+&lt;p&gt;deepseek：V1、V2是两种语言，$\alpha$和$\beta$是组成两种语言的符号集合（比如abc&amp;hellip;z和五十音），T是翻译官，A是翻译对照表，$\xi$和$\eta$是两种语境下的两个句子的表示。&lt;br&gt;
+那么$\xi$是R(T)的基，意为T$\xi$能表示所有V2的句子，即$x$变换后能翻译出任何V2的句子;&lt;br&gt;
+$\eta$是N(T)的基，意为$\eta$囊括了所有T翻不出来的句子，即$y$不是V1经过T能翻译过来的句子。&lt;/p&gt;
+&lt;p&gt;个人理解：这个定理就是用来说明映射T和矩阵A之间的关系的&lt;/p&gt;
+&lt;p&gt;子空间的交要列方程求，很麻烦；子空间的并就是把子空间的向量拼到一起，然后行最简形主元所在原列就是基，个数就是维数&lt;br&gt;
+不是主元的那些列就是交空间的基，个数就是维数。或者可以通过$Dim(V_1\subset V2)+Dim(V_1+V_2) = DimV_1 + DimV_2$求维数而减少化简量。&lt;/p&gt;
+&lt;p&gt;求有条件的子空间维度和基，化简出很多线性无关的向量当基然后数个数就行了&lt;br&gt;
+比如$C(t)= a_0+a_1t+\dots+a_{n-1}t^{n-1} | C(1)=0$，化简能变成$t^i-1$表示，这就是基，维数就是n-1。&lt;/p&gt;
+&lt;p&gt;太难了&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;网站建设&#34;&gt;网站建设
+&lt;/h2&gt;&lt;p&gt;新增了一个链接，通向另一个准备建设的网站&lt;br&gt;
+一开始打算做一个需要密码才能访问的隐藏空间，不过一来在框架之上修改很难，二来显得我不够热情&lt;br&gt;
+于是就把链接挂在很显眼的地方了&lt;br&gt;
+不知道会不会有人被里面的内容吓到呢？&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>250910</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/</link>
+        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/title.jpg" alt="Featured image of post 250910" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;判断两个集合相等需要证明$A \subseteq B$且$B \subseteq A$ &lt;br&gt;
+向量构成矩阵是按列排布的，别写反了T_T&lt;/p&gt;
+&lt;h2 id=&#34;论文写作&#34;&gt;论文写作
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;paperswithcode.com]&#34; &gt;开源论文网站&lt;/a&gt; &lt;br&gt;
+有了idea可以先乱写放arxiv预印本平台之后再补&lt;br&gt;
+影响因子（IF）：前N年发表论文被引次数/前N年发表论文数，小于0.1会被踢&lt;br&gt;
+中科院A区含金量高（和我真的有关系吗&amp;hellip;）&lt;br&gt;
+sci-hub绕过所有科研论文收费，可以免费找论文\&lt;/p&gt;
+&lt;p&gt;读论文建议记笔记&lt;br&gt;
+论文解决什么问题？&lt;br&gt;
+用了什么方法？&lt;br&gt;
+达到什么效果？&lt;br&gt;
+精读：每个段讲了什么？&lt;br&gt;
+创新点、关键点、启发点\&lt;/p&gt;
+&lt;p&gt;写论文相关：
+&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article.jpg&#34;
+	width=&#34;922&#34;
+	height=&#34;575&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article_hu_3a07c52adb02bcf9.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article_hu_41bd96333727e8ee.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;384px&#34;
+	
+&gt;
+在总结之前尽量不要用“了”表示完成时&lt;br&gt;
+acknowledgements可以让老师写&lt;br&gt;
+参考文献尊重时效性和质量，尽量凑5的整数&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>250909</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/</link>
+        <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/title.jpg" alt="Featured image of post 250909" /&gt;&lt;h2 id=&#34;导论&#34;&gt;导论
+&lt;/h2&gt;&lt;p&gt;额&amp;hellip;要写好Log？&lt;/p&gt;
+&lt;h2 id=&#34;随机过程概率论&#34;&gt;随机过程（概率论）
+&lt;/h2&gt;&lt;p&gt;上来就被montmort问题搞懵了，知道答案后（&lt;a class=&#34;link&#34; href=&#34;https://yangzhang.site/SomeMath/prob/Montmort/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里有详细描述&lt;/a&gt;）明白了几件非常重要的事&lt;br&gt;
+n个人的帽子混成一团然后随机拿，对每个人而言，拿到自己帽子的概率$I_i$都是$\frac{1}{n}$&lt;br&gt;
+两个人都拿到自己帽子的概率$P(I_iI_j) = \frac{1}{n(n-1)}$,同理n个人都拿到的概率是$\frac{1}{n!}$
+而所有人都没拿到自己帽子的概率是$1-P(\cup I_i)$，由加法公式可得
+&lt;/p&gt;
+$$
+P(\cup I_i) = \sum P(I_i) - \sum P(I_iI_j) + \cdots + (-1)^{n-1}P(\cap I_i) \\
+            = C_n^1\cdot \frac{1}{n} - C_n^2\frac{1}{n(n-1)} + \cdots + C_n^n\frac{1}{n!} \\
+            = \sum_{k=1}^n \frac{(-1)^{k-1}}{k!}
+$$&lt;p&gt;
+剩下的就比较简单了&lt;/p&gt;
+&lt;p&gt;拼尽全力勉强想起八大分布：0-1分布（伯努利分布）、二项分布B($n,q$)、均匀分布U($a,b$)、指数分布E($\lambda$)、泊松分布P($\lambda$)、正态分布N($\mu,\sigma$)&lt;br&gt;
+&amp;hellip;&amp;hellip;还有单点分布$P(X=C)=1$，以及几何分布和超几何分布，但后俩跟今天的没关系，嗯&lt;br&gt;
+然后：这个特征函数$\phi(t)=E(e^{jtx})$（是$jtx$不是$\pi x$！！！）怎么涉及复数函数求导啊？\&lt;/p&gt;
+&lt;p&gt;于是问了一下deepseek。ds：你可以看到，这非常类似于傅里叶变换。&lt;br&gt;
+傅里叶变换啊，我大三研究了两周没搞懂就放弃了，怎么还在追我&lt;br&gt;
+于是去查了傅里叶变换，发现和欧拉公式有关&lt;br&gt;
+于是去查了欧拉公式，发现和泰勒展开有关&lt;br&gt;
+于是终于找到自己会的了：把$e^x$的$x$替换成$i\theta$展开，把$i$的幂求出，得到的公式恰好是$\sin\theta + \cos\theta$的展开，因此&lt;br&gt;
+$e^{i\theta} = \sin\theta + \cos\theta$&lt;br&gt;
+然后傅里叶变换就是
+&lt;/p&gt;
+$$
+F(\omega) = \int_{-\infty}^{+\infty}f(t)e^{-i\omega t}dt
+$$&lt;p&gt;
+要求什么函数的往里代就行&lt;/p&gt;
+&lt;p&gt;回到正题，绕了一圈发现带虚数的函数把$i,j$当成常数正常求导就行了&lt;br&gt;
+然后把七种分布的特征函数都求了一遍，感觉微积分也都快扔完了，之后做题补一补吧&lt;br&gt;
+特征函数最重要的性质是
+&lt;/p&gt;
+$$
+\phi^{(k)}(0)=j^kEX^k, k\le n
+$$&lt;p&gt;
+可以用来求X的n阶矩&lt;/p&gt;
+&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;完全跟不上了，之后做题补习吧&lt;br&gt;
+落下的内容：第一章习题、QR变换、合同/相似相关的内容&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;计算机体系结构&#34;&gt;计算机体系结构
+&lt;/h2&gt;&lt;p&gt;计算机性能不能只看硬件指数，平均性能一般只能达到峰值性能的5%到30%。&lt;br&gt;
+指示码优化：将数据的一部分位作为指示码，用来指示数据类型、数据是否存活等。例如指针4位对齐，就可以用最低两位存放&amp;quot;这是指针&amp;quot;的编码&lt;/p&gt;
+&lt;p&gt;要学会提问题，才能有所收获&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>250908</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250908/</link>
+        <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250908/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250908/title.jpg" alt="Featured image of post 250908" /&gt;&lt;h2 id=&#34;矩阵论部分&#34;&gt;矩阵论部分
+&lt;/h2&gt;&lt;p&gt;关于线性空间的判定：&lt;/p&gt;
+&lt;p&gt;在证明是线性空间时需要列出8条定义，但证明不是的时候基本只要看对加法、数乘不封闭或无零元即可&lt;/p&gt;
+&lt;p&gt;关于数乘：常数是额外指定的，通常为实数，不是线性空间里的内容&lt;/p&gt;
+&lt;p&gt;例：所有n次多项式关于普通多项式的加法和数乘构成的空间$V$：&lt;/p&gt;
+&lt;p&gt;设$A = x^n, B = -x^n$，显然$A, B \in V$，但$A+B=0 \notin V$，因此对加法不封闭，不是线性空间&lt;/p&gt;
+&lt;p&gt;求$A^{-1}B$的时候，设$A^{-1}B = X$，则$AX = B$，所以可以写出增广矩阵$[A|B]$然后行变换成为$[E|A^{-1}B]$求出结果。&lt;/p&gt;
+&lt;h2 id=&#34;代码部分&#34;&gt;代码部分
+&lt;/h2&gt;&lt;p&gt;遵循老师“有计算机就别手算矩阵”的教诲，寻找了计算机计算矩阵的方式&lt;/p&gt;
+&lt;p&gt;使用numpy可求逆矩阵&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;import numpy as np
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;def matrix_invert&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A: np.ndarray&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    try:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;A_inv&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; np.linalg.inv&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        print&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;\n逆矩阵:&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        print&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A_inv&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    except np.linalg.LinAlgError:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        print&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;\n该矩阵不可逆&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; np.array&lt;span class=&#34;o&#34;&gt;([&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;1, 2, 1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;2, 4, 0&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;3, 7, 2&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,&lt;span class=&#34;o&#34;&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;matrix_invert&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;逆矩阵:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; 4.   1.5 -2. &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-2.  -0.5  1. &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; 1.  -0.5  0. &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用sympy可得行最简形矩阵+主元列&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;import sympy as sp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;def matrix_simplify&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A: np.ndarray&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;A_sym&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; sp.Matrix&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# 转换成 sympy 矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    rref_matrix, &lt;span class=&#34;nv&#34;&gt;pivot_cols&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; A_sym.rref&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    print&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;\n行最简形矩阵:&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    sp.pprint&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;rref_matrix&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    print&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;主元列:&amp;#34;&lt;/span&gt;, pivot_cols&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; np.array&lt;span class=&#34;o&#34;&gt;([[&lt;/span&gt;1, 1, -1, -1, 2, 0, -2, 1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;2, -1, 2, -1, 1, 1, 1, 3&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-1, 1, 1, 0, 0, 2, 1, 1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;0, 1,  1, 1, 1, 2, 2, 2&lt;span class=&#34;o&#34;&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;matrix_simplify&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;A&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;行最简形矩阵:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎡1  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  1⎤
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎢                      ⎥
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎢0  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  1⎥
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎢                      ⎥
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎢0  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  1⎥
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎢                      ⎥
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;⎣0  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;  0⎦
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;主元列: &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0, 1, 2, 3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;没了&#34;&gt;没了
+&lt;/h2&gt;&lt;p&gt;呜呜呜&lt;/p&gt;
 </description>
         </item>
         

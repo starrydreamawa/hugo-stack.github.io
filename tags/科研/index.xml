@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>科研 on Starry的时间记录站</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/</link>
+        <description>Recent content in 科研 on Starry的时间记录站</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>starrydream</copyright>
+        <lastBuildDate>Fri, 12 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250912</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250912/</link>
+        <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250912/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250912/title.jpg" alt="Featured image of post 250912" /&gt;&lt;h2 id=&#34;强化学习&#34;&gt;强化学习
+&lt;/h2&gt;&lt;p&gt;DPO方法与RLHF不同之处在于，DPO方法利用成对数据，舍弃了有关RM模型的训练，并且训练过程为监督学习，因此不需要PPO等强化学习方法。&lt;/p&gt;
+&lt;p&gt;关于DPO的许多变体：&lt;br&gt;
+1、数据形式改进&lt;br&gt;
+a. KTO (Kahneman–Tversky Optimization)&lt;br&gt;
+DPO的优化基于Bradley–Terry偏好模型，而KTO基于行为经济学的前景理论，通过设置阈值r直接反映答案的好坏。KTO只需要单点数据，并且结果更加可靠，缺点是其同样只能给出对输入结果好/坏的二元评价。该模型适合风险敏感场景（如金融/医疗）等领域。&lt;/p&gt;
+&lt;p&gt;b. &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2502.16182&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;IPO (Identity Preference Optimization)&lt;/a&gt;&lt;br&gt;
+IPO在DPO的基础上去掉了π_ref项，改写log-odds型，在许多环境下训练更稳定。&lt;/p&gt;
+&lt;p&gt;c. DPOP (DPO with Probability calibration)&lt;br&gt;
+在 DPO 的基础上，加一个正例 log-likelihood 最大化项，使模型学习更多正面案例。&lt;/p&gt;
+&lt;p&gt;d. sDPO (Stepwise DPO)&lt;br&gt;
+在DPO基础上优化函数不变，但每过n步会将当前模型结果设置为新的ref模型，从而减少模型的限制。&lt;/p&gt;
+&lt;p&gt;e. &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2402.10958&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RPO (Rank Preference Optimization)&lt;/a&gt;&lt;br&gt;
+DPO通过成对数据训练，而RPO可以利用多个排序后的数据进行训练。&lt;/p&gt;
+&lt;p&gt;2、优化目标改进&lt;br&gt;
+a. &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2403.07691&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ORPO (Odds Ratio Preference Optimization)&lt;/a&gt;&lt;br&gt;
+使用几率比替换DPO中的log-odds算法，更好地对齐“好/坏”的相对概率，理论上对类别不平衡更稳健。&lt;/p&gt;
+&lt;p&gt;b. &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2405.21046&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;XPO (Exploratory Preference Optimization)&lt;/a&gt;&lt;br&gt;
+XPO是一个综合框架，使得输入数据既可以是DPO的成对数据，KTO的单个数据，也可以是RPO的多个数据。&lt;/p&gt;
+&lt;p&gt;c. CPO (Conditional Preference Optimization)&lt;br&gt;
+CPO为偏好数据增加了约束，例如问题“今天天气如何？”在晴天条件下“今天晴天”的偏好度更高，而非DPO中“晴天”和“雨天”的回答全部成立。&lt;/p&gt;
+&lt;p&gt;d. FDPO (Filtered / Fast DPO)&lt;br&gt;
+FDPO 在训练时加入数据筛选或高效近似，提升训练效率牺牲部分精度换取速度和大规模训练可行性。&lt;/p&gt;
+&lt;p&gt;3、精度改进&lt;br&gt;
+a. TDPO (Token-level DPO)&lt;br&gt;
+将偏好的选择范围从句子扩展到句子中的token，计算量更大但结果更优。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

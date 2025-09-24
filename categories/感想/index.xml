@@ -7,13 +7,32 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Wed, 17 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E6%84%9F%E6%83%B3/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E6%84%9F%E6%83%B3/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250923</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250923/</link>
+        <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250923/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250923/title.jpg" alt="Featured image of post 250923" /&gt;&lt;h2 id=&#34;感想&#34;&gt;感想
+&lt;/h2&gt;&lt;p&gt;坦白地说，我也不知道为什么，一周就过去了，好像没做什么&lt;br&gt;
+今天推进了学长派的任务：探究在国产设备上怎么去部署语音模型的推理过程。模型是用Pytorch训练的，部署平台是ARM64架构，kylin操作系统。给出两套方案。&lt;br&gt;
+经过一下午的测试，得出结论：我的电脑是x86架构，无论怎么都跑不起来ARM，拿虚拟机也不行。&lt;br&gt;
+所以目前唯一的结论就是该租服务器了。&lt;br&gt;
+另一位负责这个项目的同学用豆包生成了一份22页的方案，吓哭了。&lt;/p&gt;
+&lt;p&gt;申请工位之后在工位呆了一段时间，没有wifi，接水要跨楼层，屋子里有蚊子，一起奋斗的也只有一位和我处于对角关系的不认识的同学。&lt;br&gt;
+在今天花了6G下载了一个镜像文件（然后还没有用）之后我决定：&lt;br&gt;
+除非受到征召，反正我是先不去了，宿舍舒服一点我反而能更好地学呢。&lt;/p&gt;
+&lt;p&gt;从明天开始，这个系列不能再断更了！&lt;br&gt;
+——至少到周六之前吧&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>250917</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/250917/</link>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</link>
         <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/250917/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
 &lt;/h2&gt;&lt;p&gt;向量的内积（都忘光了说是）&lt;/p&gt;
 &lt;p&gt;酉矩阵的判定：&lt;br&gt;
 $&amp;lt;x,y&amp;gt;=\overline{&amp;lt;y,x&amp;gt;}$，&lt;br&gt;
@@ -30,6 +49,62 @@ $&amp;lt;x,x&amp;gt;\geq 0$,当且仅当$x=0$时取等&lt;/p&gt;
 明天继续学习吧&lt;/p&gt;
 &lt;p&gt;顺便从论文写作老师那知道Chinese被退回的论文数达到了全球一半，尤其是2019年后&lt;br&gt;
 个人觉得米国打压和外国NGO的影响占大头，不过没有数据支撑，权当笑谈吧&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>250916</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/</link>
+        <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/title.png" alt="Featured image of post 250916" /&gt;&lt;h2 id=&#34;概率论随机过程&#34;&gt;概率论（随机过程）
+&lt;/h2&gt;&lt;p&gt;随机过程定义&lt;/p&gt;
+&lt;p&gt;求有限维分布&lt;/p&gt;
+&lt;p&gt;相关数值计算&lt;/p&gt;
+&lt;h2 id=&#34;规划&#34;&gt;规划
+&lt;/h2&gt;&lt;p&gt;在工位除了用网易云听歌以外，禁止看非学习视频，更禁止玩游戏，回宿舍后随意。&lt;/p&gt;
+&lt;p&gt;明天计划补上数学进度，整理出跑各种训练方法的流程，在之后几天里进行测试。&lt;/p&gt;
+&lt;p&gt;是时候认真学习了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>250911</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250911/</link>
+        <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250911/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250911/title.jpg" alt="Featured image of post 250911" /&gt;&lt;h2 id=&#34;概率论&#34;&gt;概率论
+&lt;/h2&gt;&lt;p&gt;一到n维我就懵&lt;br&gt;
+记一道例题吧&lt;/p&gt;
+&lt;p&gt;有$N$个顾客，每个顾客消费数量为$X_i$，且$N$与$X_i$之间相互独立，求平均营业额$X$。
+&lt;/p&gt;
+$$\begin{aligned}
+X   &amp;= E(\sum_{i=1}^NX_i) \\
+    &amp;= \sum_n^{\infty} E(\sum_{i=1}^nX_i | N=n)P(N=n) \space 由相互独立得\\
+    &amp;= \sum_n^{\infty} nEX_iP(N=n) \\
+    &amp;= EX_i\sum_n^{\infty}nP(N=n) \\
+    &amp;= EX_iEN \\
+\end{aligned}$$&lt;p&gt;公式都能看懂，就是不会做题&lt;br&gt;
+下面这位更是公式也看不懂&lt;/p&gt;
+&lt;h2 id=&#34;矩阵&#34;&gt;矩阵
+&lt;/h2&gt;&lt;p&gt;矩阵A的值域/列空间R(A)是对任意能乘的x，Ax的空间&lt;br&gt;
+矩阵A的零空间/化零子空间N(A)是零Ax=0的所有x的空间&lt;/p&gt;
+&lt;p&gt;deepseek：矩阵A是烤面包机，R(A)是它能烤出的所有面包，N(A)是它不能处理（输出为0）的所有原料组合&lt;/p&gt;
+&lt;p&gt;$\alpha$和$\beta$是V1和V2的基，T是V1→V2上的线性映射，且T在$\alpha$和$\beta$下的矩阵是A，V1中向量$\xi$在$\alpha$基下坐标是$x$，V2中向量$\eta$在$\beta$基下坐标是$y$，则$\xi$是R(T)的基的充要条件是$x$是R(A)的基，$\eta$是N(T)的基的充要条件是$y$是N(A)的基&lt;/p&gt;
+&lt;p&gt;deepseek：V1、V2是两种语言，$\alpha$和$\beta$是组成两种语言的符号集合（比如abc&amp;hellip;z和五十音），T是翻译官，A是翻译对照表，$\xi$和$\eta$是两种语境下的两个句子的表示。&lt;br&gt;
+那么$\xi$是R(T)的基，意为T$\xi$能表示所有V2的句子，即$x$变换后能翻译出任何V2的句子;&lt;br&gt;
+$\eta$是N(T)的基，意为$\eta$囊括了所有T翻不出来的句子，即$y$不是V1经过T能翻译过来的句子。&lt;/p&gt;
+&lt;p&gt;个人理解：这个定理就是用来说明映射T和矩阵A之间的关系的&lt;/p&gt;
+&lt;p&gt;子空间的交要列方程求，很麻烦；子空间的并就是把子空间的向量拼到一起，然后行最简形主元所在原列就是基，个数就是维数&lt;br&gt;
+不是主元的那些列就是交空间的基，个数就是维数。或者可以通过$Dim(V_1\subset V2)+Dim(V_1+V_2) = DimV_1 + DimV_2$求维数而减少化简量。&lt;/p&gt;
+&lt;p&gt;求有条件的子空间维度和基，化简出很多线性无关的向量当基然后数个数就行了&lt;br&gt;
+比如$C(t)= a_0+a_1t+\dots+a_{n-1}t^{n-1} | C(1)=0$，化简能变成$t^i-1$表示，这就是基，维数就是n-1。&lt;/p&gt;
+&lt;p&gt;太难了&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;网站建设&#34;&gt;网站建设
+&lt;/h2&gt;&lt;p&gt;新增了一个链接，通向另一个准备建设的网站&lt;br&gt;
+一开始打算做一个需要密码才能访问的隐藏空间，不过一来在框架之上修改很难，二来显得我不够热情&lt;br&gt;
+于是就把链接挂在很显眼的地方了&lt;br&gt;
+不知道会不会有人被里面的内容吓到呢？&lt;/p&gt;
 </description>
         </item>
         

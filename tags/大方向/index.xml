@@ -9,11 +9,11 @@
         <copyright>starrydream</copyright>
         <lastBuildDate>Wed, 17 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E5%A4%A7%E6%96%B9%E5%90%91/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>250917</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</link>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/250917/</link>
         <pubDate>Wed, 17 Sep 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250917/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/250917/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/title.jpg" alt="Featured image of post 250917" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
 &lt;/h2&gt;&lt;p&gt;向量的内积（都忘光了说是）&lt;/p&gt;
 &lt;p&gt;酉矩阵的判定：&lt;br&gt;
 $&amp;lt;x,y&amp;gt;=\overline{&amp;lt;y,x&amp;gt;}$，&lt;br&gt;
@@ -30,114 +30,6 @@ $&amp;lt;x,x&amp;gt;\geq 0$,当且仅当$x=0$时取等&lt;/p&gt;
 明天继续学习吧&lt;/p&gt;
 &lt;p&gt;顺便从论文写作老师那知道Chinese被退回的论文数达到了全球一半，尤其是2019年后&lt;br&gt;
 个人觉得米国打压和外国NGO的影响占大头，不过没有数据支撑，权当笑谈吧&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>250916</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/</link>
-        <pubDate>Tue, 16 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250916/title.png" alt="Featured image of post 250916" /&gt;&lt;h2 id=&#34;概率论随机过程&#34;&gt;概率论（随机过程）
-&lt;/h2&gt;&lt;p&gt;随机过程定义&lt;/p&gt;
-&lt;p&gt;求有限维分布&lt;/p&gt;
-&lt;p&gt;相关数值计算&lt;/p&gt;
-&lt;h2 id=&#34;规划&#34;&gt;规划
-&lt;/h2&gt;&lt;p&gt;在工位除了用网易云听歌以外，禁止看非学习视频，更禁止玩游戏，回宿舍后随意。&lt;/p&gt;
-&lt;p&gt;明天计划补上数学进度，整理出跑各种训练方法的流程，在之后几天里进行测试。&lt;/p&gt;
-&lt;p&gt;是时候认真学习了。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>250910</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/</link>
-        <pubDate>Wed, 10 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/title.jpg" alt="Featured image of post 250910" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
-&lt;/h2&gt;&lt;p&gt;判断两个集合相等需要证明$A \subseteq B$且$B \subseteq A$ &lt;br&gt;
-向量构成矩阵是按列排布的，别写反了T_T&lt;/p&gt;
-&lt;h2 id=&#34;论文写作&#34;&gt;论文写作
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;paperswithcode.com]&#34; &gt;开源论文网站&lt;/a&gt; &lt;br&gt;
-有了idea可以先乱写放arxiv预印本平台之后再补&lt;br&gt;
-影响因子（IF）：前N年发表论文被引次数/前N年发表论文数，小于0.1会被踢&lt;br&gt;
-中科院A区含金量高（和我真的有关系吗&amp;hellip;）&lt;br&gt;
-sci-hub绕过所有科研论文收费，可以免费找论文\&lt;/p&gt;
-&lt;p&gt;读论文建议记笔记&lt;br&gt;
-论文解决什么问题？&lt;br&gt;
-用了什么方法？&lt;br&gt;
-达到什么效果？&lt;br&gt;
-精读：每个段讲了什么？&lt;br&gt;
-创新点、关键点、启发点\&lt;/p&gt;
-&lt;p&gt;写论文相关：
-&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article.jpg&#34;
-	width=&#34;922&#34;
-	height=&#34;575&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article_hu_3a07c52adb02bcf9.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250910/article_hu_41bd96333727e8ee.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;160&#34;
-		data-flex-basis=&#34;384px&#34;
-	
-&gt;
-在总结之前尽量不要用“了”表示完成时&lt;br&gt;
-acknowledgements可以让老师写&lt;br&gt;
-参考文献尊重时效性和质量，尽量凑5的整数&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>250909</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/</link>
-        <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250909/title.jpg" alt="Featured image of post 250909" /&gt;&lt;h2 id=&#34;导论&#34;&gt;导论
-&lt;/h2&gt;&lt;p&gt;额&amp;hellip;要写好Log？&lt;/p&gt;
-&lt;h2 id=&#34;随机过程概率论&#34;&gt;随机过程（概率论）
-&lt;/h2&gt;&lt;p&gt;上来就被montmort问题搞懵了，知道答案后（&lt;a class=&#34;link&#34; href=&#34;https://yangzhang.site/SomeMath/prob/Montmort/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;这里有详细描述&lt;/a&gt;）明白了几件非常重要的事&lt;br&gt;
-n个人的帽子混成一团然后随机拿，对每个人而言，拿到自己帽子的概率$I_i$都是$\frac{1}{n}$&lt;br&gt;
-两个人都拿到自己帽子的概率$P(I_iI_j) = \frac{1}{n(n-1)}$,同理n个人都拿到的概率是$\frac{1}{n!}$
-而所有人都没拿到自己帽子的概率是$1-P(\cup I_i)$，由加法公式可得
-&lt;/p&gt;
-$$
-P(\cup I_i) = \sum P(I_i) - \sum P(I_iI_j) + \cdots + (-1)^{n-1}P(\cap I_i) \\
-            = C_n^1\cdot \frac{1}{n} - C_n^2\frac{1}{n(n-1)} + \cdots + C_n^n\frac{1}{n!} \\
-            = \sum_{k=1}^n \frac{(-1)^{k-1}}{k!}
-$$&lt;p&gt;
-剩下的就比较简单了&lt;/p&gt;
-&lt;p&gt;拼尽全力勉强想起八大分布：0-1分布（伯努利分布）、二项分布B($n,q$)、均匀分布U($a,b$)、指数分布E($\lambda$)、泊松分布P($\lambda$)、正态分布N($\mu,\sigma$)&lt;br&gt;
-&amp;hellip;&amp;hellip;还有单点分布$P(X=C)=1$，以及几何分布和超几何分布，但后俩跟今天的没关系，嗯&lt;br&gt;
-然后：这个特征函数$\phi(t)=E(e^{jtx})$（是$jtx$不是$\pi x$！！！）怎么涉及复数函数求导啊？\&lt;/p&gt;
-&lt;p&gt;于是问了一下deepseek。ds：你可以看到，这非常类似于傅里叶变换。&lt;br&gt;
-傅里叶变换啊，我大三研究了两周没搞懂就放弃了，怎么还在追我&lt;br&gt;
-于是去查了傅里叶变换，发现和欧拉公式有关&lt;br&gt;
-于是去查了欧拉公式，发现和泰勒展开有关&lt;br&gt;
-于是终于找到自己会的了：把$e^x$的$x$替换成$i\theta$展开，把$i$的幂求出，得到的公式恰好是$\sin\theta + \cos\theta$的展开，因此&lt;br&gt;
-$e^{i\theta} = \sin\theta + \cos\theta$&lt;br&gt;
-然后傅里叶变换就是
-&lt;/p&gt;
-$$
-F(\omega) = \int_{-\infty}^{+\infty}f(t)e^{-i\omega t}dt
-$$&lt;p&gt;
-要求什么函数的往里代就行&lt;/p&gt;
-&lt;p&gt;回到正题，绕了一圈发现带虚数的函数把$i,j$当成常数正常求导就行了&lt;br&gt;
-然后把七种分布的特征函数都求了一遍，感觉微积分也都快扔完了，之后做题补一补吧&lt;br&gt;
-特征函数最重要的性质是
-&lt;/p&gt;
-$$
-\phi^{(k)}(0)=j^kEX^k, k\le n
-$$&lt;p&gt;
-可以用来求X的n阶矩&lt;/p&gt;
-&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
-&lt;/h2&gt;&lt;p&gt;完全跟不上了，之后做题补习吧&lt;br&gt;
-落下的内容：第一章习题、QR变换、合同/相似相关的内容&amp;hellip;&lt;/p&gt;
-&lt;h2 id=&#34;计算机体系结构&#34;&gt;计算机体系结构
-&lt;/h2&gt;&lt;p&gt;计算机性能不能只看硬件指数，平均性能一般只能达到峰值性能的5%到30%。&lt;br&gt;
-指示码优化：将数据的一部分位作为指示码，用来指示数据类型、数据是否存活等。例如指针4位对齐，就可以用最低两位存放&amp;quot;这是指针&amp;quot;的编码&lt;/p&gt;
-&lt;p&gt;要学会提问题，才能有所收获&lt;/p&gt;
 </description>
         </item>
         

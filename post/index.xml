@@ -7,7 +7,46 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250925</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/</link>
+        <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/title.png" alt="Featured image of post 250925" /&gt;&lt;h2 id=&#34;随机过程&#34;&gt;随机过程
+&lt;/h2&gt;&lt;p&gt;Possion过程求期望：参数$\lambda$乘以事件个数$n$乘以事件本身的期望$EY_n$&lt;br&gt;
+Possion过程求方差：参数$\lambda$乘以事件个数$n$乘以事件本身的期望平方$EY_n^2$&lt;br&gt;
+什么，你不会求期望平方？重学吧&lt;/p&gt;
+&lt;p&gt;马尔可夫链：知道初始状态和转移矩阵，想知道到某个状态的概率乘就可以了&lt;br&gt;
+比如今天晴天，初始状态是$[1,0]$，晴天第二天是晴天/雨天的概率是$0.8,0.2$，雨天第二天是晴天/雨天的概率是$0.3,0.7$，则转移矩阵是
+&lt;/p&gt;
+$$
+0.8\quad 0.2 \\
+0.3\quad 0.7
+$$&lt;p&gt;
+然后就可以求第n天的概率辣&lt;/p&gt;
+&lt;p&gt;所以书上写了三页定义才给我看例题是什么意思？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/maerkefu.jpg&#34;
+	width=&#34;1200&#34;
+	height=&#34;1465&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/maerkefu_hu_2dc6a01f8682246e.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/maerkefu_hu_c53f8bf98aeb5869.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;这啥啊别看了.jpg&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;81&#34;
+		data-flex-basis=&#34;196px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;$\lambda$矩阵的行列式因子、不变因子、Smith标准型、初等因子、Jordan标准型&lt;/p&gt;
+&lt;p&gt;希望以后我看到这些东西还能想起来做的什么&lt;/p&gt;
+&lt;p&gt;所以真不能先看定义，先看怎么做再看题会好很多&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>250923</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250923/</link>
         <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>

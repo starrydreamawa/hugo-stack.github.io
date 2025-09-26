@@ -7,7 +7,73 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>250926</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/</link>
+        <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/title.png" alt="Featured image of post 250926" /&gt;&lt;h2 id=&#34;编程&#34;&gt;编程
+&lt;/h2&gt;&lt;p&gt;帮朋友解决c++问题，发现自己很多基础操作都不会了(´-ω-`)&lt;br&gt;
+[想起]using namespace std;&lt;br&gt;
+[想起]容器与迭代器&lt;br&gt;
+[想起]c++要用g++编译&lt;br&gt;
+[才知道]用cmd运行.exe只需要把文件名打上就行了&lt;/p&gt;
+&lt;h2 id=&#34;大方向&#34;&gt;大方向
+&lt;/h2&gt;&lt;p&gt;晚上走错教室了，误打误撞知道了自己不会的知识：&lt;br&gt;
+SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI.png&#34;
+	width=&#34;1232&#34;
+	height=&#34;389&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_1044b63aab01995e.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_31c358e30229c66a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;316&#34;
+		data-flex-basis=&#34;760px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;查看影响因子直接点期刊名就能看到&lt;br&gt;
+将中文关键词翻译成英文的：请用知网翻译助手&lt;br&gt;
+这里的关键词加上去是“或”的关系而非“与”，用了文章数量会变多：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search.png&#34;
+	width=&#34;2225&#34;
+	height=&#34;342&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_33f375fbd49ee83a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_cddcaba7b04f2e4e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;650&#34;
+		data-flex-basis=&#34;1561px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;利用ESI：总影响力前1%的学者、前50%的期刊之类的，通过旁边的小栏就能查：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI.png&#34;
+	width=&#34;1053&#34;
+	height=&#34;378&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_e24d4b79c6a44118.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_f67463dd6817fb37.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;278&#34;
+		data-flex-basis=&#34;668px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Incites：导出数据集进行分析，记得命名&lt;br&gt;
+Research Horizon Navigator：在Incites那个网站里&lt;/p&gt;
+&lt;p&gt;然后我把鼠标落在教室了(´-ω-`)&lt;/p&gt;
+&lt;h2 id=&#34;科研&#34;&gt;科研
+&lt;/h2&gt;&lt;p&gt;小组负责语音处理，博士生学长统计了前沿语音转换方法，但大多针对单点声源，并且距离比较近，老师不太满意&lt;br&gt;
+大三直博生统计了一些语音转换模型，接下来需要测试其开源程度&lt;br&gt;
+还有一人失踪了&lt;br&gt;
+我和另一位大三直博生接下来的工作：部署vall-e模型，通过调整参数或使用第三方工具的方法在效果和部署成本方面进行优化，以及调研ARM64服务器平台租赁费用&lt;/p&gt;
+&lt;p&gt;事情要变得越来越多啦————&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>250925</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250925/</link>
         <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>

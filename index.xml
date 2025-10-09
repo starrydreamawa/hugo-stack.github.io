@@ -7,7 +7,45 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>251009</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/251009/</link>
+        <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/251009/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/251009/title.jpg" alt="Featured image of post 251009" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;矩阵分解：&lt;/p&gt;
+&lt;p&gt;\textbf{三角分解：}
+此处$\tilde{A}$表示对角线为1。&lt;br&gt;
+Crout分解：$A=L\tilde{U}$，$L$为下三角矩阵，$U$为单位上三角矩阵。分解方式是求出$A$的行最简形式即为$\tilde{U}$，用逆矩阵求$L$（或用变换对应的初等矩阵相乘）&lt;br&gt;
+Doolittle分解：$A=\tilde{L}U$，$L$为单位下三角矩阵，$U$为上三角矩阵。分解方式是&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1KY4y1X7fL&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;紧凑法&lt;/a&gt;&lt;br&gt;
+还有$A=\tilde{L}D\tilde{U}$，这个没搞懂&lt;/p&gt;
+&lt;p&gt;三角分解的用途是解$Ax=b$，分解成$Ly=b$和$Ux=y$两步求解。&lt;/p&gt;
+&lt;p&gt;\textbf{满秩分解：}
+和上面的差不多，只不过适用于不满秩的情况。&lt;br&gt;
+将$A$化为行最简矩阵$G&amp;rsquo;$,取$G$的前rank($A$)行作为矩阵G，取变换矩阵$F&amp;rsquo;$的前rank($A$)列作为矩阵F，则$A=FG$&lt;/p&gt;
+&lt;p&gt;\textbf{UR分解：}
+将矩阵$A$的列向量标准正交化生成酉矩阵$U$，用逆矩阵或解方程组反推可得矩阵$R$，得到$A=UR$&lt;/p&gt;
+&lt;p&gt;\textbf{单纯矩阵谱分解：}
+一般用于Hermite矩阵($A=A^H$)&lt;br&gt;
+公式是$A=\sum \lambda_i\alpha_i\alpha_i^H$&lt;/p&gt;
+&lt;p&gt;\textbf{奇异值分解：}
+未完待续&lt;/p&gt;
+&lt;h2 id=&#34;概率论&#34;&gt;概率论
+&lt;/h2&gt;&lt;p&gt;有关马尔科夫过程你需要知道：
+$P^{(n)}, p_{ij}, p_{ij}^{(n)}, f_{ij}, f_{ij}^{(n)}, u_{ij}$都是啥&lt;br&gt;
+常返状态（返回状态）、正常返状态、遍历、正常反周期、零常返状态（消极常返状态）、非常返状态（滑过状态）都是啥&lt;br&gt;
+互通、等价集、闭集、(不)可约闭集、(不)可约马尔科夫、吸收状态都是啥&lt;/p&gt;
+&lt;p&gt;好了你已经学会了，来作证明题吧！&lt;/p&gt;
+&lt;h2 id=&#34;科研&#34;&gt;科研
+&lt;/h2&gt;&lt;p&gt;成功部署vall-e模型，进行语音生成和prompt生成测试，结论是生成的语音不漏字、发音能听清就已经很厉害了&lt;/p&gt;
+&lt;p&gt;之后去看看论文寻找一下优化的可能性，不行的话就等组会报告啦&lt;/p&gt;
+&lt;h2 id=&#34;最后&#34;&gt;最后
+&lt;/h2&gt;&lt;p&gt;我的鼠标呜呜呜呜呜呜呜呜呜呜&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>250926</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/</link>
         <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>

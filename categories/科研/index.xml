@@ -15,26 +15,26 @@
         <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/251009/</guid>
         <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/251009/title.jpg" alt="Featured image of post 251009" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
 &lt;/h2&gt;&lt;p&gt;矩阵分解：&lt;/p&gt;
-&lt;p&gt;\textbf{三角分解：}
+&lt;p&gt;$\textbf{三角分解：}$&lt;br&gt;
 此处$\tilde{A}$表示对角线为1。&lt;br&gt;
 Crout分解：$A=L\tilde{U}$，$L$为下三角矩阵，$U$为单位上三角矩阵。分解方式是求出$A$的行最简形式即为$\tilde{U}$，用逆矩阵求$L$（或用变换对应的初等矩阵相乘）&lt;br&gt;
 Doolittle分解：$A=\tilde{L}U$，$L$为单位下三角矩阵，$U$为上三角矩阵。分解方式是&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1KY4y1X7fL&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;紧凑法&lt;/a&gt;&lt;br&gt;
 还有$A=\tilde{L}D\tilde{U}$，这个没搞懂&lt;/p&gt;
 &lt;p&gt;三角分解的用途是解$Ax=b$，分解成$Ly=b$和$Ux=y$两步求解。&lt;/p&gt;
-&lt;p&gt;\textbf{满秩分解：}
+&lt;p&gt;$\textbf{满秩分解：}$&lt;br&gt;
 和上面的差不多，只不过适用于不满秩的情况。&lt;br&gt;
 将$A$化为行最简矩阵$G&amp;rsquo;$,取$G$的前rank($A$)主元行作为矩阵G，取变换矩阵$F&amp;rsquo;$的对应列作为矩阵F，则$A=FG$&lt;/p&gt;
 &lt;p&gt;满秩分解可以用于理解矩阵秩和基本子空间，推导更多其他性质。&lt;/p&gt;
-&lt;p&gt;\textbf{UR分解：}
+&lt;p&gt;$\textbf{UR分解：}$&lt;br&gt;
 将矩阵$A$的列向量标准正交化生成酉矩阵$U$，用逆矩阵或解方程组反推可得矩阵$R$，得到$A=UR$&lt;/p&gt;
 &lt;p&gt;该方法用于求解小型矩阵特征值、构建正交基和求解线性最小二乘问题$(\min_x \vert Ax=b \vert^2)$&lt;/p&gt;
-&lt;p&gt;\textbf{单纯矩阵谱分解：}
+&lt;p&gt;$\textbf{单纯矩阵谱分解：}$&lt;br&gt;
 一般用于Hermite矩阵($A=A^H$)&lt;br&gt;
 单纯矩阵：与对角矩阵相似的矩阵&lt;br&gt;
 公式是$A=\sum \lambda_i\alpha_i\alpha_i^H$&lt;/p&gt;
 &lt;p&gt;可以用于计算矩阵函数、求微分方程等，还可以在数据科学中提取数学特征。&lt;/p&gt;
-&lt;p&gt;\textbf{奇异值分解：}
+&lt;p&gt;$\textbf{奇异值分解：}$&lt;br&gt;
 未完待续&lt;/p&gt;
 &lt;h2 id=&#34;概率论&#34;&gt;概率论
 &lt;/h2&gt;&lt;p&gt;有关马尔科夫过程你需要知道：

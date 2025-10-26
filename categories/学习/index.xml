@@ -7,7 +7,67 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 26 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>251026</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/251026/</link>
+        <pubDate>Sun, 26 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/251026/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/251026/title.jpg" alt="Featured image of post 251026" /&gt;&lt;h2 id=&#34;矩阵论&#34;&gt;矩阵论
+&lt;/h2&gt;&lt;p&gt;计算$e^A$：&lt;br&gt;
+对对角矩阵直接对角求$e^{a_{ij}}$即可； &lt;br&gt;
+对可对角化矩阵，求$A=P\Lambda P^{}-1$，则$e^A=Pe^{\Lambda}P^{-1}$，消去的部分是通过泰勒展开互相抵消的&lt;br&gt;
+对不可对角化矩阵，求$A$的Jordan形式，对某个Jordan矩阵$J(\lambda) = \lambda I + N$，其中$N$是那部分1组成的矩阵，那么&lt;br&gt;
+$e^J = e^{\lambda I + N} = e^\lambda e^I e^N$ &lt;br&gt;
+而$e^N$展开之后可以得到$a_{ij}=\frac{1}{(j-i)!}$组成的上三角矩阵，所以结果就是&lt;br&gt;
+$a_{ij}=e^\lambda \frac{1}{(j-i)!}$组成的矩阵上三角矩阵。&lt;/p&gt;
+&lt;p&gt;Caylay-Hamilton定理：&lt;br&gt;
+A的特征多项式(就是det($\lambda E-A$)展开之后的$f(\lambda))$把A带进去竟然得0&lt;br&gt;
+用途：得到了一个得0的式子，方便换元解神奇小式子&lt;/p&gt;
+&lt;p&gt;谱：&lt;br&gt;
+对矩阵函数f(A)，如果对每个A的特征值$\lambda_i$和其重数$d_i，f(\lambda_i)$的$d_i-1$阶以内导数函数都存在，&lt;br&gt;
+则f(x)在A的谱上有定义，这些值是f(x)在A的谱值。&lt;/p&gt;
+&lt;p&gt;Kronecker积：&lt;br&gt;
+给$A_{mxn}, B_{pxq}$，则$A \bigotimes B = [a_{ij}B]_{mp*qn}$ 有一堆性质记一下&lt;/p&gt;
+&lt;p&gt;矩阵求导：&lt;br&gt;
+对向量$x = {x_1 \dots x_n}, df(x) = \sum \frac{\partial f}{x_i} dx_i$ &lt;br&gt;
+对矩阵$X = [x_{ij}]$, 数量值函数$f(X) = f(x_{ij}), \frac{\partial f}{\partial X} = [\frac{\partial f}{x_{ij}}]$&lt;/p&gt;
+&lt;h2 id=&#34;概率论&#34;&gt;概率论
+&lt;/h2&gt;&lt;p&gt;稳定性能：&lt;br&gt;
+转移矩阵转了无数次之后状态概率分布不变，就得到了平稳分布$\pi$，解法是求$\pi P =\pi, \sum \pi_i = 1$的方程组 &lt;br&gt;
+如果遇到可约马尔科夫链，则求出每个闭集的平稳分布，然后分别乘以$\lambda_i$作为总平稳分布，只需要加起来得1就行，不唯一。&lt;/p&gt;
+&lt;p&gt;例题：有一个盒子装三个黑球，一个盒子装三个白球，每次在两边对调一个球，求左侧白球数量的平稳分布&lt;/p&gt;
+&lt;p&gt;易得转移矩阵：&lt;/p&gt;
+&lt;p&gt;$0\quad  1\quad  0\quad  0 $&lt;br&gt;
+$\frac{1}{9}\quad  \frac{4}{9}\quad \frac{4}{9}\quad 0 $&lt;br&gt;
+$0\quad \frac{4}{9}\quad  \frac{4}{9}\quad \frac{1}{9}\quad$ &lt;br&gt;
+$0\quad 0\quad 1\quad 0$&lt;/p&gt;
+&lt;p&gt;解方程组得平稳分布[$\frac{1}{20}\quad  \frac{9}{20}\quad \frac{9}{20}\quad  \frac{1}{20}$]&lt;/p&gt;
+&lt;h2 id=&#34;科研&#34;&gt;科研
+&lt;/h2&gt;&lt;p&gt;部署wenet大失败，在领悟到不要拿windows硬套linux的包之后成功把ubuntu也搞崩了&lt;/p&gt;
+&lt;p&gt;参加了CNCC大会，收获了如下内容：&lt;/p&gt;
+&lt;p&gt;大语言模型推理：&lt;br&gt;
+大语言模型的任务包括机器阅读理解MRC(读文本找答案)和自然语言推断NLI(做证明题)等&lt;br&gt;
+GPT-4在不同数据集下的推理逻辑并不稳定，其思维链存在用错误推出正确这样的因果不匹配问题&lt;br&gt;
+需要训练大语言模型的外泛化能力，即用已知推未知，比如用三位数加法规则推四位加法&lt;br&gt;
+介绍了RLVR方法，但不够好，所以有了LUFFY方法&lt;br&gt;
+最后，利用目前AI不成熟的部分，可以辨别人类和AI。&lt;/p&gt;
+&lt;p&gt;老师声音太小睡着了，讲的大概是多模态的实现，例如ChatBridge(把各种模态通过语言连接起来)、ShareGPT4Video、Point-RFT, Tool-R1 等&lt;br&gt;
+总之是希望实现什么都能识别的AI Agent.&lt;/p&gt;
+&lt;p&gt;多模态转换：&lt;br&gt;
+视觉到语言：用语言描述图片，对比差异。难点是排除干扰（伪变化:视角变换和遮挡导致识别不出两张图里的同一个物体）和微小差异，解决方法是通过特征相互重建来精准定位差异。&lt;br&gt;
+语言到视觉：根据一句话生成一张图。难点是避免语义缺陷（比如“一个戴帽子的男人”生成的图可能没帽子），解决方法是用参考布局等额外信息来约束生成过程。&lt;br&gt;
+跨模态配音生成：让AI给视频配音，不仅要准，还要有感情（韵律和音长一致性）。&lt;br&gt;
+安全机制：研究灾难性遗忘机制来抵抗恶意微调，防止好人训练好的模型被坏人教坏。方法很直观：在预训练时，就让“好图像”和“坏图像”在模型内部离得远远的。&lt;/p&gt;
+&lt;p&gt;大模型安全：&lt;br&gt;
+可以通过语言、图像等攻击，比如在图片中加入噪声(trigger)混淆人脸识别结果，在音频中混入模拟人声的振动来唤醒siri等&lt;br&gt;
+当然还有加入隐写(长得很像a但不是a的字符)干扰大模型判断，或者在知名第三方预训练模型中安插脚本后门&lt;br&gt;
+大模型存在token污染(比如赌博色情内容占比很大)，来源于数据，需要更多语义筛选。&lt;br&gt;
+网上有内容农场(通过隐藏大量无用关键词引导搜索)、虚假广告等，网络烂完啦哈哈&lt;/p&gt;
+&lt;p&gt;以及收获了三顿饭，好吃&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>251020</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/</link>
         <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>

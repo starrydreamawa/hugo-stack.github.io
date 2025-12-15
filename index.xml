@@ -7,7 +7,31 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Tue, 11 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 15 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>251215</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/251215/</link>
+        <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/251215/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/251215/title.jpg" alt="Featured image of post 251215" /&gt;&lt;h2 id=&#34;声纹系统&#34;&gt;声纹系统
+&lt;/h2&gt;&lt;h3 id=&#34;前端&#34;&gt;前端
+&lt;/h3&gt;&lt;p&gt;通过Flask 初始化系统，建立路由，将html文件与后端代码结合，需要注意前端传递的dataform与后端相匹配。&lt;/p&gt;
+&lt;h3 id=&#34;后端&#34;&gt;后端
+&lt;/h3&gt;&lt;p&gt;由python语言编写，第一次明白了多文件如何互相引用。用splite3实现了简单的加密数据库。&lt;/p&gt;
+&lt;p&gt;好像做了很久的事，用两句话就概括完了。接下来的工作是完善前端html页面，修改部分bug，以及使用更专业的数据库替换sql。&lt;/p&gt;
+&lt;h2 id=&#34;计算机体系结构&#34;&gt;计算机体系结构
+&lt;/h2&gt;&lt;p&gt;考试圆满结束，现场利用材料推断流水线的各种概念计算，理解了预约表、时空图、关系图都是什么，怎么画；冲突向量以及最小启动循环怎么求；加速比和效率怎么求。&lt;/p&gt;
+&lt;p&gt;没有理解TensorIR的源语。该技术隶属于TVM，而TVM是学长建议接下来学习的内容。下一阶段目标建立。&lt;/p&gt;
+&lt;h2 id=&#34;自动机&#34;&gt;自动机
+&lt;/h2&gt;&lt;p&gt;因为本科已经学过了所以暂无大碍（其实已经发现很多忘记的了）准备继续开摆，等考前突击&lt;/p&gt;
+&lt;h2 id=&#34;信息安全&#34;&gt;信息安全
+&lt;/h2&gt;&lt;p&gt;在不知道签到码的情况下成功蒙对，然后发现老师根本没说，周围人都在问。顶级信息安全专家是我了。&lt;/p&gt;
+&lt;p&gt;学习了声纹相关知识，RSA，SHA。&lt;/p&gt;
+&lt;h2 id=&#34;虚幻引擎&#34;&gt;虚幻引擎
+&lt;/h2&gt;&lt;p&gt;在耽误了很久之后第一次上手，发现前面讲的全忘了。好在老师发了视频，照着视频上手还是很快的，目前已经能在场景里放方块并更改材质了。接下来要进行蓝图的学习。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>251111</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/251111/</link>
         <pubDate>Tue, 11 Nov 2025 00:00:00 +0000</pubDate>

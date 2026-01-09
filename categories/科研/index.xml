@@ -5,7 +5,7 @@
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E7%A7%91%E7%A0%94/</link>
         <description>Recent content in 科研 on Starry的时间记录站</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
+        <language>en-us</language>
         <copyright>starrydream</copyright>
         <lastBuildDate>Wed, 05 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>251105</title>
@@ -100,10 +100,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;wav_path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;your_test_wav_path
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;model_dir&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;your_model_dir
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./build/bin/decoder_main &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --chunk_size -1 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --wav_path &lt;span class=&#34;nv&#34;&gt;$wav_path&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --model_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/final.zip &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --unit_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/units.txt 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tee log.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --chunk_size -1 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --wav_path &lt;span class=&#34;nv&#34;&gt;$wav_path&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --model_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/final.zip &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --unit_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/units.txt 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tee log.txt
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;注意：非流式识别的wav文件仅支持固定格式，可通过ffmpeg进行如下转换：&lt;/p&gt;
@@ -132,10 +132,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;GLOG_v&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;model_dir&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;your_model_dir
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./build/bin/websocket_server_main &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --port &lt;span class=&#34;m&#34;&gt;10086&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --chunk_size &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --model_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/final.zip &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --unit_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/units.txt 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tee server.log
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --port &lt;span class=&#34;m&#34;&gt;10086&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --chunk_size &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --model_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/final.zip &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --unit_path &lt;span class=&#34;nv&#34;&gt;$model_dir&lt;/span&gt;/units.txt 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tee server.log
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;然后打开web\templates文件夹，用浏览器启动index.html，在网页中即可实现流式语音识别。&lt;/p&gt;
@@ -225,7 +225,7 @@ Hermite矩阵：满足$A^H=A$的矩阵A &lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu.png&#34;
 	width=&#34;786&#34;
 	height=&#34;567&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_6bd355fa2a3fb1a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_e4d3ce8d0c81f004.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_b963669263ae8b6a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_48caabc25576a33e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;周期为4的马尔科夫链&#34;
@@ -305,7 +305,7 @@ SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI.png&#34;
 	width=&#34;1232&#34;
 	height=&#34;389&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_1044b63aab01995e.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_31c358e30229c66a.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_81c56083c70d296c.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_126a546ebf0a02ee.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -320,7 +320,7 @@ SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search.png&#34;
 	width=&#34;2225&#34;
 	height=&#34;342&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_33f375fbd49ee83a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_cddcaba7b04f2e4e.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_8760a5647b303ad1.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_c61447c395bb2d95.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -333,7 +333,7 @@ SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI.png&#34;
 	width=&#34;1053&#34;
 	height=&#34;378&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_e24d4b79c6a44118.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_f67463dd6817fb37.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_d1465a53af6b1268.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_d81b9a5e98a20111.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

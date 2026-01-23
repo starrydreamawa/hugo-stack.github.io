@@ -7,7 +7,51 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 09 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 23 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260123</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260123/</link>
+        <pubDate>Fri, 23 Jan 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260123/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260123/title.jpg" alt="Featured image of post 260123" /&gt;&lt;h2 id=&#34;在安卓上部署onnx模型&#34;&gt;在安卓上部署ONNX模型
+&lt;/h2&gt;&lt;p&gt;使用android studio作为IDE，语言采用Kotlin（未来如有跨平台需求可改为Kotlin MultiPlatform）&lt;/p&gt;
+&lt;p&gt;项目结构：&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;VoiceEmbeddingExtractor.kt&lt;/td&gt;&lt;td&gt;ONNX模型推理核心&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;VoiceRecorder.kt&lt;/td&gt;&lt;td&gt;音频录制与处理&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;AudioProcessor.kt&lt;/td&gt;&lt;td&gt;音频预处理(应该放进VoiceRecorder的，现在还没动)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;AudioUtils.kt&lt;/td&gt;&lt;td&gt;音频特征提取工具(其中许多功能冗余，最好和推理核心再整理一下)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;VoiceDatabase.kt&lt;/td&gt;&lt;td&gt;声纹数据库管理&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;PermissionManager.kt&lt;/td&gt;&lt;td&gt;权限管理工具&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;MainActivity.kt&lt;/td&gt;&lt;td&gt;主界面逻辑&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;引入如下gradle依赖：&lt;/p&gt;
+&lt;p&gt;ONNX &lt;br&gt;
+implementation(&amp;ldquo;com.microsoft.onnxruntime:onnxruntime-android:latest.release&amp;rdquo;)&lt;/p&gt;
+&lt;p&gt;好像是安卓开发需要的 &lt;br&gt;
+implementation(&amp;ldquo;androidx.core:core-ktx:1.12.0&amp;rdquo;)
+implementation(&amp;ldquo;androidx.lifecycle:lifecycle-runtime-ktx:2.7.0&amp;rdquo;)
+implementation(&amp;ldquo;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0&amp;rdquo;)&lt;/p&gt;
+&lt;p&gt;音频处理 &lt;br&gt;
+implementation(&amp;ldquo;com.google.code.gson:gson:2.10.1&amp;rdquo;)
+implementation(&amp;ldquo;com.github.wendykierp:JTransforms:3.1&amp;rdquo;)&lt;/p&gt;
+&lt;p&gt;加载ONNX模型的方式：OrtEnvironment&lt;/p&gt;
+&lt;p&gt;踩到的坑：&lt;br&gt;
+在android上许多操作需要申请权限，需要ActivityCompat.requestPermissions来申请；&lt;br&gt;
+模型的输入维度需要适配，通过&lt;a class=&#34;link&#34; href=&#34;https://netron.app/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Netron&lt;/a&gt;网站可以看到模型的结构。&lt;/p&gt;
+&lt;h2 id=&#34;硬件研究方向&#34;&gt;硬件研究方向
+&lt;/h2&gt;&lt;p&gt;时间计算：用代码就行&lt;/p&gt;
+&lt;p&gt;内存、CPU/GPU占用：Android Studio自带的Profiler，使用adb指令&lt;/p&gt;
+&lt;p&gt;能耗：Android Battery Historian&lt;/p&gt;
+&lt;p&gt;底层与硬件的交互：?&lt;/p&gt;
+&lt;h2 id=&#34;组会总结&#34;&gt;组会总结
+&lt;/h2&gt;&lt;p&gt;谁懂代码之前跑着都没事结果在导师面前华丽丽地闪退的感觉&lt;/p&gt;
+&lt;p&gt;对硬件架构的交互应当落实到“如何分配内存”上，并且在真的手机里运行&lt;/p&gt;
+&lt;p&gt;下周目标：把app修好，测量上述性能指标和研究内存分配机制，并且适当学学java&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260109</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260109/</link>
         <pubDate>Fri, 09 Jan 2026 00:00:00 +0000</pubDate>

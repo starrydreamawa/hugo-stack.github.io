@@ -7,7 +7,60 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 13 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260320</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/</link>
+        <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/title.png" alt="Featured image of post 260320" /&gt;&lt;h2 id=&#34;内存结果测试&#34;&gt;内存结果测试
+&lt;/h2&gt;&lt;p&gt;找到一个看起来很高级的性能测试网站：&lt;a class=&#34;link&#34; href=&#34;https://ui.perfetto.dev/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;perfetto&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;得到了看不太懂的结果：&lt;br&gt;
+&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1.png&#34;
+	width=&#34;2198&#34;
+	height=&#34;1191&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1_hu_8c81a4461f58c002.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1_hu_775b76080a2075a4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;184&#34;
+		data-flex-basis=&#34;442px&#34;
+	
+&gt; &lt;br&gt;
+&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2.png&#34;
+	width=&#34;2179&#34;
+	height=&#34;1101&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2_hu_90555c6c1e65d9a8.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2_hu_ff0a82c3af7f7333.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;474px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看出内存占用在387MB左右，和之前的结果一致。&lt;/p&gt;
+&lt;h2 id=&#34;算子学习&#34;&gt;算子学习
+&lt;/h2&gt;&lt;p&gt;使用cuda编写了一个简单的向量加法算子，然后导入pytorch框架进行了一些演示性训练，导出了一个onnx模型：&lt;br&gt;
+&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx.png&#34;
+	width=&#34;509&#34;
+	height=&#34;979&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx_hu_70b7dcab53bac561.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx_hu_cd95f122d0eb8a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;51&#34;
+		data-flex-basis=&#34;124px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;接下来的想法&#34;&gt;接下来的想法
+&lt;/h2&gt;&lt;p&gt;研究一下怎么加入更复杂的算子，结合上面的性能测试网站分析一下算子占用哪些硬件性能&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260313</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260313/</link>
         <pubDate>Fri, 13 Mar 2026 00:00:00 +0000</pubDate>

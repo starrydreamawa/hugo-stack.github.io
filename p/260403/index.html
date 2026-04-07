@@ -421,40 +421,26 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#可以在sdk页面找到具体路径</span>
-</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">ANDROID_NDK</span><span class="o">=</span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="err">你的用户名</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Android</span>\<span class="n">Sdk</span>\<span class="n">ndk</span>\<span class="err">版本号</span>
-</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">CMAKE_PATH</span><span class="o">=</span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="err">你的用户名</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Android</span>\<span class="n">Sdk</span>\<span class="n">cmake</span>\<span class="err">版本号</span>\<span class="n">bin</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="n">PATH</span><span class="o">=%</span><span class="n">CMAKE_PATH</span><span class="o">%</span><span class="p">;</span><span class="o">%</span><span class="n">ANDROID_NDK</span><span class="o">%</span><span class="p">;</span><span class="o">%</span><span class="n">PATH</span><span class="o">%</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">env</span><span class="p">:</span><span class="n">CMAKE_PATH</span> <span class="o">=</span> <span class="s2">&#34;C:\Users\你的用户名\AppData\Local\Android\Sdk\cmake\版本号</span><span class="se">\b</span><span class="s2">in&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">env</span><span class="p">:</span><span class="n">ANDROID_NDK</span> <span class="o">=</span> <span class="s2">&#34;C:\Users\你的用户名\AppData\Local\Android\Sdk</span><span class="se">\n</span><span class="s2">dk\版本号&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span><span class="n">env</span><span class="p">:</span><span class="n">PATH</span> <span class="o">=</span> <span class="s2">&#34;$env:CMAKE_PATH;$env:ANDROID_NDK;$env:PATH&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">mkdir</span> <span class="n">build</span>
 </span></span><span class="line"><span class="cl"><span class="n">cd</span> <span class="n">build</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cmake</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DCMAKE_TOOLCHAIN_FILE</span><span class="o">=$</span><span class="n">NDK</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">cmake</span><span class="o">/</span><span class="n">android</span><span class="o">.</span><span class="n">toolchain</span><span class="o">.</span><span class="n">cmake</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DANDROID_ABI</span><span class="o">=</span><span class="n">arm64</span><span class="o">-</span><span class="n">v8a</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DANDROID_PLATFORM</span><span class="o">=</span><span class="mi">35</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DCMAKE_C_COMPILER</span><span class="o">=$</span><span class="n">NDK</span><span class="o">/</span><span class="n">toolchains</span><span class="o">/</span><span class="n">llvm</span><span class="o">/</span><span class="n">prebuilt</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">clang</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DCMAKE_C_FLAGS</span><span class="o">=</span><span class="s2">&#34;-march=armv8-a&#34;</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DCMAKE_CXX_COMPILER</span><span class="o">=$</span><span class="n">NDK</span><span class="o">/</span><span class="n">toolchains</span><span class="o">/</span><span class="n">llvm</span><span class="o">/</span><span class="n">prebuilt</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">clang</span><span class="o">++</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DCMAKE_CXX_FLAGS</span><span class="o">=</span><span class="s2">&#34;-march=armv8-a&#34;</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DGGML_OPENMP</span><span class="o">=</span><span class="n">OFF</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DGGML_LLAMAFILE</span><span class="o">=</span><span class="n">OFF</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">DLLAMA_CURL</span><span class="o">=</span><span class="n">OFF</span> \
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">B</span> <span class="n">build</span><span class="o">-</span><span class="n">android</span> \
-</span></span><span class="line"><span class="cl"><span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">..</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">G</span> <span class="s2">&#34;Ninja&#34;</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_TOOLCHAIN_FILE</span><span class="o">=</span><span class="s2">&#34;$env:ANDROID_NDK/build/cmake/android.toolchain.cmake&#34;</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DANDROID_ABI</span><span class="o">=</span><span class="n">arm64</span><span class="o">-</span><span class="n">v8a</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DANDROID_PLATFORM</span><span class="o">=</span><span class="n">android</span><span class="o">-</span><span class="mi">24</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">Release</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DGGML_OPENMP</span><span class="o">=</span><span class="n">OFF</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="n">build</span><span class="o">-</span><span class="n">android</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">j8</span>
-</span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">--</span><span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">android</span> <span class="o">--</span><span class="n">prefix</span> <span class="n">output</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span>
+</span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">j8</span>
+</span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">--</span><span class="n">install</span> <span class="o">.</span> <span class="o">--</span><span class="n">prefix</span> <span class="n">output</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>生成output文件夹内容，然后通过adb传到手机上：</p>

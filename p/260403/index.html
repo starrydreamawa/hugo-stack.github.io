@@ -421,6 +421,12 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#可以在sdk页面找到具体路径</span>
@@ -436,8 +442,14 @@
 </span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_TOOLCHAIN_FILE</span><span class="o">=</span><span class="s2">&#34;$env:ANDROID_NDK/build/cmake/android.toolchain.cmake&#34;</span> <span class="err">`</span>
 </span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DANDROID_ABI</span><span class="o">=</span><span class="n">arm64</span><span class="o">-</span><span class="n">v8a</span> <span class="err">`</span>
 </span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DANDROID_PLATFORM</span><span class="o">=</span><span class="n">android</span><span class="o">-</span><span class="mi">24</span> <span class="err">`</span>
-</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">Release</span> <span class="err">`</span>
-</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DGGML_OPENMP</span><span class="o">=</span><span class="n">OFF</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">Debug</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DGGML_OPENMP</span><span class="o">=</span><span class="n">OFF</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_C_COMPILER</span><span class="o">=</span><span class="s2">&#34;$env:ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/clang&#34;</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_C_FLAGS</span><span class="o">=</span><span class="s2">&#34;-march=armv8-a&#34;</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_CXX_COMPILER</span><span class="o">=</span><span class="s2">&#34;$env:ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++&#34;</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DCMAKE_CXX_FLAGS</span><span class="o">=</span><span class="s2">&#34;-march=armv8-a&#34;</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DGGML_LLAMAFILE</span><span class="o">=</span><span class="n">OFF</span> <span class="err">`</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span><span class="n">DLLAMA_CURL</span><span class="o">=</span><span class="n">OFF</span> 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="o">.</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span> <span class="o">-</span><span class="n">j8</span>
 </span></span><span class="line"><span class="cl"><span class="n">cmake</span> <span class="o">--</span><span class="n">install</span> <span class="o">.</span> <span class="o">--</span><span class="n">prefix</span> <span class="n">output</span> <span class="o">--</span><span class="n">config</span> <span class="n">Debug</span>
@@ -448,10 +460,12 @@
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">adb shell &#34;mkdir /data/local/tmp/llama.cpp&#34;
-</span></span><span class="line"><span class="cl">adb push output/ /data/local/tmp/llama.cpp/
+</span></span><span class="line"><span class="cl">adb push output/bin /data/local/tmp/llama.cpp/bin
+</span></span><span class="line"><span class="cl">adb push output/lib /data/local/tmp/llama.cpp/lib
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>模型也传到手机上：</p>
@@ -462,7 +476,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">adb shell &#34;mkdir /data/local/tmp/models&#34;
-</span></span><span class="line"><span class="cl">adb push &lt;模型路径&gt; /data/local/tmp/models
+</span></span><span class="line"><span class="cl">adb push &lt;模型路径&gt; /data/local/tmp/llama.cpp/models
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后就做到这了，希望接下来官网给的命令有用：</p>
@@ -555,6 +569,30 @@
             
                 
 <article class="has-image">
+    <a href="/hugo-stack.github.io/p/260410/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-stack.github.io/p/260410/title.81f85721f273dd7754a91ad00876669a_hu_90fb8dc5abb1904f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 260410"
+                        data-key="260410" 
+                        data-hash="md5-gfhXIfJz3XdUqRrQCHZmmg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">260410</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/hugo-stack.github.io/p/260320/">
         
         
@@ -644,30 +682,6 @@
 
         <div class="article-details">
             <h2 class="article-title">260130</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/hugo-stack.github.io/p/260123/">
-        
-        
-            <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260123/title.25186662c859ade118c6adc347088f0d_hu_51253c92452f6545.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 260123"
-                        data-key="260123" 
-                        data-hash="md5-JRhmYshZreEYxq3DRwiPDQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">260123</h2>
         </div>
     </a>
 </article>

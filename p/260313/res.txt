@@ -1,0 +1,114 @@
+record_1: 
+tensor([394, 394, 392, 394, 394, 394, 394, 394, 394, 394, 394, 394, 394, 394,
+        394, 267, 394, 394, 394, 394, 394, 394, 394, 394, 394])
+
+record_1772795550705.wav ： 
+tensor([881, 206, 206, 206, 206, 206, 394, 244, 209, 206, 206, 206, 908, 908,
+        559, 559, 818, 206, 500, 206, 875, 206, 394, 350, 818])
+
+
+before load model
+2026-03-12 17:02:10.287 18897-18897 information             com.example.beatstokenizertest       D  1734113.194231ms
+2026-03-12 17:02:10.287 18897-18897 information             com.example.beatstokenizertest       D  Java heap = 5 MB
+2026-03-12 17:02:10.287 18897-18897 information             com.example.beatstokenizertest       D  Native heap = 15 MB
+
+
+after load model
+2026-03-12 17:02:11.552 18897-18897 information             com.example.beatstokenizertest       D  1735377.803606ms
+2026-03-12 17:02:11.552 18897-18897 information             com.example.beatstokenizertest       D  Java heap = 6 MB
+2026-03-12 17:02:11.552 18897-18897 information             com.example.beatstokenizertest       D  Native heap = 402 MB
+
+after predict
+2026-03-12 17:02:25.350 18897-27483 information             com.example.beatstokenizertest       D  1749175.794799ms
+2026-03-12 17:02:25.350 18897-27483 information             com.example.beatstokenizertest       D  Java heap = 4 MB
+2026-03-12 17:02:25.350 18897-27483 information             com.example.beatstokenizertest       D  Native heap = 416 MB
+
+CPU占用：加载模型始终12%，推理时最高在30%~40%，然后落到20%左右
+
+2026-03-12 17:16:45.951 29574-29574 information             com.example.beatstokenizertest       D  before load model
+2026-03-12 17:16:45.951 29574-29574 information             com.example.beatstokenizertest       D  2609777.329522ms
+2026-03-12 17:16:45.951 29574-29574 information             com.example.beatstokenizertest       D  Java heap = 6 MB
+2026-03-12 17:16:45.951 29574-29574 information             com.example.beatstokenizertest       D  Native heap = 15 MB
+
+2026-03-12 17:16:47.046 29574-29574 information             com.example.beatstokenizertest       D  after load model
+2026-03-12 17:16:47.046 29574-29574 information             com.example.beatstokenizertest       D  2610871.726241ms
+2026-03-12 17:16:47.046 29574-29574 information             com.example.beatstokenizertest       D  Java heap = 6 MB
+2026-03-12 17:16:47.046 29574-29574 information             com.example.beatstokenizertest       D  Native heap = 402 MB
+
+2026-03-12 17:17:19.593 29574-793   information             com.example.beatstokenizertest       D  before predict
+2026-03-12 17:17:19.593 29574-793   information             com.example.beatstokenizertest       D  2643419.322739ms
+2026-03-12 17:17:19.593 29574-793   information             com.example.beatstokenizertest       D  Java heap = 3 MB
+2026-03-12 17:17:19.593 29574-793   information             com.example.beatstokenizertest       D  Native heap = 406 MB
+
+2026-03-12 17:17:20.106 29574-793   information             com.example.beatstokenizertest       D  after predict
+2026-03-12 17:17:20.106 29574-793   information             com.example.beatstokenizertest       D  2643932.400343ms
+2026-03-12 17:17:20.106 29574-793   information             com.example.beatstokenizertest       D  Java heap = 3 MB
+2026-03-12 17:17:20.106 29574-793   information             com.example.beatstokenizertest       D  Native heap = 416 MB
+
+BEATs：
+record1：
+tensor([[[-0.3351,  0.2531, -0.5455,  ...,  0.4212,  0.3536,  0.1609],
+         [-0.2801,  0.1563, -0.4447,  ...,  0.3267,  0.5393,  0.1746],
+         [-0.2128,  0.1904, -0.4541,  ...,  0.7925,  0.6065,  0.0238],
+         ...,
+         [ 0.0977, -0.6989,  0.2842,  ..., -0.4483,  0.0920, -0.0939],
+         [ 0.0087, -0.2234,  0.2821,  ..., -0.2367,  0.1240,  0.0993],
+         [ 0.0531, -0.3260, -0.1900,  ..., -0.2671,  0.1366,  0.1689]]],
+       grad_fn=<TransposeBackward0>)
+
+record1xxx：
+tensor([[[-0.3938,  0.2348, -0.0860,  ...,  0.3845, -0.0531, -0.0767],
+         [-0.3544,  0.3416, -0.0112,  ...,  0.2674, -0.2535, -0.1180],
+         [-0.2752,  0.1511,  0.2672,  ...,  0.4113, -0.2136, -0.2299],
+         ...,
+         [-0.7010,  0.3203,  0.0367,  ..., -0.1508,  0.1180, -0.2029],
+         [-0.3933,  0.1110,  0.3190,  ..., -0.3247, -0.2568, -0.1067],
+         [-0.2092,  0.1342, -0.0397,  ..., -0.1846, -0.0116, -0.1504]]],
+       grad_fn=<SliceBackward0>)
+
+torch.Size([1, 144, 768])
+
+2026-03-13 09:26:32.455 28243-28243 information             com.example.beatstokenizertest       D  before load model
+2026-03-13 09:26:32.456 28243-28243 information             com.example.beatstokenizertest       D  7727179.22179ms
+2026-03-13 09:26:32.456 28243-28243 information             com.example.beatstokenizertest       D  Java heap = 7 MB
+2026-03-13 09:26:32.456 28243-28243 information             com.example.beatstokenizertest       D  Native heap = 15 MB
+
+2026-03-13 09:26:33.964 28243-28243 information             com.example.beatstokenizertest       D  after load model
+2026-03-13 09:26:33.964 28243-28243 information             com.example.beatstokenizertest       D  7728687.84132ms
+2026-03-13 09:26:33.964 28243-28243 information             com.example.beatstokenizertest       D  Java heap = 7 MB
+2026-03-13 09:26:33.964 28243-28243 information             com.example.beatstokenizertest       D  Native heap = 397 MB
+
+CPU占用：加载模型始终12%，第一次推理逐渐高到50%，然后回落到20%左右；第二次逐渐高到35%，然后回落到20%左右
+
+2026-03-13 14:05:06.780 11322-11322 information             com.example.beatstokenizertest       D  before load model
+2026-03-13 14:05:06.780 11322-11322 information             com.example.beatstokenizertest       D  2.34898923276E7ms
+2026-03-13 14:05:06.780 11322-11322 information             com.example.beatstokenizertest       D  Java heap = 9 MB
+2026-03-13 14:05:06.780 11322-11322 information             com.example.beatstokenizertest       D  Native heap = 16 MB
+
+2026-03-13 14:05:07.888 11322-11322 information             com.example.beatstokenizertest       D  after load model
+2026-03-13 14:05:07.888 11322-11322 information             com.example.beatstokenizertest       D  2.3491001161401E7ms
+2026-03-13 14:05:07.888 11322-11322 information             com.example.beatstokenizertest       D  Java heap = 9 MB
+2026-03-13 14:05:07.888 11322-11322 information             com.example.beatstokenizertest       D  Native heap = 397 MB
+
+2026-03-13 14:05:12.649 11322-16852 information             com.example.beatstokenizertest       D  before predict
+2026-03-13 14:05:12.649 11322-16852 information             com.example.beatstokenizertest       D  2.3495761453431E7ms
+2026-03-13 14:05:12.649 11322-16852 information             com.example.beatstokenizertest       D  Java heap = 3 MB
+2026-03-13 14:05:12.649 11322-16852 information             com.example.beatstokenizertest       D  Native heap = 400 MB
+
+2026-03-13 14:05:13.190 11322-16852 information             com.example.beatstokenizertest       D  after predict
+2026-03-13 14:05:13.190 11322-16852 information             com.example.beatstokenizertest       D  2.3496303005306E7ms
+2026-03-13 14:05:13.190 11322-16852 information             com.example.beatstokenizertest       D  Java heap = 4 MB
+2026-03-13 14:05:13.190 11322-16852 information             com.example.beatstokenizertest       D  Native heap = 410 MB
+
+2026-03-13 14:05:16.629 11322-16909 information             com.example.beatstokenizertest       D  before predict
+2026-03-13 14:05:16.630 11322-16909 information             com.example.beatstokenizertest       D  2.3499742198273E7ms
+2026-03-13 14:05:16.630 11322-16909 information             com.example.beatstokenizertest       D  Java heap = 4 MB
+2026-03-13 14:05:16.630 11322-16909 information             com.example.beatstokenizertest       D  Native heap = 409 MB
+
+2026-03-13 14:05:17.151 11322-16909 information             com.example.beatstokenizertest       D  after predict
+2026-03-13 14:05:17.151 11322-16909 information             com.example.beatstokenizertest       D  2.350026412119E7ms
+2026-03-13 14:05:17.151 11322-16909 information             com.example.beatstokenizertest       D  Java heap = 4 MB
+2026-03-13 14:05:17.151 11322-16909 information             com.example.beatstokenizertest       D  Native heap = 410 MB
+
+
+

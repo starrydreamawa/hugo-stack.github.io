@@ -262,7 +262,8 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#minicpm-o26-部署终">MiniCPM-o2.6 部署(终)</a></li>
+    <li><a href="#minicpm-int4-模型部署">MiniCPM int4 模型部署</a></li>
+    <li><a href="#pengi模型部署">pengi模型部署</a></li>
   </ol>
 </nav>
         </div>
@@ -344,108 +345,19 @@
     <section class="article-content">
     
     
-    <h2 id="minicpm-o26-部署终">MiniCPM-o2.6 部署(终)
-</h2><p>继续前文。</p>
-<p>经过三周的探索，结论已然出现。MiniCPM-o 2.6无法实现在安卓或IOS上的音频工作。</p>
-<p>证据1：来自<a class="link" href="https://github.com/tc-mb/llama.cpp/blob/minicpm-omni/examples/llava/README-minicpmo2.6.md"  target="_blank" rel="noopener"
-    >minicpm-o 2.6官方给出的README</a></p>
-<p><img src="/hugo-stack.github.io/p/260417/1.png"
-	width="1482"
-	height="153"
-	srcset="/hugo-stack.github.io/p/260417/1_hu_73eadf46f5cd2718.png 480w, /hugo-stack.github.io/p/260417/1_hu_6700ac750bac11ce.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="968"
-		data-flex-basis="2324px"
-	
-></p>
-<p>证据2：官方IOS demo的部署结果,其中没有音频实现：</p>
-<p><img src="/hugo-stack.github.io/p/260417/3.jpg"
-	width="1706"
-	height="1279"
-	srcset="/hugo-stack.github.io/p/260417/3_hu_96b506524b11d7e9.jpg 480w, /hugo-stack.github.io/p/260417/3_hu_230f3c6186dc52cc.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="320px"
-	
-></p>
-<p>证据3：来自官方的issue回复：</p>
-<p><img src="/hugo-stack.github.io/p/260417/2.png"
-	width="1920"
-	height="924"
-	srcset="/hugo-stack.github.io/p/260417/2_hu_ffd5b7a2e8a75418.png 480w, /hugo-stack.github.io/p/260417/2_hu_cbe334f0b05a5abf.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="207"
-		data-flex-basis="498px"
-	
-></p>
-<p>证据4：唯一支持音频输入的llama.cpp(上面官方提到的<a class="link" href="https://github.com/tc-mb/llama.cpp-omni"  target="_blank" rel="noopener"
-    >tc-mb版llama</a>)编译运行程序仅支持声音克隆（并且也需要许多minicpm-o4.5的子模型才能运行）：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Options</span><span class="p">:</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">vision</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="n">Override</span> <span class="n">vision</span> <span class="n">model</span> <span class="n">path</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">audio</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="n">Override</span> <span class="n">audio</span> <span class="n">model</span> <span class="n">path</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">tts</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="n">Override</span> <span class="n">TTS</span> <span class="n">model</span> <span class="n">path</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">projector</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="n">Override</span> <span class="n">projector</span> <span class="n">model</span> <span class="n">path</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">audio</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="ne">Reference</span> <span class="n">audio</span> <span class="k">for</span> <span class="n">voice</span> <span class="n">cloning</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">tools</span><span class="o">/</span><span class="n">omni</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">default_ref_audio</span><span class="o">/</span><span class="n">default_ref_audio</span><span class="o">.</span><span class="n">wav</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="o">--</span><span class="n">ctx</span><span class="o">-</span><span class="n">size</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">Context</span> <span class="n">size</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">4096</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">ngl</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">GPU</span> <span class="n">layers</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">99</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">tts</span> <span class="n">Disable</span> <span class="n">TTS</span> <span class="n">output</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">omni</span> <span class="n">Enable</span> <span class="n">omni</span> <span class="n">mode</span> <span class="p">(</span><span class="n">audio</span> <span class="o">+</span> <span class="n">vision</span><span class="p">,</span> <span class="n">media_type</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">vision</span><span class="o">-</span><span class="n">backend</span> <span class="o">&lt;</span><span class="n">mode</span><span class="o">&gt;</span> <span class="n">Vision</span> <span class="n">compute</span> <span class="n">backend</span><span class="p">:</span> <span class="s1">&#39;metal&#39;</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;coreml&#39;</span> <span class="p">(</span><span class="n">ANE</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">vision</span><span class="o">-</span><span class="n">coreml</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="ne">Path</span> <span class="n">to</span> <span class="n">CoreML</span> <span class="n">model</span> <span class="p">(</span><span class="o">.</span><span class="n">mlmodelc</span><span class="p">),</span> <span class="n">required</span> <span class="n">when</span> <span class="n">backend</span><span class="o">=</span><span class="n">coreml</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">test</span> <span class="o">&lt;</span><span class="n">prefix</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">Run</span> <span class="n">test</span> <span class="k">case</span> <span class="n">with</span> <span class="n">data</span> <span class="n">prefix</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">help</span> <span class="n">Show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Example</span><span class="p">:</span> 
-</span></span><span class="line"><span class="cl"><span class="o">./</span><span class="n">bin</span><span class="o">/</span><span class="n">llama</span><span class="o">-</span><span class="n">omni</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">m</span> <span class="o">./</span><span class="n">models</span><span class="o">/</span><span class="n">MiniCPM</span><span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="mi">4</span><span class="n">_5</span><span class="o">-</span><span class="n">gguf</span><span class="o">/</span><span class="n">MiniCPM</span><span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="mi">4</span><span class="n">_5</span><span class="o">-</span><span class="n">Q4_K_M</span><span class="o">.</span><span class="n">gguf</span> 
-</span></span><span class="line"><span class="cl"><span class="o">./</span><span class="n">bin</span><span class="o">/</span><span class="n">llama</span><span class="o">-</span><span class="n">omni</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">m</span> <span class="o">./</span><span class="n">models</span><span class="o">/</span><span class="n">MiniCPM</span><span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="mi">4</span><span class="n">_5</span><span class="o">-</span><span class="n">gguf</span><span class="o">/</span><span class="n">MiniCPM</span><span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="mi">4</span><span class="n">_5</span><span class="o">-</span><span class="n">F16</span><span class="o">.</span><span class="n">gguf</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">tts</span> 
-</span></span><span class="line"><span class="cl"><span class="o">./</span><span class="n">bin</span><span class="o">/</span><span class="n">llama</span><span class="o">-</span><span class="n">omni</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">m</span> <span class="o">./</span><span class="n">models</span><span class="o">/</span><span class="n">MiniCPM</span><span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="mi">4</span><span class="n">_5</span><span class="o">-</span><span class="n">gguf</span><span class="o">/</span><span class="n">MiniCPM</span><span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="mi">4</span><span class="n">_5</span><span class="o">-</span><span class="n">Q4_K_M</span><span class="o">.</span><span class="n">gguf</span> <span class="o">--</span><span class="n">omni</span> <span class="o">--</span><span class="n">test</span> <span class="n">tools</span><span class="o">/</span><span class="n">omni</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">test_case</span><span class="o">/</span><span class="n">omni_test_case</span><span class="o">/</span><span class="n">omni_test_case_</span> <span class="mi">9</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>非决定性证据：来自ai的质疑：</p>
-<p><img src="/hugo-stack.github.io/p/260417/4.png"
-	width="868"
-	height="1948"
-	srcset="/hugo-stack.github.io/p/260417/4_hu_88ce626b679a24c3.png 480w, /hugo-stack.github.io/p/260417/4_hu_9c31ca423b129eec.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="44"
-		data-flex-basis="106px"
-	
-></p>
+    <h2 id="minicpm-int4-模型部署">MiniCPM int4 模型部署
+</h2><p>由于之前在手机上部署minicpm-o gguf量化模型失败，转而尝试在电脑上部署服务器，在手机上跑前端。</p>
+<p>前端设置了两个页面，一个用来添加监听事件，另一个是监听的主页面，可以显示某时刻的声音包括哪些种类。</p>
+<p>录音相关设置前文已经提过，这里采用10s音频数据环形缓存区，录音获得的数据不停填充。每当服务器预备，就发送当前时间往前2s的数据，然后等待服务器返回结果。如果服务器没有返回，10s判定为超时，重新再传。</p>
+<p>音频数据连同传到后端，被模型接收，模型推理并根据大模型输出的结果得到音频中包括哪些声音，返回前端。</p>
+<h2 id="pengi模型部署">pengi模型部署
+</h2><p>前端基本不变，由于pengi要求的音频采样率是44.1k，所以修改了前端的采样率。</p>
+<p>pengi模型能够很好地识别声音，而且速度很快（小于1s）。但是它的输出是回答的预测分数（最多五个），只支持特殊提示词，否则只会输出它对音频类型的识别来无视提示词。<br>
+例如这样：[([&lsquo;yes &lsquo;, &rsquo;no &lsquo;, &lsquo;people &lsquo;], tensor([-0.6754, -0.9480, -1.5298]))]</p>
+<p>目前想到的最佳方案是利用&quot;Question: does this audio contain {ev} or not&quot;这个提示词，将所有监听事件分别输入模型一次。通过得到返回结论中的yes、no的分数相减与预设参数比较，得出该声音种类是否在音频中存在。</p>
+<p>问题：</p>
+<p>即使这样提问，输出的结果中仍然有较大概率不包含yes和no，导致难以预测。并且模型容易突然卡住，十几秒没有返回。</p>
+<p>并且不同声音种类识别难度不同，例如rain和speak很容易被误识别，而piano很难被识别。</p>
 
 </section>
 
@@ -514,11 +426,59 @@
             
                 
 <article class="has-image">
+    <a href="/hugo-stack.github.io/p/260602/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-stack.github.io/p/260602/title.d4d65d17ad2078eb4152b32808ea16fb_hu_11b4084f40446500.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 260602"
+                        data-key="260602" 
+                        data-hash="md5-1NZdF60geOtBUrMoCOoW&#43;w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">260602</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-stack.github.io/p/260515/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-stack.github.io/p/260515/title.12a87fa72b140074d5522789a66e3f90_hu_8f901e4132301267.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 260515"
+                        data-key="260515" 
+                        data-hash="md5-Eqh/pysUAHTVUieJpm4/kA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">260515</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/hugo-stack.github.io/p/260410/">
         
         
             <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260410/title.81f85721f273dd7754a91ad00876669a_hu_90fb8dc5abb1904f.png" 
+                <img src="/hugo-stack.github.io/p/260410/title.81f85721f273dd7754a91ad00876669a_hu_72f3a3b96cb81519.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -542,7 +502,7 @@
         
         
             <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260403/title.6a7c52e1e105b7f9acb677170aa6736c_hu_f68ef91d643dcd13.jpg" 
+                <img src="/hugo-stack.github.io/p/260403/title.6a7c52e1e105b7f9acb677170aa6736c_hu_12ae5054f0b1ee48.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -566,7 +526,7 @@
         
         
             <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260320/title.0d67e3b0620ecc94aae1c6a4bcfa8b1f_hu_c885456ec753edf4.png" 
+                <img src="/hugo-stack.github.io/p/260320/title.0d67e3b0620ecc94aae1c6a4bcfa8b1f_hu_73e7b2bf45a74b04.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -579,54 +539,6 @@
 
         <div class="article-details">
             <h2 class="article-title">260320</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/hugo-stack.github.io/p/260313/">
-        
-        
-            <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260313/title.a5586dac074a2f76399ec89b495896e0_hu_208181ee0a960aa9.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 260313"
-                        data-key="260313" 
-                        data-hash="md5-pVhtrAdKL3Y5nsibSViW4A==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">260313</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/hugo-stack.github.io/p/260306/">
-        
-        
-            <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260306/title.5f25f622c1667b488f724cdb898fba6a_hu_41e23d3dc7f1302b.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 260306"
-                        data-key="260306" 
-                        data-hash="md5-XyX2IsFme0iPckzbiY&#43;6ag==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">260306</h2>
         </div>
     </a>
 </article>
@@ -658,8 +570,9 @@
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 </div>
 
 <style>

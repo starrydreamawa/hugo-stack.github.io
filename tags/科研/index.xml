@@ -7,21 +7,50 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 17 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>260417</title>
-        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/</link>
-        <pubDate>Fri, 17 Apr 2026 00:00:00 +0000</pubDate>
+        <lastBuildDate>Tue, 02 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260602</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260602/</link>
+        <pubDate>Tue, 02 Jun 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/</guid>
-        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/title.jpg" alt="Featured image of post 260417" /&gt;&lt;h2 id=&#34;minicpm-o26-部署终&#34;&gt;MiniCPM-o2.6 部署(终)
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260602/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260602/title.jpg" alt="Featured image of post 260602" /&gt;&lt;h2 id=&#34;模型部署&#34;&gt;模型部署
+&lt;/h2&gt;&lt;p&gt;我的工作是把模型部署到安卓端，进行音频监听工作。下面是系统功能：&lt;/p&gt;
+&lt;p&gt;输入要监听的声音类型：&lt;/p&gt;
+&lt;div align=&#34;center&#34;&gt;
+  &lt;img src=&#34;add.jpg&#34; width=&#34;50%&#34; style=&#34;width: 50%;&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;在这个页面显示结果：&lt;/p&gt;
+&lt;div align=&#34;center&#34;&gt;
+  &lt;img src=&#34;monitor.jpg&#34; width=&#34;50%&#34; style=&#34;width: 50%;&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;关于模型情况如下：&lt;/p&gt;
+&lt;p&gt;通过一段时间的努力证明了minicpm-o2.6这个模型不适合部署到手机端。&lt;/p&gt;
+&lt;p&gt;在电脑上运行了minicpm-o2.6的int4量化版，成功和安卓端连接并输出结果。&lt;/p&gt;
+&lt;p&gt;之后尝试用pengi模型在电脑上运行，成功和安卓端连接。&lt;/p&gt;
+&lt;p&gt;但pengi主要是识别音频类型，其对文字的处理不够先进，因而将类型转换为识别类型的过程不够稳定。&lt;/p&gt;
+&lt;p&gt;目前拿到了BEATs、CLAP和llama.cpp的投影层，以及初步训练的模型，目前正在尝试把这些部署到安卓上。&lt;br&gt;
+目标是将我们的模型和其他的模型进行比较，得到更好的结果。&lt;/p&gt;
+&lt;p&gt;目前进度是部署好了BEATs模型，CLAP遇到了之前没有完全解决的本地化处理问题，正在着手解决。&lt;/p&gt;
+&lt;h2 id=&#34;数据处理&#34;&gt;数据处理
+&lt;/h2&gt;&lt;p&gt;继续进行数据处理工作，下载了youtube8M数据集，生成对应json文件用于我们的模型训练。&lt;/p&gt;
+&lt;p&gt;目前正在将数据集中的mp3文件转换成wav格式。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>260515</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/</link>
+        <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/title.jpg" alt="Featured image of post 260515" /&gt;&lt;h2 id=&#34;minicpm-o26-部署终&#34;&gt;MiniCPM-o2.6 部署(终)
 &lt;/h2&gt;&lt;p&gt;继续前文。&lt;/p&gt;
 &lt;p&gt;经过三周的探索，结论已然出现。MiniCPM-o 2.6无法实现在安卓或IOS上的音频工作。&lt;/p&gt;
 &lt;p&gt;证据1：来自&lt;a class=&#34;link&#34; href=&#34;https://github.com/tc-mb/llama.cpp/blob/minicpm-omni/examples/llava/README-minicpmo2.6.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;minicpm-o 2.6官方给出的README&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1.png&#34;
 	width=&#34;1482&#34;
 	height=&#34;153&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/1_hu_73eadf46f5cd2718.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/1_hu_6700ac750bac11ce.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1_hu_73eadf46f5cd2718.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1_hu_6700ac750bac11ce.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -31,10 +60,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;证据2：官方IOS demo的部署结果,其中没有音频实现：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/3.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/3.jpg&#34;
 	width=&#34;1706&#34;
 	height=&#34;1279&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/3_hu_96b506524b11d7e9.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/3_hu_230f3c6186dc52cc.jpg 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/3_hu_96b506524b11d7e9.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/3_hu_230f3c6186dc52cc.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -44,10 +73,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;证据3：来自官方的issue回复：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2.png&#34;
 	width=&#34;1920&#34;
 	height=&#34;924&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/2_hu_ffd5b7a2e8a75418.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/2_hu_cbe334f0b05a5abf.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2_hu_ffd5b7a2e8a75418.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2_hu_cbe334f0b05a5abf.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -103,10 +132,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;非决定性证据：来自ai的质疑：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4.png&#34;
 	width=&#34;868&#34;
 	height=&#34;1948&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/4_hu_88ce626b679a24c3.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/4_hu_9c31ca423b129eec.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4_hu_88ce626b679a24c3.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4_hu_9c31ca423b129eec.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -115,6 +144,27 @@
 		data-flex-basis=&#34;106px&#34;
 	
 &gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>260417</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/</link>
+        <pubDate>Fri, 17 Apr 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260417/title.jpg" alt="Featured image of post 260417" /&gt;&lt;h2 id=&#34;minicpm-int4-模型部署&#34;&gt;MiniCPM int4 模型部署
+&lt;/h2&gt;&lt;p&gt;由于之前在手机上部署minicpm-o gguf量化模型失败，转而尝试在电脑上部署服务器，在手机上跑前端。&lt;/p&gt;
+&lt;p&gt;前端设置了两个页面，一个用来添加监听事件，另一个是监听的主页面，可以显示某时刻的声音包括哪些种类。&lt;/p&gt;
+&lt;p&gt;录音相关设置前文已经提过，这里采用10s音频数据环形缓存区，录音获得的数据不停填充。每当服务器预备，就发送当前时间往前2s的数据，然后等待服务器返回结果。如果服务器没有返回，10s判定为超时，重新再传。&lt;/p&gt;
+&lt;p&gt;音频数据连同传到后端，被模型接收，模型推理并根据大模型输出的结果得到音频中包括哪些声音，返回前端。&lt;/p&gt;
+&lt;h2 id=&#34;pengi模型部署&#34;&gt;pengi模型部署
+&lt;/h2&gt;&lt;p&gt;前端基本不变，由于pengi要求的音频采样率是44.1k，所以修改了前端的采样率。&lt;/p&gt;
+&lt;p&gt;pengi模型能够很好地识别声音，而且速度很快（小于1s）。但是它的输出是回答的预测分数（最多五个），只支持特殊提示词，否则只会输出它对音频类型的识别来无视提示词。&lt;br&gt;
+例如这样：[([&amp;lsquo;yes &amp;lsquo;, &amp;rsquo;no &amp;lsquo;, &amp;lsquo;people &amp;lsquo;], tensor([-0.6754, -0.9480, -1.5298]))]&lt;/p&gt;
+&lt;p&gt;目前想到的最佳方案是利用&amp;quot;Question: does this audio contain {ev} or not&amp;quot;这个提示词，将所有监听事件分别输入模型一次。通过得到返回结论中的yes、no的分数相减与预设参数比较，得出该声音种类是否在音频中存在。&lt;/p&gt;
+&lt;p&gt;问题：&lt;/p&gt;
+&lt;p&gt;即使这样提问，输出的结果中仍然有较大概率不包含yes和no，导致难以预测。并且模型容易突然卡住，十几秒没有返回。&lt;/p&gt;
+&lt;p&gt;并且不同声音种类识别难度不同，例如rain和speak很容易被误识别，而piano很难被识别。&lt;/p&gt;
 </description>
         </item>
         <item>

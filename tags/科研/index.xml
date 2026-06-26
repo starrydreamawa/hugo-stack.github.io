@@ -7,7 +7,232 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Tue, 02 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260626</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260626/</link>
+        <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260626/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260626/title.jpg" alt="Featured image of post 260626" /&gt;&lt;h2 id=&#34;模型部署&#34;&gt;模型部署
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;核心功能&lt;/strong&gt;: 基于 AI 的环境声音监测应用。通过麦克风采集实时音频 → 提取音频嵌入（BEATs + CLAP）→ ONNX 投影 → Qwen2-Audio LLM（llama.cpp GGUF）进行声音事件分类。支持本地推理和远程服务器推理。&lt;/p&gt;
+&lt;h2 id=&#34;模块结构&#34;&gt;模块结构
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;llama.android/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── app/                          # 主应用模块 (com.example.llama)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── src/main/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── java/com/example/llama/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── MainActivity.kt           # 启动页：声音事件列表管理
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── monitor/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── MonitorActivity.kt    # 监测UI：日志区域 + 控制按钮
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── MonitorController.kt  # 核心调度器：协调录音与推理循环
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── InferenceManager.kt   # 推理路由：Local/Remote 分发
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── audio/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   │   ├── AudioRecorderManager.kt  # AudioRecord 封装 (48kHz/16bit/mono)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   │   └── PcmRingBuffer.kt         # 线程安全环形缓冲区 (10s 容量)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── model/         # 数据类 + 适配器 + 模型下载
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   ├── pipeline/      # 本地推理管线 (见下文)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │   └── worker/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │       ├── Local.kt   # 完整本地推理：Preprocess→BEATs→CLAP→Projector→Qwen
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   │       └── Remote.kt  # HTTP POST 到远程服务器的远程推理
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── settings/          # SharedPreferences 封装
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── util/              # 共享工具（见下文）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── assets/                # ML 模型文件 (gitignored, ~400MB)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── beats_traced.pt          # BEATs TorchScript 模型 (~361MB)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── clap_fusion_encoder_mel.onnx  # CLAP ONNX 模型
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── project_fp32.onnx        # ONNX 投影层 (~19MB)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── random_audio_48000_2s.wav  # 测试用 2s WAV（用于固定输入对比测试）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── 2.wav                    # 另一个测试音频
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── res/                   # 布局、图标、主题
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── build.gradle.kts
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── lib/                           # llama.cpp JNI 封装库 (com.arm.aichat)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── src/main/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── java/com/arm/aichat/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── AiChat.kt              # 入口单例
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── InferenceEngine.kt     # 核心接口 + State sealed class (13 states)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   ├── internal/InferenceEngineImpl.kt  # JNI 实现（单线程协程调度）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   │   └── gguf/                  # GGUF v3 元数据解析
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── cpp/ai_chat.cpp            # llama.cpp JNI 原生层
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── build.gradle.kts
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── gradle/libs.versions.toml      # 版本目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── settings.gradle.kts            # 含阿里云 Maven 镜像
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;共享工具-util&#34;&gt;共享工具 (util/)
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;文件&lt;/th&gt;
+					&lt;th&gt;提供&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;util/ContextExt.kt&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;Context.toast(msg)&lt;/code&gt; 扩展函数&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;util/WavUtil.kt&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;parseWav(bytes)&lt;/code&gt; — 基于 chunk 迭代的健壮 WAV 解析器，返回 &lt;code&gt;WavData&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;util/EmbeddingUtil.kt&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;serializeEmbedding()&lt;/code&gt; — 嵌入向量序列化；&lt;code&gt;logMemory()&lt;/code&gt; — 统一内存日志&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;本地推理管线-pipeline&#34;&gt;本地推理管线 (pipeline/)
+&lt;/h2&gt;&lt;p&gt;这是项目的核心—一个 5 步音频处理管线：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;AudioPreProcessor&lt;/strong&gt; (PCM → FloatArray): PCM 转浮点、线性+Lanczos 重采样、长度固定、RMS 归一化、静音检测&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BeatsEmbedder&lt;/strong&gt; (PyTorch TorchScript): 加载 &lt;code&gt;beats_traced.pt&lt;/code&gt; (~361MB)，提取 768 维音频嵌入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ClapEmbedder&lt;/strong&gt; (ONNX): 加载 &lt;code&gt;clap_fusion_encoder_mel.onnx&lt;/code&gt;，手动实现 STFT+Mel 滤波器组+ONNX 推理&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OnnxProjector&lt;/strong&gt; (ONNX): 加载 &lt;code&gt;project_fp32.onnx&lt;/code&gt;，将嵌入从 768D 投影到 3584D，支持单向量和时序序列&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;QwenEngine&lt;/strong&gt; (llama.cpp): 封装 &lt;code&gt;lib&lt;/code&gt; 模块的 &lt;code&gt;InferenceEngine&lt;/code&gt;，注入音频嵌入、生成文本分类结果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;新增&lt;/strong&gt;: &lt;code&gt;FFmpegAudioResampler&lt;/code&gt; — 基于 FFmpegKit soxr 的高质量音频重采样器，替代 &lt;code&gt;AudioPreProcessor&lt;/code&gt; 中的线性插值重采样。&lt;/p&gt;
+&lt;h2 id=&#34;关键依赖&#34;&gt;关键依赖
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;依赖&lt;/th&gt;
+					&lt;th&gt;版本&lt;/th&gt;
+					&lt;th&gt;用途&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;PyTorch Android&lt;/td&gt;
+					&lt;td&gt;2.1.0&lt;/td&gt;
+					&lt;td&gt;BEATs 模型推理 (TorchScript)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;ONNX Runtime&lt;/td&gt;
+					&lt;td&gt;1.18.0&lt;/td&gt;
+					&lt;td&gt;CLAP + Projector 推理&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;FFmpegKit (full)&lt;/td&gt;
+					&lt;td&gt;6.0-2&lt;/td&gt;
+					&lt;td&gt;soxr 高质量音频重采样 (~120MB)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;JTransforms&lt;/td&gt;
+					&lt;td&gt;3.1&lt;/td&gt;
+					&lt;td&gt;FFT 计算（CLAP STFT）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;OkHttp&lt;/td&gt;
+					&lt;td&gt;4.12.0&lt;/td&gt;
+					&lt;td&gt;远程推理 HTTP 通信&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Material&lt;/td&gt;
+					&lt;td&gt;1.13.0&lt;/td&gt;
+					&lt;td&gt;Material Design 组件（通过 version catalog）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Kotlin Coroutines&lt;/td&gt;
+					&lt;td&gt;1.7.3&lt;/td&gt;
+					&lt;td&gt;异步推理 + 串行调度&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;数据流&#34;&gt;数据流
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;麦克风 (48kHz PCM) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → AudioRecorderManager → PcmRingBuffer (环形缓冲, 10s)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → MonitorController (每 2s 取最新块)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → InferenceManager (路由)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ├── Local 模式: 5 步管线 → Qwen2-Audio LLM → 解析 SoundEvent 列表
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      └── Remote 模式: OkHttp POST → 服务器 JSON 响应
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  → MonitorActivity (日志 UI 显示)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;配置设置&#34;&gt;配置/设置
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;SettingsManager&lt;/strong&gt; (线程安全单例): 管理监听模式和服务器 IP&lt;/li&gt;
+&lt;li&gt;模式: &amp;ldquo;our model&amp;rdquo; (本地 Qwen) / &amp;ldquo;Pengi&amp;rdquo; (远程) / &amp;ldquo;minicpm&amp;rdquo; (远程)&lt;/li&gt;
+&lt;li&gt;默认 IP: &lt;code&gt;192.168.0.102:5000&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DebugInferenceTool&lt;/strong&gt;: 通过修改 MonitorController 中的 DEBUG 变量进行调试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;构建注意事项&#34;&gt;构建注意事项
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;abibFilters&lt;/code&gt; 仅设置 &lt;code&gt;arm64-v8a&lt;/code&gt; 和 &lt;code&gt;x86_64&lt;/code&gt;（lib 模块）&lt;/li&gt;
+&lt;li&gt;JNI libs 使用 &lt;code&gt;pickFirsts&lt;/code&gt; 策略处理 &lt;code&gt;libc++_shared.so&lt;/code&gt; 冲突&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;app/src/main/assets/&lt;/code&gt; 中的模型文件被 gitignore（总量 ~400MB+）&lt;/li&gt;
+&lt;li&gt;仓库使用阿里云 Maven 镜像加速&lt;/li&gt;
+&lt;li&gt;NDK 版本: &lt;code&gt;27.0.12077973&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;编码规范&#34;&gt;编码规范
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;所有 Pipeline 组件均为 &lt;strong&gt;Kotlin &lt;code&gt;object&lt;/code&gt; 或 &lt;code&gt;class&lt;/code&gt; 单例&lt;/strong&gt;，通过 &lt;code&gt;getInstance(context)&lt;/code&gt; 获取&lt;/li&gt;
+&lt;li&gt;线程安全使用 &lt;code&gt;@Volatile&lt;/code&gt; + &lt;code&gt;synchronized&lt;/code&gt; 或 &lt;code&gt;AtomicBoolean&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;推理在 &lt;code&gt;Dispatchers.IO&lt;/code&gt; 上运行，UI 回调切换到 &lt;code&gt;Dispatchers.Main&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;数据类定义在 &lt;code&gt;monitor/model/&lt;/code&gt; 包中&lt;/li&gt;
+&lt;li&gt;SharedPreferences 通过 &lt;code&gt;SettingsManager&lt;/code&gt; 单例封装&lt;/li&gt;
+&lt;li&gt;共享工具函数放在 &lt;code&gt;util/&lt;/code&gt; 包中，避免跨文件重复定义&lt;/li&gt;
+&lt;li&gt;注释语言：中文 + 英文混合（大部分中文）&lt;/li&gt;
+&lt;li&gt;编译目标：Java 17，Kotlin JVM Toolchain 17&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;目前进展：&lt;/p&gt;
+&lt;p&gt;由于librosa.load在安卓上难以对齐，目前暂时使用ffmpeg-kit达到相近效果。&lt;br&gt;
+BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
+正在下载最新的投影层&amp;amp;大模型文件&lt;/p&gt;
+&lt;p&gt;目前的运行性能不够理想，在确认流程无误后将会逐渐删掉AI提供的多余代码，优化运行过程。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260602</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260602/</link>
         <pubDate>Tue, 02 Jun 2026 00:00:00 +0000</pubDate>

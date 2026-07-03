@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="稀薄的存在感">
-<title>260313</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我的功业已成">
+<title>260703</title>
 
-<link rel='canonical' href='https://starrydreamawa.github.io/hugo-stack.github.io/p/260313/'>
+<link rel='canonical' href='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/'>
 
-<link rel="stylesheet" href="/hugo-stack.github.io/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="260313">
-<meta property='og:description' content="稀薄的存在感">
-<meta property='og:url' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260313/'>
+<link rel="stylesheet" href="/hugo-stack.github.io/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="260703">
+<meta property='og:description' content="我的功业已成">
+<meta property='og:url' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/'>
 <meta property='og:site_name' content='Starry的时间记录站'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='科研' /><meta property='article:published_time' content='2026-03-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260313/title.jpg' />
-<meta name="twitter:title" content="260313">
-<meta name="twitter:description" content="稀薄的存在感"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260313/title.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='科研' /><meta property='article:published_time' content='2026-07-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-03T00:00:00&#43;00:00'/><meta property='og:image' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/title.jpg' />
+<meta name="twitter:title" content="260703">
+<meta name="twitter:description" content="我的功业已成"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/title.jpg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -262,9 +262,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#安卓模型转trace部署">安卓模型转trace部署</a></li>
-    <li><a href="#性能测试">性能测试</a></li>
-    <li><a href="#接下来的想法">接下来的想法</a></li>
+    <li><a href="#模型部署">模型部署</a></li>
   </ol>
 </nav>
         </div>
@@ -279,13 +277,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/hugo-stack.github.io/p/260313/">
-                <img src="/hugo-stack.github.io/p/260313/title_hu_85c69f28ded81134.jpg"
-                        srcset="/hugo-stack.github.io/p/260313/title_hu_85c69f28ded81134.jpg 800w, /hugo-stack.github.io/p/260313/title_hu_2f070db0ce630c02.jpg 1600w"
+            <a href="/hugo-stack.github.io/p/260703/">
+                <img src="/hugo-stack.github.io/p/260703/title_hu_ae9e45b9541db885.jpg"
+                        srcset="/hugo-stack.github.io/p/260703/title_hu_ae9e45b9541db885.jpg 800w, /hugo-stack.github.io/p/260703/title_hu_30353687696df617.jpg 1600w"
                         width="800" 
-                        height="607" 
+                        height="380" 
                         loading="lazy"
-                        alt="Featured image of post 260313" />
+                        alt="Featured image of post 260703" />
                 
             </a>
         </div>
@@ -304,12 +302,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/hugo-stack.github.io/p/260313/">260313</a>
+            <a href="/hugo-stack.github.io/p/260703/">260703</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            稀薄的存在感
+            我的功业已成
         </h3>
         
     </div>
@@ -330,7 +328,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Mar 13, 2026</time>
+                <time class="article-time--published">Jul 03, 2026</time>
             </div>
         
 
@@ -346,158 +344,77 @@
     <section class="article-content">
     
     
-    <h2 id="安卓模型转trace部署">安卓模型转trace部署
-</h2><p>部署模型：<a class="link" href="https://github.com/microsoft/unilm/tree/master/beats"  target="_blank" rel="noopener"
-    >BEATs</a>中的Tokenizer_iter3+ (AS2M)和BEATs_iter3+ (AS2M)模型。</p>
-<p>流程：尝试转换为ONNX模型部署，由于模型中存在动态结构而失败。转而采用trace生成的torchscript模型</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 按README初始化模型
-</span></span><span class="line"><span class="cl">model = ...
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">class Wrapper(torch.nn.Module):
-</span></span><span class="line"><span class="cl">    def __init__(self, model):
-</span></span><span class="line"><span class="cl">        super().__init__()
-</span></span><span class="line"><span class="cl">        self.model = model
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    def forward(self, audio):
-</span></span><span class="line"><span class="cl">        features = self.model.extract_features(audio)
-</span></span><span class="line"><span class="cl">        # 特征值格式符合输出
-</span></span><span class="line"><span class="cl">        if isinstance(features, (tuple, list)):
-</span></span><span class="line"><span class="cl">            features = features[0]
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        return features
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">wrapped_beats = Wrapper(model)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 创建示例输入
-</span></span><span class="line"><span class="cl">example_audio = torch.randn(1, 16000)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># 导出模型
-</span></span><span class="line"><span class="cl">traced_tokenizer = torch.jit.trace(
-</span></span><span class="line"><span class="cl">    wrapped_tokenizer, 
-</span></span><span class="line"><span class="cl">    example_audio
-</span></span><span class="line"><span class="cl">)
-</span></span><span class="line"><span class="cl">traced_tokenizer.save(&#39;beats_traced.pt&#39;)
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>导出模型部署在安卓平台：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">fun</span> <span class="n">loadFromAsset</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">assetName</span><span class="p">:</span> <span class="ne">String</span><span class="p">):</span> <span class="n">BEATs</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">val</span> <span class="n">modelFile</span> <span class="o">=</span> <span class="ne">File</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">filesDir</span><span class="p">,</span> <span class="n">assetName</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">modelFile</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">context</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">assetName</span><span class="p">)</span><span class="o">.</span><span class="n">use</span> <span class="p">{</span> <span class="n">input</span> <span class="o">-&gt;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">FileOutputStream</span><span class="p">(</span><span class="n">modelFile</span><span class="p">)</span><span class="o">.</span><span class="n">use</span> <span class="p">{</span> <span class="n">output</span> <span class="o">-&gt;</span>
-</span></span><span class="line"><span class="cl">                <span class="n">input</span><span class="o">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">loadFromFile</span><span class="p">(</span><span class="n">modelFile</span><span class="o">.</span><span class="n">absolutePath</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>经比较同样的输入的输出结果一致。</p>
-<h2 id="性能测试">性能测试
-</h2><p>使用以下代码获得内存和运行时间的数据：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fun printInformation(text : String){
-</span></span><span class="line"><span class="cl">    val runtime : Runtime = Runtime.getRuntime();
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    val javaMem : Long = runtime.totalMemory() - runtime.freeMemory();
-</span></span><span class="line"><span class="cl">    val nativeMem : Long = Debug.getNativeHeapAllocatedSize();
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    Log.d(&#34;information&#34;, text)
-</span></span><span class="line"><span class="cl">    Log.d(&#34;information&#34;, (System.nanoTime()/1e6).toString() + &#34;ms&#34;)
-</span></span><span class="line"><span class="cl">    Log.d(&#34;information&#34;,&#34;Java heap = &#34; + javaMem/1024/1024 + &#34; MB&#34;);
-</span></span><span class="line"><span class="cl">    Log.d(&#34;information&#34;,&#34;Native heap = &#34; + nativeMem/1024/1024 + &#34; MB&#34;);
-</span></span><span class="line"><span class="cl">}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>通过android studio的profiler，在训练前后加入下面两个代码来测量cpu占用。要求用debug模式来Build：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Debug.startMethodTracing(&#34;model_trace&#34;);
-</span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">Debug.stopMethodTracing();
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>以3s，16k采样率wav音频文件为例：</p>
+    <h2 id="模型部署">模型部署
+</h2><p>模型成功运行了。</p>
+<p>更改了预加载模块，实现同采样率100%对齐，采样率转换余弦相似度&gt;99.9%对齐。</p>
+<p>修复了CLAP结果和BEATs结果合并时顺序颠倒的问题。（我是sb）</p>
+<p>修复了assets中使用新的projector模型，但加载时仍使用旧模型的问题。</p>
+<p>将projector的输出与pytorch环境下对齐至：</p>
 <div class="table-wrapper"><table>
-<tr><td>测试指标</td><td>tokenizer</td><td>pre_trained</td></tr>
-<tr><td>模型加载CPU占用</td><td>12%</td><td>12%</td></tr>
-<tr><td>模型推理CPU占用</td><td>峰值40%，平均20%</td><td>峰值50%，平均20%</td></tr>
-<tr><td>模型加载Native Heap占用</td><td>387MB</td><td>381MB</td></tr>
-<tr><td>模型推理Native Heap占用</td><td>14MB</td><td>10MB</td></tr>
-<tr><td>输出格式</td><td>torch.Size([1, 144])</td><td>torch.Size([1, 144, 768])</td></tr>
+	<thead>
+			<tr>
+					<th>最大绝对差异</th>
+					<th>0.05651523172855377</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>平均绝对差异</td>
+					<td>0.008380000479519367</td>
+			</tr>
+			<tr>
+					<td>Cosine Similarity</td>
+					<td>0.99953789</td>
+			</tr>
+			<tr>
+					<td>MAE</td>
+					<td>0.00838000</td>
+			</tr>
+			<tr>
+					<td>RMSE</td>
+					<td>0.01047047</td>
+			</tr>
+			<tr>
+					<td>Max Error</td>
+					<td>0.05651523</td>
+			</tr>
+	</tbody>
 </table></div>
-<h2 id="接下来的想法">接下来的想法
-</h2><p>去了解模型算子是什么，用更多工具验证内存结果的合理性</p>
+<p>仍有提升空间，主要在于预加载部分对soxr插值的模拟和CLAP模型内置的预处理部分。比较复杂，需要时间修正。</p>
+<p>修复了projector只投影一层的问题。（我是sb）</p>
+<p>暂时修复了音频注入时遇到的各种问题（例如注入部分未清除导致模型推理时间增加、注入部分位置不对导致没被读取等）<br>
+但由于该部分完全由ai完成，无法判断是否有其他隐患。</p>
+<p>最终结果：平均推理时间缩短至7s左右，测试音频准确率100%，实机测试准确率基本正确。</p>
+<p>目前仍存的问题：目前模型只检测一种声音，对声音的描述不一定准确，例如：</p>
+<ul>
+<li>对具体细节的描述有误，例如只能识别说话但内容不对，把拍手说成拍“手指”</li>
+<li>小概率理解声音错误，例如说话+拍手被识别成pop音乐</li>
+</ul>
+<p>而且在停止模型时大概率崩溃，应该是停止摧毁模型的逻辑不对。（应该好改）</p>
+<p><img src="/hugo-stack.github.io/p/260703/2.jpg"
+	width="1200"
+	height="2291"
+	srcset="/hugo-stack.github.io/p/260703/2_hu_67a212fe9735c586.jpg 480w, /hugo-stack.github.io/p/260703/2_hu_f3cb457deac6ab7f.jpg 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="52"
+		data-flex-basis="125px"
+	
+>
+<img src="/hugo-stack.github.io/p/260703/1.jpg"
+	width="1200"
+	height="2278"
+	srcset="/hugo-stack.github.io/p/260703/1_hu_af6bb9775bf9fed0.jpg 480w, /hugo-stack.github.io/p/260703/1_hu_d204d6781dec2072.jpg 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="52"
+		data-flex-basis="126px"
+	
+></p>
 
 </section>
 
@@ -563,30 +480,6 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/hugo-stack.github.io/p/260703/">
-        
-        
-            <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260703/title.b43ff00774ff1d712b69f376f1526ea8_hu_a944fa28954b773f.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 260703"
-                        data-key="260703" 
-                        data-hash="md5-tD/wB3T/HXErafN28VJuqA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">260703</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -679,6 +572,30 @@
 
         <div class="article-details">
             <h2 class="article-title">260417</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-stack.github.io/p/260410/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-stack.github.io/p/260410/title.81f85721f273dd7754a91ad00876669a_hu_72f3a3b96cb81519.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 260410"
+                        data-key="260410" 
+                        data-hash="md5-gfhXIfJz3XdUqRrQCHZmmg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">260410</h2>
         </div>
     </a>
 </article>

@@ -7,7 +7,86 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 26 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 03 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260703</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/</link>
+        <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/title.jpg" alt="Featured image of post 260703" /&gt;&lt;h2 id=&#34;模型部署&#34;&gt;模型部署
+&lt;/h2&gt;&lt;p&gt;模型成功运行了。&lt;/p&gt;
+&lt;p&gt;更改了预加载模块，实现同采样率100%对齐，采样率转换余弦相似度&amp;gt;99.9%对齐。&lt;/p&gt;
+&lt;p&gt;修复了CLAP结果和BEATs结果合并时顺序颠倒的问题。（我是sb）&lt;/p&gt;
+&lt;p&gt;修复了assets中使用新的projector模型，但加载时仍使用旧模型的问题。&lt;/p&gt;
+&lt;p&gt;将projector的输出与pytorch环境下对齐至：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;最大绝对差异&lt;/th&gt;
+					&lt;th&gt;0.05651523172855377&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;平均绝对差异&lt;/td&gt;
+					&lt;td&gt;0.008380000479519367&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Cosine Similarity&lt;/td&gt;
+					&lt;td&gt;0.99953789&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MAE&lt;/td&gt;
+					&lt;td&gt;0.00838000&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;RMSE&lt;/td&gt;
+					&lt;td&gt;0.01047047&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Max Error&lt;/td&gt;
+					&lt;td&gt;0.05651523&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;仍有提升空间，主要在于预加载部分对soxr插值的模拟和CLAP模型内置的预处理部分。比较复杂，需要时间修正。&lt;/p&gt;
+&lt;p&gt;修复了projector只投影一层的问题。（我是sb）&lt;/p&gt;
+&lt;p&gt;暂时修复了音频注入时遇到的各种问题（例如注入部分未清除导致模型推理时间增加、注入部分位置不对导致没被读取等）&lt;br&gt;
+但由于该部分完全由ai完成，无法判断是否有其他隐患。&lt;/p&gt;
+&lt;p&gt;最终结果：平均推理时间缩短至7s左右，测试音频准确率100%，实机测试准确率基本正确。&lt;/p&gt;
+&lt;p&gt;目前仍存的问题：目前模型只检测一种声音，对声音的描述不一定准确，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对具体细节的描述有误，例如只能识别说话但内容不对，把拍手说成拍“手指”&lt;/li&gt;
+&lt;li&gt;小概率理解声音错误，例如说话+拍手被识别成pop音乐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;而且在停止模型时大概率崩溃，应该是停止摧毁模型的逻辑不对。（应该好改）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/2.jpg&#34;
+	width=&#34;1200&#34;
+	height=&#34;2291&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/2_hu_67a212fe9735c586.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/2_hu_f3cb457deac6ab7f.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;52&#34;
+		data-flex-basis=&#34;125px&#34;
+	
+&gt;
+&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/1.jpg&#34;
+	width=&#34;1200&#34;
+	height=&#34;2278&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/1_hu_af6bb9775bf9fed0.jpg 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/1_hu_d204d6781dec2072.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;52&#34;
+		data-flex-basis=&#34;126px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260626</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260626/</link>
         <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>

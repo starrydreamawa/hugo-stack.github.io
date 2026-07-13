@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="我的功业已成">
-<title>260703</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="永无止境">
+<title>260710</title>
 
-<link rel='canonical' href='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/'>
+<link rel='canonical' href='https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/'>
 
-<link rel="stylesheet" href="/hugo-stack.github.io/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="260703">
-<meta property='og:description' content="我的功业已成">
-<meta property='og:url' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/'>
+<link rel="stylesheet" href="/hugo-stack.github.io/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="260710">
+<meta property='og:description' content="永无止境">
+<meta property='og:url' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/'>
 <meta property='og:site_name' content='Starry的时间记录站'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='科研' /><meta property='article:published_time' content='2026-07-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-03T00:00:00&#43;00:00'/><meta property='og:image' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/title.jpg' />
-<meta name="twitter:title" content="260703">
-<meta name="twitter:description" content="我的功业已成"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/title.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='科研' /><meta property='article:published_time' content='2026-07-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-07-10T00:00:00&#43;00:00'/><meta property='og:image' content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/title.jpg' />
+<meta name="twitter:title" content="260710">
+<meta name="twitter:description" content="永无止境"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/title.jpg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -262,7 +262,8 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#模型部署">模型部署</a></li>
+    <li><a href="#模型优化">模型优化</a></li>
+    <li><a href="#性能测试">性能测试</a></li>
   </ol>
 </nav>
         </div>
@@ -277,13 +278,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/hugo-stack.github.io/p/260703/">
-                <img src="/hugo-stack.github.io/p/260703/title_hu_ae9e45b9541db885.jpg"
-                        srcset="/hugo-stack.github.io/p/260703/title_hu_ae9e45b9541db885.jpg 800w, /hugo-stack.github.io/p/260703/title_hu_30353687696df617.jpg 1600w"
+            <a href="/hugo-stack.github.io/p/260710/">
+                <img src="/hugo-stack.github.io/p/260710/title_hu_ae9e45b9541db885.jpg"
+                        srcset="/hugo-stack.github.io/p/260710/title_hu_ae9e45b9541db885.jpg 800w, /hugo-stack.github.io/p/260710/title_hu_30353687696df617.jpg 1600w"
                         width="800" 
                         height="380" 
                         loading="lazy"
-                        alt="Featured image of post 260703" />
+                        alt="Featured image of post 260710" />
                 
             </a>
         </div>
@@ -302,12 +303,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/hugo-stack.github.io/p/260703/">260703</a>
+            <a href="/hugo-stack.github.io/p/260710/">260710</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            我的功业已成
+            永无止境
         </h3>
         
     </div>
@@ -328,7 +329,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jul 03, 2026</time>
+                <time class="article-time--published">Jul 10, 2026</time>
             </div>
         
 
@@ -344,78 +345,81 @@
     <section class="article-content">
     
     
-    <h2 id="模型部署">模型部署
-</h2><p>模型成功运行了。</p>
-<p>更改了预加载模块，实现同采样率100%对齐，采样率转换余弦相似度&gt;99.9%对齐。</p>
-<p>修复了CLAP结果和BEATs结果合并时顺序颠倒的问题。（我是sb）</p>
-<p>修复了assets中使用新的projector模型，但加载时仍使用旧模型的问题。</p>
-<p>将projector的输出与pytorch环境下对齐至：</p>
+    <h2 id="模型优化">模型优化
+</h2><p>去除了部分无用代码，删掉了download模型的模块。</p>
+<p>对kv cache过程的分析：</p>
 <div class="table-wrapper"><table>
 	<thead>
 			<tr>
-					<th>最大绝对差异</th>
-					<th>0.05651523172855377</th>
+					<th>步骤</th>
+					<th>操作</th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td>平均绝对差异</td>
-					<td>0.008380000479519367</td>
+					<td>验证</td>
+					<td>检查模型已加载、维度匹配 (n_embd_j == llama_n_embd)、数组大小正确</td>
 			</tr>
 			<tr>
-					<td>Cosine Similarity</td>
-					<td>0.99953789</td>
+					<td>状态重置</td>
+					<td>reset_long_term_states() 清 KV cache + common_sampler_free/new_sampler 重置采样器</td>
 			</tr>
 			<tr>
-					<td>MAE</td>
-					<td>0.00838000</td>
+					<td>获取数据</td>
+					<td>GetFloatArrayElements — 从 Java 堆拷贝 1.37MB 到 C++ (热点)</td>
 			</tr>
 			<tr>
-					<td>RMSE</td>
-					<td>0.01047047</td>
+					<td>诊断日志</td>
+					<td>打印前 5 个嵌入值（跨平台对齐验证）</td>
 			</tr>
 			<tr>
-					<td>Max Error</td>
-					<td>0.05651523</td>
+					<td>创建 batch</td>
+					<td>llama_batch_init(n_tokens, n_embd, 1) — 关键: n_embd≠0 → token=NULL，走直接嵌入路径</td>
+			</tr>
+			<tr>
+					<td>memcpy</td>
+					<td>memcpy(embed_batch.embd, data, n_tokens<em>n_embd</em>sizeof(float)) — 再拷贝 1.37MB</td>
+			</tr>
+			<tr>
+					<td>填元数据</td>
+					<td>填 pos[i]=i, n_seq_id[i]=1, seq_id[i][0]=0, logits[i]=0 (不填 token — NULL)</td>
+			</tr>
+			<tr>
+					<td>微批次解码</td>
+					<td>以 BATCH_SIZE=512 分块，逐一调 llama_decode() → 完整 transformer 前向传播 (最大热点)</td>
+			</tr>
+			<tr>
+					<td>位置更新</td>
+					<td>system_prompt_position = n_tokens (保护音频不被 context shifting 丢弃)</td>
 			</tr>
 	</tbody>
 </table></div>
-<p>仍有提升空间，主要在于预加载部分对soxr插值的模拟和CLAP模型内置的预处理部分。比较复杂，需要时间修正。</p>
-<p>修复了projector只投影一层的问题。（我是sb）</p>
-<p>暂时修复了音频注入时遇到的各种问题（例如注入部分未清除导致模型推理时间增加、注入部分位置不对导致没被读取等）<br>
-但由于该部分完全由ai完成，无法判断是否有其他隐患。</p>
-<p>最终结果：平均推理时间缩短至7s左右，测试音频准确率100%，实机测试准确率基本正确。</p>
-<p>目前仍存的问题：目前模型只检测一种声音，对声音的描述不一定准确，例如：</p>
+<p>对于kv cache部分，目前进行了量化处理，将fp32改成了int8，但用时并未减少。</p>
+<p>ai分析：3 秒的 prefill 对于 7B 模型在移动端上已经接近理论极限。计算量分析：</p>
 <ul>
-<li>对具体细节的描述有误，例如只能识别说话但内容不对，把拍手说成拍“手指”</li>
-<li>小概率理解声音错误，例如说话+拍手被识别成pop音乐</li>
+<li>
+<p>每层 FFN:  96 tokens × 3584 × 14336 × 2 = 9.9B ops</p>
+</li>
+<li>
+<p>每层 QKV:  96 tokens × 3584 × 3584 × 3  = 3.7B ops</p>
+</li>
+<li>
+<p>每层合计:  ~13.6B ops</p>
+</li>
+<li>
+<p>28 层总计:  ~380B ops</p>
+</li>
+<li>
+<p>ARM Q4_K_M matmul 峰值: ~50-100 GOPS</p>
+</li>
+<li>
+<p>理论最低时延: 380B / 100G = 3.8 秒</p>
+</li>
 </ul>
-<p>而且在停止模型时大概率崩溃，应该是停止摧毁模型的逻辑不对。（应该好改）<br>
-最后就是代码中存在大量冗余内容，包括为了让ai参考而引入的整个librosa项目代码。之后打算在git版本管理的基础下慢慢删减内容。</p>
-<p><img src="/hugo-stack.github.io/p/260703/2.jpg"
-	width="1200"
-	height="2291"
-	srcset="/hugo-stack.github.io/p/260703/2_hu_67a212fe9735c586.jpg 480w, /hugo-stack.github.io/p/260703/2_hu_f3cb457deac6ab7f.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="52"
-		data-flex-basis="125px"
-	
->
-<img src="/hugo-stack.github.io/p/260703/1.jpg"
-	width="1200"
-	height="2278"
-	srcset="/hugo-stack.github.io/p/260703/1_hu_af6bb9775bf9fed0.jpg 480w, /hugo-stack.github.io/p/260703/1_hu_d204d6781dec2072.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="52"
-		data-flex-basis="126px"
-	
-></p>
+<p>之后采用了两个技术： memory-efficient tiled attention （分块并行处理）和音频注入时用双向 attention（非因果），文本生成时恢复因果的方法（完整理解音频，逐字输出文本），将用时降低了0.5s左右</p>
+<h2 id="性能测试">性能测试
+</h2><p>软件启动CPU占12%，加载模型时CPU占25%，推理时CPU占用70%，内存占用5G，电池消耗因为检测必须要同时插着usb充电有点难搞。</p>
+<p>另外，在旧一点的手机上，单次推理时间达到了9~13s，有点难办。</p>
 
 </section>
 
@@ -484,23 +488,23 @@
             
                 
 <article class="has-image">
-    <a href="/hugo-stack.github.io/p/260710/">
+    <a href="/hugo-stack.github.io/p/260703/">
         
         
             <div class="article-image">
-                <img src="/hugo-stack.github.io/p/260710/title.b43ff00774ff1d712b69f376f1526ea8_hu_a944fa28954b773f.jpg" 
+                <img src="/hugo-stack.github.io/p/260703/title.b43ff00774ff1d712b69f376f1526ea8_hu_a944fa28954b773f.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 260710"
-                        data-key="260710" 
+                        alt="Featured image of post 260703"
+                        data-key="260703" 
                         data-hash="md5-tD/wB3T/HXErafN28VJuqA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">260710</h2>
+            <h2 class="article-title">260703</h2>
         </div>
     </a>
 </article>

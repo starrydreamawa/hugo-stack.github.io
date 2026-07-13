@@ -7,7 +7,90 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 03 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E7%A7%91%E7%A0%94/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260710</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/</link>
+        <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/title.jpg" alt="Featured image of post 260710" /&gt;&lt;h2 id=&#34;模型优化&#34;&gt;模型优化
+&lt;/h2&gt;&lt;p&gt;去除了部分无用代码，删掉了download模型的模块。&lt;/p&gt;
+&lt;p&gt;对kv cache过程的分析：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;步骤&lt;/th&gt;
+					&lt;th&gt;操作&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;验证&lt;/td&gt;
+					&lt;td&gt;检查模型已加载、维度匹配 (n_embd_j == llama_n_embd)、数组大小正确&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;状态重置&lt;/td&gt;
+					&lt;td&gt;reset_long_term_states() 清 KV cache + common_sampler_free/new_sampler 重置采样器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;获取数据&lt;/td&gt;
+					&lt;td&gt;GetFloatArrayElements — 从 Java 堆拷贝 1.37MB 到 C++ (热点)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;诊断日志&lt;/td&gt;
+					&lt;td&gt;打印前 5 个嵌入值（跨平台对齐验证）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;创建 batch&lt;/td&gt;
+					&lt;td&gt;llama_batch_init(n_tokens, n_embd, 1) — 关键: n_embd≠0 → token=NULL，走直接嵌入路径&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;memcpy&lt;/td&gt;
+					&lt;td&gt;memcpy(embed_batch.embd, data, n_tokens&lt;em&gt;n_embd&lt;/em&gt;sizeof(float)) — 再拷贝 1.37MB&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;填元数据&lt;/td&gt;
+					&lt;td&gt;填 pos[i]=i, n_seq_id[i]=1, seq_id[i][0]=0, logits[i]=0 (不填 token — NULL)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;微批次解码&lt;/td&gt;
+					&lt;td&gt;以 BATCH_SIZE=512 分块，逐一调 llama_decode() → 完整 transformer 前向传播 (最大热点)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;位置更新&lt;/td&gt;
+					&lt;td&gt;system_prompt_position = n_tokens (保护音频不被 context shifting 丢弃)&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;对于kv cache部分，目前进行了量化处理，将fp32改成了int8，但用时并未减少。&lt;/p&gt;
+&lt;p&gt;ai分析：3 秒的 prefill 对于 7B 模型在移动端上已经接近理论极限。计算量分析：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;每层 FFN:  96 tokens × 3584 × 14336 × 2 = 9.9B ops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每层 QKV:  96 tokens × 3584 × 3584 × 3  = 3.7B ops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每层合计:  ~13.6B ops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;28 层总计:  ~380B ops&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ARM Q4_K_M matmul 峰值: ~50-100 GOPS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;理论最低时延: 380B / 100G = 3.8 秒&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;之后采用了两个技术： memory-efficient tiled attention （分块并行处理）和音频注入时用双向 attention（非因果），文本生成时恢复因果的方法（完整理解音频，逐字输出文本），将用时降低了0.5s左右&lt;/p&gt;
+&lt;h2 id=&#34;性能测试&#34;&gt;性能测试
+&lt;/h2&gt;&lt;p&gt;软件启动CPU占12%，加载模型时CPU占25%，推理时CPU占用70%，内存占用5G，电池消耗因为检测必须要同时插着usb充电有点难搞。&lt;/p&gt;
+&lt;p&gt;另外，在旧一点的手机上，单次推理时间达到了9~13s，有点难办。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260703</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260703/</link>
         <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>

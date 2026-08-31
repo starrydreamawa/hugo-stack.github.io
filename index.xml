@@ -7,7 +7,27 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 31 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260831</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260831/</link>
+        <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260831/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260831/title.png" alt="Featured image of post 260831" /&gt;&lt;h2 id=&#34;这段时间的工作概述&#34;&gt;这段时间的工作概述
+&lt;/h2&gt;&lt;p&gt;每次都使用Qwen进行推理的想法最终因用时过长而被舍弃。即使使用kv cache，用7B的gguf量化模型，推理一个2s音频也需要4~5s。达不到我们的要求。&lt;/p&gt;
+&lt;p&gt;“有想法就大胆地去试，同时探索多条路径”——在这样的想法下，我们转向使用多个小模型，通过新的推理流程来试图超越单个模型的结果。具体流程如下：【数据删除】&lt;/p&gt;
+&lt;p&gt;部署、对齐、收集数据、继续部署。&lt;/p&gt;
+&lt;h2 id=&#34;核心技术&#34;&gt;核心技术
+&lt;/h2&gt;&lt;p&gt;llama.cpp提供了官方的android demo: aichat，利用这个可以轻松地部署gguf量化模型。（指让ai写JNI代码然后我也不知道对不对，能跑就行）&lt;/p&gt;
+&lt;p&gt;对CLAP及其衍生模型，可以通过拆解其组件结构（pt文件是一堆组件的集合，比如完整 checkpoint	4.61 GiB，其中真正推理权重 state_dict	 1.68 GiB，optimizer 等训练状态	约 2.93 GiB，T5 文本编码器	1.39 GiB，HTSAT-base 音频编码器	278.56 MiB，audio/text projection 各 3 MiB，audio/text transform 各 2 MiB），做到导出一部分为onnx，可以进行音频推理；文本推理需要tokenizer文件，其参数也较多。&lt;/p&gt;
+&lt;p&gt;好像没了，我两个月就干了这么多事吗-_-&lt;/p&gt;
+&lt;p&gt;都是体力活，比如筛选音频时，听了很多枪声雨声雷声，还有哈基米大狗叫&amp;hellip; &lt;br&gt;
+要筛选大狗与小狗，远和近，声音不能太弱，不能太嘈杂。&lt;strong&gt;不能和训练数据重叠&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;接下来的任务&#34;&gt;接下来的任务
+&lt;/h2&gt;&lt;p&gt;将多种实现路径进行时间&amp;amp;内存上的对比。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260710</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260710/</link>
         <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>

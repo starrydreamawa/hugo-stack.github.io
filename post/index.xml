@@ -7,7 +7,44 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Mon, 31 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 11 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260911</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/</link>
+        <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/title.png" alt="Featured image of post 260911" /&gt;&lt;h2 id=&#34;深度学习の学习&#34;&gt;深度学习の学习
+&lt;/h2&gt;&lt;p&gt;之前以为知道如何拿一个模型来用就足够了，真正看了一眼相关论文才知道水有多深。以下是这周我的学习内容：&lt;/p&gt;
+&lt;p&gt;深度学习网络：很多层按照一定结构连接起来，包括卷积层、池化层、仿射层等。每层有自己的计算方式，有些层有可学习参数，有些没有。输入经过这些层逐步变换，最后得到输出。&lt;/p&gt;
+&lt;p&gt;卷积层：把很多数据和卷积层做运算变成一个更小的层。&lt;/p&gt;
+&lt;p&gt;例如对一个时间维度T，特征维度D的矩阵input，可以有一个卷积核为K1,K2的参数矩阵（大小为K1*K2，如果K2是D就是一维卷积），把input的前K1*K2与参数矩阵做内积，得到一个数；然后向下滑i格，或右滑动j格（步长），最后得到矩阵，即为卷积结果。&lt;/p&gt;
+&lt;p&gt;通道数：卷积核的个数，每个卷积核得到的结果叫做一个通道，通过不同的参数矩阵来提取不同的特征。&lt;/p&gt;
+&lt;p&gt;池化层：取平均/最小/最大等操作，把输入矩阵进一步压缩。具体方法和卷积类似，但没有参数，不能学习。这俩层都是缩小数据量的同时尽可能保留特征的。不对！有时候池化层也会增加数据量，比如把[512]池化成[T,512]，之前干过这种事。&lt;/p&gt;
+&lt;p&gt;仿射层（线性层/全连接层）：对矩阵进行一个线性+平移变换，目的是进行维度变换（例如512变到128），训练学习哪些输入特征应该被加强、减弱或组合。&lt;/p&gt;
+&lt;p&gt;激活函数：不线性的“仿射层”，例如RELU、sigmoid等等，因为线性关系太局限了，所以加这种来学习更复杂的关系。&lt;/p&gt;
+&lt;p&gt;前向传播：输入经过所有层到输出的一次运算。&lt;/p&gt;
+&lt;p&gt;损失函数（Loss）：结果与真实值(ground truth)之间的差距。&lt;/p&gt;
+&lt;p&gt;梯度：改变一个参数对最终结果的影响，类似于1维函数的“导数”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反向传播&lt;/strong&gt;：从结果反推参数的梯度，来微调参数，让Loss降低。&lt;/p&gt;
+&lt;p&gt;优化器：负责怎么微调参数的，例如SGD、Adam、AdamW等。&lt;/p&gt;
+&lt;p&gt;学习率：决定每次参数更新的幅度&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二者的关系&lt;/strong&gt;：例如优化器算出某参数的梯度是2，SGD的计算方式就是让参数减去梯度，而学习率是0.1，那么更新一次的结果就是参数-2*0.1。&lt;/p&gt;
+&lt;p&gt;梯度消失&amp;amp;梯度爆炸：反向传播时梯度几乎归0了会导致前面的训练不到；梯度爆炸了前面可能会非常不稳定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何避免这个情况？&lt;/strong&gt; 见下面的残差连接&amp;amp;归一化&lt;/p&gt;
+&lt;p&gt;残差连接：把网络中的一部分算完f(x)之后再加个x，即保留原数据。一般在这个部分只需要训练“在原基础上改变多少”时使用。&lt;/p&gt;
+&lt;p&gt;归一化：对网络中间的特征进行一定程度的标准化，使数据分布更加稳定，从而提高训练稳定性和训练速度。比如把所有数据聚集在0~1之间。&lt;/p&gt;
+&lt;p&gt;batch：一次输入多少数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何一次训练很多数据？&lt;/strong&gt; 感谢伟大的GPU，感谢传奇的矩阵运算，我们可以把几个数据的矩阵拼成一个大矩阵一起算，同时算出几个Loss。&lt;/p&gt;
+&lt;p&gt;epoch：把所有数据跑完一轮&lt;/p&gt;
+&lt;p&gt;##接下来的问题##&lt;/p&gt;
+&lt;p&gt;情绪感知、意图分析、进行恰当响应&lt;/p&gt;
+&lt;p&gt;硕士论文要写三个章节：算法/技术/模型的创新2章（前端如何共情、后端如何解决响应的问题，开源数据实验）、构建系统1章（自己的实验），每章都要有实验（相当于一个小论文）&lt;/p&gt;
+&lt;p&gt;分层次分体系地看论文总结。&lt;/p&gt;
+&lt;p&gt;尽可能布在端侧，用3B/7B模型。不行就放弃&lt;/p&gt;
+&lt;p&gt;感谢老师提供论文支持&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260831</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260831/</link>
         <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
@@ -458,7 +495,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1.png&#34;
 	width=&#34;1482&#34;
 	height=&#34;153&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1_hu_73eadf46f5cd2718.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1_hu_6700ac750bac11ce.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1_hu_45a33c5a5e11c65a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/1_hu_880bb529b0ea5546.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -484,7 +521,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2.png&#34;
 	width=&#34;1920&#34;
 	height=&#34;924&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2_hu_ffd5b7a2e8a75418.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2_hu_cbe334f0b05a5abf.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2_hu_8df6c08e402f9b2d.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/2_hu_59aa526fe1c30991.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -543,7 +580,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4.png&#34;
 	width=&#34;868&#34;
 	height=&#34;1948&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4_hu_88ce626b679a24c3.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4_hu_9c31ca423b129eec.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4_hu_d9501a96494ecbbf.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260515/4_hu_3e04f8367ca60022.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -641,7 +678,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260410/1.png&#34;
 	width=&#34;1362&#34;
 	height=&#34;270&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260410/1_hu_6c17c7767ce79647.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260410/1_hu_460f7a73a3bb1e67.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260410/1_hu_aee780be382fd8c.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260410/1_hu_3b7ae4386f313cf4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -672,7 +709,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/0.png&#34;
 	width=&#34;1942&#34;
 	height=&#34;945&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/0_hu_5901060e191de387.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/0_hu_5de99ba9702c1656.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/0_hu_7419b7d5f0f398b2.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/0_hu_6a4014bc51121c8b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -693,7 +730,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/1.png&#34;
 	width=&#34;1542&#34;
 	height=&#34;250&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/1_hu_a8bfa5cb92d52c29.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/1_hu_8ffc90cff284b746.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/1_hu_8cbb477162fdbabb.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260403/1_hu_1af78d6fc4b0df72.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -832,7 +869,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1.png&#34;
 	width=&#34;2198&#34;
 	height=&#34;1191&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1_hu_8c81a4461f58c002.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1_hu_775b76080a2075a4.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1_hu_1c8ae3a88ec75ade.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans1_hu_61c7af3f66657b83.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -844,7 +881,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2.png&#34;
 	width=&#34;2179&#34;
 	height=&#34;1101&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2_hu_90555c6c1e65d9a8.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2_hu_ff0a82c3af7f7333.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2_hu_3d7d2555ebea8db.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/ans2_hu_e3738dc792bedab0.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -859,7 +896,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx.png&#34;
 	width=&#34;509&#34;
 	height=&#34;979&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx_hu_70b7dcab53bac561.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx_hu_cd95f122d0eb8a.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx_hu_38ecf156d65bfe01.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260320/onnx_hu_2d612eeae26479ae.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1100,7 +1137,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/1.png&#34;
 	width=&#34;2382&#34;
 	height=&#34;933&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/1_hu_37427636bfa7796a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/1_hu_736a139d2aa96c0b.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/1_hu_cb0a47b29322f42e.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/1_hu_7ff26a2a53c22ae4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1112,7 +1149,7 @@ BEATs + CLAP的部署和对齐已经完成&lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/2.png&#34;
 	width=&#34;2382&#34;
 	height=&#34;933&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/2_hu_4de55b24a240908.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/2_hu_4760470041130209.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/2_hu_5ea8ba63bd206d1f.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260306/2_hu_36c6c80b5e4fe36f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1349,7 +1386,7 @@ implementation(&amp;ldquo;com.github.wendykierp:JTransforms:3.1&amp;rdquo;)&lt;/
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251111/RL.png&#34;
 	width=&#34;687&#34;
 	height=&#34;80&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251111/RL_hu_7419a4b581253681.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251111/RL_hu_a0a276dbb03be447.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251111/RL_hu_20575f4ccb0666c.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251111/RL_hu_6d7e73360fbd82f9.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1611,7 +1648,7 @@ Hermite矩阵：满足$A^H=A$的矩阵A &lt;br&gt;
 &lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu.png&#34;
 	width=&#34;786&#34;
 	height=&#34;567&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_b963669263ae8b6a.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_48caabc25576a33e.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_609ad51509e5ccfb.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251020/maerkefu_hu_c408a5a51da5fbf6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;周期为4的马尔科夫链&#34;
@@ -1652,7 +1689,7 @@ $A, B \in C_{mxn}, A=SBT$, 其中 $S \in C_{mxm}，T \in C_{nxn}$，则$A$与$B$
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251014/maerkefu.png&#34;
 	width=&#34;1168&#34;
 	height=&#34;495&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251014/maerkefu_hu_68a00e02bcf29f13.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251014/maerkefu_hu_6fba946c2f1d186d.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/251014/maerkefu_hu_5f683d2380dd0978.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/251014/maerkefu_hu_1481f32ee9d9efd6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1736,7 +1773,7 @@ SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI.png&#34;
 	width=&#34;1232&#34;
 	height=&#34;389&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_81c56083c70d296c.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_126a546ebf0a02ee.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_58f9e726a6d05395.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/SCI_hu_b2961c0d0a583d94.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1751,7 +1788,7 @@ SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search.png&#34;
 	width=&#34;2225&#34;
 	height=&#34;342&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_8760a5647b303ad1.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_c61447c395bb2d95.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_29f722b013540cb7.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/search_hu_d43740126f7be1f7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1764,7 +1801,7 @@ SCI指的不是web of science，而是wos上的一个子数据库：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI.png&#34;
 	width=&#34;1053&#34;
 	height=&#34;378&#34;
-	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_d1465a53af6b1268.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_d81b9a5e98a20111.png 1024w&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_780016841b2e1e9f.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/250926/ESI_hu_e9b3b4583d9ebb77.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

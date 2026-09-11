@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>毕设 on Starry的时间记录站</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E6%AF%95%E8%AE%BE/</link>
+        <description>Recent content in 毕设 on Starry的时间记录站</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>starrydream</copyright>
+        <lastBuildDate>Fri, 11 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E6%AF%95%E8%AE%BE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260911</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/</link>
+        <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/title.png" alt="Featured image of post 260911" /&gt;&lt;h2 id=&#34;深度学习の学习&#34;&gt;深度学习の学习
+&lt;/h2&gt;&lt;p&gt;之前以为知道如何拿一个模型来用就足够了，真正看了一眼相关论文才知道水有多深。以下是这周我的学习内容：&lt;/p&gt;
+&lt;p&gt;深度学习网络：很多层按照一定结构连接起来，包括卷积层、池化层、仿射层等。每层有自己的计算方式，有些层有可学习参数，有些没有。输入经过这些层逐步变换，最后得到输出。&lt;/p&gt;
+&lt;p&gt;卷积层：把很多数据和卷积层做运算变成一个更小的层。&lt;/p&gt;
+&lt;p&gt;例如对一个时间维度T，特征维度D的矩阵input，可以有一个卷积核为K1,K2的参数矩阵（大小为K1*K2，如果K2是D就是一维卷积），把input的前K1*K2与参数矩阵做内积，得到一个数；然后向下滑i格，或右滑动j格（步长），最后得到矩阵，即为卷积结果。&lt;/p&gt;
+&lt;p&gt;通道数：卷积核的个数，每个卷积核得到的结果叫做一个通道，通过不同的参数矩阵来提取不同的特征。&lt;/p&gt;
+&lt;p&gt;池化层：取平均/最小/最大等操作，把输入矩阵进一步压缩。具体方法和卷积类似，但没有参数，不能学习。这俩层都是缩小数据量的同时尽可能保留特征的。不对！有时候池化层也会增加数据量，比如把[512]池化成[T,512]，之前干过这种事。&lt;/p&gt;
+&lt;p&gt;仿射层（线性层/全连接层）：对矩阵进行一个线性+平移变换，目的是进行维度变换（例如512变到128），训练学习哪些输入特征应该被加强、减弱或组合。&lt;/p&gt;
+&lt;p&gt;激活函数：不线性的“仿射层”，例如RELU、sigmoid等等，因为线性关系太局限了，所以加这种来学习更复杂的关系。&lt;/p&gt;
+&lt;p&gt;前向传播：输入经过所有层到输出的一次运算。&lt;/p&gt;
+&lt;p&gt;损失函数（Loss）：结果与真实值(ground truth)之间的差距。&lt;/p&gt;
+&lt;p&gt;梯度：改变一个参数对最终结果的影响，类似于1维函数的“导数”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;反向传播&lt;/strong&gt;：从结果反推参数的梯度，来微调参数，让Loss降低。&lt;/p&gt;
+&lt;p&gt;优化器：负责怎么微调参数的，例如SGD、Adam、AdamW等。&lt;/p&gt;
+&lt;p&gt;学习率：决定每次参数更新的幅度&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二者的关系&lt;/strong&gt;：例如优化器算出某参数的梯度是2，SGD的计算方式就是让参数减去梯度，而学习率是0.1，那么更新一次的结果就是参数-2*0.1。&lt;/p&gt;
+&lt;p&gt;梯度消失&amp;amp;梯度爆炸：反向传播时梯度几乎归0了会导致前面的训练不到；梯度爆炸了前面可能会非常不稳定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何避免这个情况？&lt;/strong&gt; 见下面的残差连接&amp;amp;归一化&lt;/p&gt;
+&lt;p&gt;残差连接：把网络中的一部分算完f(x)之后再加个x，即保留原数据。一般在这个部分只需要训练“在原基础上改变多少”时使用。&lt;/p&gt;
+&lt;p&gt;归一化：对网络中间的特征进行一定程度的标准化，使数据分布更加稳定，从而提高训练稳定性和训练速度。比如把所有数据聚集在0~1之间。&lt;/p&gt;
+&lt;p&gt;batch：一次输入多少数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何一次训练很多数据？&lt;/strong&gt; 感谢伟大的GPU，感谢传奇的矩阵运算，我们可以把几个数据的矩阵拼成一个大矩阵一起算，同时算出几个Loss。&lt;/p&gt;
+&lt;p&gt;epoch：把所有数据跑完一轮&lt;/p&gt;
+&lt;p&gt;##接下来的问题##&lt;/p&gt;
+&lt;p&gt;情绪感知、意图分析、进行恰当响应&lt;/p&gt;
+&lt;p&gt;硕士论文要写三个章节：算法/技术/模型的创新2章（前端如何共情、后端如何解决响应的问题，开源数据实验）、构建系统1章（自己的实验），每章都要有实验（相当于一个小论文）&lt;/p&gt;
+&lt;p&gt;分层次分体系地看论文总结。&lt;/p&gt;
+&lt;p&gt;尽可能布在端侧，用3B/7B模型。不行就放弃&lt;/p&gt;
+&lt;p&gt;感谢老师提供论文支持&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

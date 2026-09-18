@@ -7,7 +7,52 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 11 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260918</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260918/</link>
+        <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260918/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260918/title.jpg" alt="Featured image of post 260918" /&gt;&lt;h2 id=&#34;ser学习&#34;&gt;SER学习
+&lt;/h2&gt;&lt;p&gt;我觉得采用问答的方式更能总结我看到的这些东西。&lt;/p&gt;
+&lt;h3 id=&#34;ser的流程&#34;&gt;SER的流程：
+&lt;/h3&gt;&lt;p&gt;输入信号处理(processing the acoustic signal given from the dataset)&lt;/p&gt;
+&lt;p&gt;特征提取(feature extraction)&lt;/p&gt;
+&lt;p&gt;选择(selection)&lt;/p&gt;
+&lt;p&gt;分类(classification)&lt;/p&gt;
+&lt;h3 id=&#34;我应该关注论文里的什么&#34;&gt;我应该关注论文里的什么？
+&lt;/h3&gt;&lt;p&gt;数据集、语音特征、传统机器学习或深度学习方法&lt;/p&gt;
+&lt;h3 id=&#34;怎么进行处理的&#34;&gt;怎么进行处理的？
+&lt;/h3&gt;&lt;p&gt;输入的音频是随时间变化的&lt;strong&gt;振幅&lt;/strong&gt;(一维waveform)，而我们最终要的是&lt;strong&gt;每个时间中存在的不同频率的幅度/功率&lt;/strong&gt;(二维spectrogram)。&lt;/p&gt;
+&lt;p&gt;而&lt;strong&gt;FFT&lt;/strong&gt;是一种把振幅变换成频率的方法，在此基础上将音频切分为很多个&lt;strong&gt;有交叠&lt;/strong&gt;的片段各进行&lt;strong&gt;STFT&lt;/strong&gt;(短时傅里叶变换)，就可以得到spectrogram。&lt;/p&gt;
+&lt;p&gt;在此基础上进行Mel Filter Bank，筛选频率（0Hz,1000Hz,2000Hz&amp;hellip;）可以得到mel- spectrogram(梅尔频谱)。在此基础上取对数得到更值得分析的log-mel s pectrogram形式。&lt;/p&gt;
+&lt;p&gt;短时切分可以让非平稳(nonstationary)的音频在某个瞬间趋于平稳，方便分析。&lt;/p&gt;
+&lt;h3 id=&#34;分析的特征都有什么&#34;&gt;分析的特征都有什么？
+&lt;/h3&gt;&lt;p&gt;energy：声音强弱，每帧一个或几个数。计算方法通常为取帧中平方和，如果加上平均值等统计数据就是几个数。不直接用原数据的原因是振幅是正余弦波，有可能恰好为0但实际很大。&lt;/p&gt;
+&lt;p&gt;pitch：声音高低，通常以随时间变化的一系列数字存在，表示音调的变化。通常直接由waveform得来，不用分析太细。&lt;/p&gt;
+&lt;p&gt;MFCC：压缩后的语音频谱特征，每帧若干维度。和log-mel频谱很像。&lt;/p&gt;
+&lt;h3 id=&#34;如何分析&#34;&gt;如何分析？
+&lt;/h3&gt;&lt;p&gt;语音情绪与声学特征随时间的变化有关。CNN 可以提取局部时频模式，而 RNN、LSTM、Transformer 等模型可以进一步建模不同时间位置之间的依赖关系。实际模型可以单独使用 CNN，也可以组合 CNN + LSTM 等结构。&lt;/p&gt;
+&lt;p&gt;Waveform &lt;br&gt;
+$\quad $      ↓  (随时间变化的振幅)&lt;br&gt;
+分帧 (Framing) ]&lt;br&gt;
+$\quad $      ↓  (帧与帧内包含的振幅数据 - 短时间内近似平稳)&lt;br&gt;
+STFT &lt;br&gt;
+$\quad $      ↓  (Spectrogram - T*N矩阵，每一帧的频率组成)&lt;br&gt;
+CNN / 其他模型 &lt;br&gt;
+$\quad $      ↓  (提取声学特征)&lt;br&gt;
+RNN / LSTM / Transformer / Pooling &lt;br&gt;
+$\quad $      ↓  (整合时间信息)&lt;br&gt;
+Emotion&lt;/p&gt;
+&lt;h2 id=&#34;实战演练&#34;&gt;实战演练
+&lt;/h2&gt;&lt;p&gt;使用 &lt;a class=&#34;link&#34; href=&#34;https://zenodo.org/records/1188976&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RAVDESS&lt;/a&gt; 的speech数据集进行训练。设计CNN网络：&lt;br&gt;
+频谱 → 三层卷积及池化 → 全局平均池化 → 全连接 → 情绪&lt;/p&gt;
+&lt;p&gt;结果Loss非常高，在1.4393。实际效果不好，但通过这个例子理解了训练过程。&lt;/p&gt;
+&lt;p&gt;然后尝试加入了RNN网络，结果更差了(Loss=1.9732)，之后将尝试进行改进。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260911</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260911/</link>
         <pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate>

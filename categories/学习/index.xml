@@ -7,7 +7,175 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 25 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/categories/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>260925</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/</link>
+        <pubDate>Fri, 25 Sep 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/title.jpg" alt="Featured image of post 260925" /&gt;&lt;h1 id=&#34;nano-emox-阅读笔记&#34;&gt;Nano-EmoX 阅读笔记
+&lt;/h1&gt;&lt;p&gt;Nano-EmoX的创新点：用一个小规模多模态语言模型，把从低层情绪感知到高层共情交互的六类情感任务统一起来：&lt;/p&gt;
+&lt;p&gt;Level 1 基础感知(情绪是什么)：MSA(Multimodal Sentiment Analysis, 情感极性)、MER(Multimodal Emotion Recognition, 情绪类型) 、OV-MER(Open-Vocabulary MER, 更开放的情绪描述)；&lt;/p&gt;
+&lt;p&gt;Level 2 深度理解(目的是什么)：MIR(Multimodal Intention Recognition, 识别意图，果)、ERI(Emotion Reason Inference, 情绪产生的原因，因) ；&lt;/p&gt;
+&lt;p&gt;Level 3 情感交互(怎么回复)：ERG(Empathetic Response Generation, 共情回复生成)。&lt;/p&gt;
+&lt;h2 id=&#34;nano-emox的结构&#34;&gt;Nano-EmoX的结构
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig2.png&#34;
+	width=&#34;1685&#34;
+	height=&#34;612&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig2_hu_a34d4c2a31930a80.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig2_hu_fcfb9636ae97c5a8.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;架构&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;275&#34;
+		data-flex-basis=&#34;660px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Nano-EmoX 需要五种token：音频、视觉、面部信息、融合信息、文本。&lt;/p&gt;
+&lt;p&gt;音频信息：由预训练编码器HuBERT-Large（采样率1.6kHz?一般是16kHz，疑为笔误）生成音频特征$E$，最后由两层Q-Former（来自BLIP-2）生成音频token&lt;/p&gt;
+&lt;p&gt;视觉信息：编码器为CLIP-Large，其他基本同上&lt;/p&gt;
+&lt;p&gt;面部信息：从视觉视频帧$x_v$中，用改造的FaceXFormer编码器(由处理单个图像到拥有时序)提取多尺度面部特征$E_f$，并将其投影为$E_f^K$和$E_f^V$。然后由时序建模TM，通过可训练的Query参数，进行&lt;strong&gt;交叉注意力&lt;/strong&gt;处理得到包含时序上下文的面部情感表达 $E_f^c$，最后用两层全连接+GeLU生成最终的面部token。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;融合信息&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig3.png&#34;
+	width=&#34;825&#34;
+	height=&#34;498&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig3_hu_e0df10d8c8f9aea.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig3_hu_7ad506299a2cf64f.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;397px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从音频与视觉信息的编码器中抽出了几个层，两个为一组交给交叉注意力的expert处理，得到音频与视觉的融合特征$E_{mf}^i$。这些特征被连接送入由两层全连接+GeLU合成的Gating网络，得到它们的权重分配$G^i$，从而实现对特征的动态分配。$G^i$与$E_{mf}^i$乘加得结果$E_{mf}$。最后由适配器生成token。&lt;/p&gt;
+&lt;p&gt;最后由Qwen2.5的tokenizer处理字幕、对话和提示词生成文本token。所有token一起输入冻结的Qwen模型，在P2E的前两个阶段冻结，3阶段挂载LoRA进行训练。&lt;/p&gt;
+&lt;h2 id=&#34;nano-emox的训练p2e框架&#34;&gt;Nano-EmoX的训练：P2E框架
+&lt;/h2&gt;&lt;p&gt;Perception-to-Empathy框架的目的是实现模型从感知到共情的分段训练，在最大似然估计结果下达到最优效果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig4.png&#34;
+	width=&#34;1650&#34;
+	height=&#34;504&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig4_hu_f45aa4bea72fdd40.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/fig4_hu_e2e3e18eb33d93d7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;327&#34;
+		data-flex-basis=&#34;785px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;阶段1：&lt;br&gt;
+只训练音频、视觉和面部信息的适配器，采用FERV39K、CAER数据集训练视觉和面部信息，CREMA-D、M3ED数据集训练音频。该阶段的目的是让模型能够从信息中识别基础的情感，完成单模态特征空间与 LM 嵌入空间的对齐。&lt;/p&gt;
+&lt;p&gt;阶段2：&lt;br&gt;
+论文认为：MIR 是基础感知到高层推理的天然桥梁。该阶段训练内容加入融合信息，用MIntRec 和 MIntRec2.0数据集进行训练。该阶段的目的是让模型学会把视觉、语音、面部、文本融合起来，推断社会意图。&lt;/p&gt;
+&lt;p&gt;阶段3：&lt;br&gt;
+激活LoRA模块，对所有模块进行微调。各个情感任务训练采用的数据集和所占比例如下：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;任务&lt;/th&gt;
+					&lt;th&gt;数据集&lt;/th&gt;
+					&lt;th&gt;占比&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MSA&lt;/td&gt;
+					&lt;td&gt;在其他训练中隐式获得&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER&lt;/td&gt;
+					&lt;td&gt;AvaMERG&lt;/td&gt;
+					&lt;td&gt;18&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;OV-MER&lt;/td&gt;
+					&lt;td&gt;MER-Caption+&lt;/td&gt;
+					&lt;td&gt;28&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MIR&lt;/td&gt;
+					&lt;td&gt;沿用MIntRec 和 MIntRec2.0&lt;/td&gt;
+					&lt;td&gt;5&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;ERI&lt;/td&gt;
+					&lt;td&gt;MER-Caption+和MERR-Fine&lt;/td&gt;
+					&lt;td&gt;31&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;ERG&lt;/td&gt;
+					&lt;td&gt;AvaMERG(turn-based重构*)&lt;/td&gt;
+					&lt;td&gt;18&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;其中turn-based的意思是，每个训练样本包含历史对话上下文，当前轮的多模态输入作为 query，目标回复作为输出。这样模型能利用对话历史生成更共情的回复。&lt;/p&gt;
+&lt;h2 id=&#34;实验及数据&#34;&gt;实验及数据
+&lt;/h2&gt;&lt;h3 id=&#34;实验设置&#34;&gt;实验设置
+&lt;/h3&gt;&lt;p&gt;视觉编码器：CLIP-Large&lt;br&gt;
+音频编码器：HuBERT-Large&lt;br&gt;
+语言模型LM：Qwen2.5-1.5B&lt;/p&gt;
+&lt;p&gt;token长度：视觉&amp;amp;音频32，面部4，融合1&lt;/p&gt;
+&lt;p&gt;优化器：AdamW，batch size为3，梯度累积步数(几次batch进行一次反向传播)为4.&lt;/p&gt;
+&lt;p&gt;最终Nano-EmoX模型共2.2B 参数，在4090GPU上训练了32小时。&lt;/p&gt;
+&lt;h3 id=&#34;实验流程&#34;&gt;实验流程
+&lt;/h3&gt;&lt;p&gt;阶段1：学习率设置为3e-4，视觉与面部分支训练2w5步，音频分支训练1w5步；&lt;br&gt;
+阶段2：学习率全部降至1e-5，训练5k步；&lt;br&gt;
+阶段3：学习率在8e-6，训练30w步。&lt;/p&gt;
+&lt;p&gt;LoRA的参数为$r = 32, \alpha = 16$, 其中r为参数矩阵的秩，决定了可训练参数的数量和表达能力；$\alpha $表示缩放系数，越大对原模型的影响越大。&lt;/p&gt;
+&lt;h3 id=&#34;实验结果&#34;&gt;实验结果
+&lt;/h3&gt;&lt;p&gt;结论 1：小模型接近甚至超越大模型&lt;/p&gt;
+&lt;p&gt;Nano-EmoX 2.2B 在 MER-UniBench 平均分 74.01，接近 AffectGPT 6.1B 的 74.77，但参数少 73%。&lt;/p&gt;
+&lt;p&gt;在 MER2023、MELD、OV-MER 上取得新 SOTA。&lt;/p&gt;
+&lt;p&gt;结论 2：MIR 任务超过 GPT-4&lt;/p&gt;
+&lt;p&gt;在 MIntRec2.0 上，比 GPT-4 的 Acc 高 12.4%，WF1 高 7.6%。&lt;/p&gt;
+&lt;p&gt;结论 3：ERG 任务大幅刷新 SOTA&lt;/p&gt;
+&lt;p&gt;Hit Rate 91.13，比之前 SOTA 提升 22.54%。&lt;/p&gt;
+&lt;p&gt;AffectGPT(s) 用 P2E 训练后，Hit Rate 从 29.33 提升到 90.88，证明 P2E 对共情生成提升巨大。&lt;/p&gt;
+&lt;h3 id=&#34;消融实验&#34;&gt;消融实验
+&lt;/h3&gt;&lt;p&gt;消融 1：P2E vs 普通联合训练（JoT），P2E 在所有任务上都优于 JoT，ERG 提升最明显（29.33 → 90.88）。&lt;/p&gt;
+&lt;p&gt;结论：分阶段课程训练比混在一起训更有效。&lt;/p&gt;
+&lt;p&gt;消融 2：Reverse P2E（反向课程），把“感知→共情”反过来训，平均分从 74.01 掉到 63.35，ERG 从 91.13 掉到 57.64。&lt;/p&gt;
+&lt;p&gt;结论：课程顺序很重要，认知对齐不是随便说说的。&lt;/p&gt;
+&lt;p&gt;消融 3：架构模块（面部、融合、门控），去掉面部分支，ERG Hit Rate 从 91.13 掉到 62.20；换成 attention fusion 或平均加权，性能也下降。&lt;/p&gt;
+&lt;p&gt;结论：面部编码器、层次专家融合、动态门控都是必要的。&lt;/p&gt;
+&lt;h2 id=&#34;论文局限与未来工作&#34;&gt;论文局限与未来工作
+&lt;/h2&gt;&lt;h3 id=&#34;局限&#34;&gt;局限
+&lt;/h3&gt;&lt;p&gt;（1）训练课程和数据配比高度依赖人工设计
+P2E 的三阶段顺序、各任务数据配比（18:28:5:31:18）都是人工设定的。论文没有说明这些比例是如何确定的，也没有给出自动搜索或动态调整的机制。这意味着模型的成功很大程度上依赖于研究者的先验知识，难以直接迁移到新任务组合。&lt;/p&gt;
+&lt;p&gt;（2）绝对性能仍未超越最大规模 SOTA 模型
+虽然在 2.2B 参数规模上表现优异，但在 MIR 任务上，论文自己承认“尚未与更大规模的 SOTA 模型持平”。在部分基准上，它与 7B+ 模型仍有差距。小模型的效率优势明显，但能力上限受限于参数规模。&lt;/p&gt;
+&lt;p&gt;（3）模态依赖与缺失模态鲁棒性未验证
+模型假设音频、视觉、面部、文本四种模态齐全。现实场景中常出现缺失模态（如无音频、无面部、遮挡等）。论文没有测试缺失模态下的表现，也没有设计动态模态路由或补全机制。&lt;/p&gt;
+&lt;p&gt;（4）跨文化、跨语言泛化性未知
+实验主要集中在英文和中文数据集（MELD、IEMOCAP、MER2023/2024、MIntRec 等）。不同文化对情绪表达和共情方式的理解差异很大，模型是否具备跨文化泛化能力，论文未做评估。&lt;/p&gt;
+&lt;p&gt;（5）共情生成的评价指标有限
+ERG 任务主要用 Hit Rate、Dist-1/2 等自动指标。这些指标衡量的是词汇多样性和情绪识别准确率，并不等于人类感知的“共情质量”。论文没有提供人工评估或心理学量表验证。&lt;/p&gt;
+&lt;p&gt;（6）计算开销与实时性
+虽然 2.2B 参数在单张 4090 上训练 32 小时，但推理时需要同时运行 CLIP、HuBERT、FaceXFormer、融合编码器和 Qwen2.5，多编码器并行带来额外延迟。论文没有报告推理速度或实时性指标，实际部署到交互式场景仍需优化。&lt;/p&gt;
+&lt;p&gt;（7）任务冲突与负迁移未深入分析
+六个任务联合训练是否存在梯度冲突？门控网络是否真的解决了负迁移？论文只给出了最终性能，没有分析任务间的梯度相似度或门控权重的分布规律。&lt;/p&gt;
+&lt;h3 id=&#34;未来工作&#34;&gt;未来工作
+&lt;/h3&gt;&lt;p&gt;基于上述局限，可以延伸出以下方向：&lt;/p&gt;
+&lt;p&gt;自动课程学习：用元学习、强化学习或基于梯度的课程搜索，替代人工设计 P2E 阶段顺序和数据配比。&lt;/p&gt;
+&lt;p&gt;动态模态路由与缺失模态补全：在模态缺失或噪声条件下，让门控网络动态选择可用模态，或引入生成式补全。&lt;/p&gt;
+&lt;p&gt;跨文化共情研究：构建多文化、多语言的情感共情数据集，评估并改进模型的跨文化泛化能力。&lt;/p&gt;
+&lt;p&gt;更可靠的情感评价体系：结合人工评估、心理学量表、长期交互质量，设计更贴近人类感知的共情评价指标。&lt;/p&gt;
+&lt;p&gt;高效推理与部署：蒸馏、量化、早退机制、模态缓存，降低多编码器并行推理延迟。&lt;/p&gt;
+&lt;p&gt;任务冲突分析：用梯度手术、任务算术、MoE 路由等方法，深入分析并缓解六任务间的负迁移。&lt;/p&gt;
+&lt;p&gt;高分辨率情感建模：增加视觉 token 数量，捕捉更细粒度的面部表情和微表情，提升 MIR 和 OV-MER 性能。&lt;/p&gt;
+&lt;h2 id=&#34;对我的启示&#34;&gt;对我的启示
+&lt;/h2&gt;&lt;p&gt;这篇论文使我意识到：&lt;/p&gt;
+&lt;p&gt;1、在情感识别这个领域有许多学术词汇，包括六种任务、各种数据集、各种解决问题的模型。这些都可以加入到我的模型中，或者作为数据的参考。&lt;/p&gt;
+&lt;p&gt;2、模型的结构可以非常复杂，不仅限于几个简单layer的搭建。这篇论文提供了“让架构的不同部分实现对不同任务的处理，分阶段训练，最后合并”的思想，给我很多启发，如果让我用模型实现一个任务，我也可以在理解输入输出和训练侧重的情况下，把许多模型拼接在一起。&lt;/p&gt;
+&lt;p&gt;3、我对训练过程有了更准确的把握，学会了几个batch之后再反向传播来模拟高batch，加快训练速度的方法；学会了通过交叉注意力机制来实现不同模态的信息传递；学会了调整学习率来进行不同程度微调的操作。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>260918</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260918/</link>
         <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>

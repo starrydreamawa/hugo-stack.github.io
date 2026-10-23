@@ -7,7 +7,203 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 25 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E6%AF%95%E8%AE%BE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 23 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/tags/%E6%AF%95%E8%AE%BE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>261023</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/261023/</link>
+        <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/261023/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/261023/title.jpg" alt="Featured image of post 261023" /&gt;&lt;h1 id=&#34;nano-emox-数据集规模&#34;&gt;Nano-EmoX 数据集规模
+&lt;/h1&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;数据集&lt;/th&gt;
+					&lt;th&gt;数据类型&lt;/th&gt;
+					&lt;th&gt;数据量&lt;/th&gt;
+					&lt;th&gt;数据大小&lt;/th&gt;
+					&lt;th&gt;下载方式及说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;FERV39K&lt;/td&gt;
+					&lt;td&gt;视频（视觉、面部表情）&lt;/td&gt;
+					&lt;td&gt;38,935 个视频片段，其中训练集 31,088、测试集 7,847&lt;/td&gt;
+					&lt;td&gt;未知&lt;/td&gt;
+					&lt;td&gt;GitHub。需要向作者申请下载权限，官方未公布完整数据容量&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CAER&lt;/td&gt;
+					&lt;td&gt;视频（视觉、面部表情）&lt;/td&gt;
+					&lt;td&gt;13,000+ 个视频片段&lt;/td&gt;
+					&lt;td&gt;7.1 GB&lt;/td&gt;
+					&lt;td&gt;官方网站。数据可下载，7.1 GB 为压缩包大小；不包括 CAER-S 的 70,000 张静态图片&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CREMA-D&lt;/td&gt;
+					&lt;td&gt;语音（音频）&lt;/td&gt;
+					&lt;td&gt;7,442 条情绪语音样本&lt;/td&gt;
+					&lt;td&gt;约 1.6 GB&lt;/td&gt;
+					&lt;td&gt;GitHub。通过 Git LFS 下载，估计值参考纯音频处理后数据量，不含视频；原仓库完整数据约 7.55 GB&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;M3ED&lt;/td&gt;
+					&lt;td&gt;语音（音频）&lt;/td&gt;
+					&lt;td&gt;24,449 条中文语音片段（utterances）&lt;/td&gt;
+					&lt;td&gt;958 MB&lt;/td&gt;
+					&lt;td&gt;论文 / 项目仓库。958 MB 为发现的压缩包大小，尚未核实内部文件及完整性；作者提供音频片段和声学特征下载入口&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MIntRec 1.0&lt;/td&gt;
+					&lt;td&gt;音频 + 视频（跨模态融合）&lt;/td&gt;
+					&lt;td&gt;2,224 个视频片段，来自 43 个原始视频&lt;/td&gt;
+					&lt;td&gt;2.9 GB&lt;/td&gt;
+					&lt;td&gt;GitHub。Google Drive 下载，2.9 GB 为压缩包大小&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MIntRec 2.0&lt;/td&gt;
+					&lt;td&gt;音频 + 视频（跨模态融合）&lt;/td&gt;
+					&lt;td&gt;15,040 条样本&lt;/td&gt;
+					&lt;td&gt;20.44 GB&lt;/td&gt;
+					&lt;td&gt;GitHub。In-scope 13 GB、Out-of-scope 7.44 GB；合计 20.44 GB，实际使用范围需依据论文训练配置确认&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;AvaMERG&lt;/td&gt;
+					&lt;td&gt;文本 + 语音 + 说话人视频&lt;/td&gt;
+					&lt;td&gt;33,048 段对话，包含 152,021 条语句及对应音视频&lt;/td&gt;
+					&lt;td&gt;43 GB&lt;/td&gt;
+					&lt;td&gt;官方网站。43 GB 为压缩包大小；平均每条音视频长 5.67 秒&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER-Caption+&lt;/td&gt;
+					&lt;td&gt;视频 + 音频 + 情绪描述文本&lt;/td&gt;
+					&lt;td&gt;31,327 条样本&lt;/td&gt;
+					&lt;td&gt;未知&lt;/td&gt;
+					&lt;td&gt;Hugging Face。需要申请数据集权限；官方未单独公布 MER-Caption+ 子集的媒体容量&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MERR-Fine&lt;/td&gt;
+					&lt;td&gt;视频 + 音频 + 情绪推理文本&lt;/td&gt;
+					&lt;td&gt;4,487 条细粒度情绪标注样本&lt;/td&gt;
+					&lt;td&gt;未知&lt;/td&gt;
+					&lt;td&gt;Emotion-LLaMA。原始媒体来自 MER2023，受版权及访问限制，需要申请；官方未公布该子集的独立容量&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;erv论文&#34;&gt;ERV论文
+&lt;/h1&gt;&lt;p&gt;解决的问题：情绪感知模型有时虽然能给出正确的情绪，但其描述有时会发生偏差（比如情绪是happy，描述却是“surprised face”），这容易损害可解释性、可信度和人机交互的可靠性。&lt;/p&gt;
+&lt;p&gt;解决方案：使用强化学习优化模型，在 GRPO 的奖励函数中加入由轻量级模型 ERV 计算的情感一致性奖励 $R_E$ 。&lt;/p&gt;
+&lt;p&gt;实验步骤：先用数据集 EMER (带人工解释的高质量数据) 对 HumanOmni 做 SFT，再用加入$R_E$的 GRPO 做强化学习训练。&lt;/p&gt;
+&lt;h2 id=&#34;训练流程&#34;&gt;训练流程
+&lt;/h2&gt;&lt;p&gt;输入数据包括视频、音频和提示词。&lt;/p&gt;
+&lt;p&gt;第一步是使用 EMER 数据集 （包含视频-音频对、情感标签和详细解释描述）对基准模型 HumanOmni 做 SFT 监督微调。其主要目标是让模型学会多模态输入、情感标签和文本解释之间的基本结构关系，尤其是学会&amp;quot;&amp;lt;\think&amp;gt;&amp;hellip;&amp;lt;/think&amp;gt; &amp;lt;\answer&amp;gt;&amp;hellip;&amp;lt;/answer&amp;gt;&amp;ldquo;的输出格式。&lt;/p&gt;
+&lt;p&gt;然后是 GRPO 训练。数据输入待训练的policy模型和冻结的reference模型，给出G条回$o_1$到$o_G$，根据GRPO算法，给每个回答$o_i$计算三种Reward，然后计算每个回答相对全组的组优势，结合参考模型的KL散度修正来更新梯度。&lt;/p&gt;
+&lt;p&gt;选择GRPO的原因：省去了PPO算法的critic模型，大大优化算力成本。ds用了都说好。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261023/image.png&#34;
+	width=&#34;957&#34;
+	height=&#34;672&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261023/image_hu_bf48f25d41a759a7.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261023/image_hu_428d89e61ad38c3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;341px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;erv-相关&#34;&gt;ERV 相关
+&lt;/h2&gt;&lt;p&gt;ERV 是一个“文本解释情感分类器”，输出 回答$o$中的解释对目标情感的反映程度来给奖励。&lt;/p&gt;
+&lt;p&gt;由于现有数据集不够大，训练结果不好，团队基于DFEW 和 MAFW 视频数据集，用 R1-Omni 生成解释文本，再利用GPT4-1给每条描述分配最多两个代表性情感标签。这样得到约 20K 情感文本-标签对，构造了论文构造伪标签数据集, 用于训练 ERV。&lt;/p&gt;
+&lt;p&gt;对“恶心、恐惧、失望、中立、无助等”代表性不足的类别用 GPT-4.1 生成额外情感描述进行增强。最终得到的数据在23K。&lt;/p&gt;
+&lt;p&gt;ERV 使用在 GoEmotions 上训练过的 RoBERTa 作为 backbone，训练使其能从文本描述预测情感标签。&lt;/p&gt;
+&lt;h2 id=&#34;奖励&#34;&gt;奖励
+&lt;/h2&gt;&lt;p&gt;$R_E$ 是ERV接受解释与情感结果之后给出的打分。由于整段解释中存在大量与情感无关的解释信息，例如对画面的分析等，因此ERV将结果按句子划分，对每个句子预测最多两个情感标签。（因为一个句子可能有多种情感，用阈值决定）。&lt;/p&gt;
+&lt;p&gt;若正确情感为“中立”，则得分为预测中立的句子数/总句子数；若为其他，则得分为正确预测的句子数/（总句子数-预测中立句子数）。如此得到了打分$R_E$。&lt;/p&gt;
+&lt;p&gt;$R_\mathbb{Answer}$是模型回答符合正确答案的打分（0或1），$R_\mathbb{Format}$是模型按正确格式（&amp;quot;&amp;lt;\think&amp;gt;&amp;hellip;&amp;lt;/think&amp;gt; &amp;lt;\answer&amp;gt;&amp;hellip;&amp;lt;/answer&amp;gt;&amp;quot;）回答的打分（0或1），三者相加得到实质奖励。&lt;/p&gt;
+&lt;h1 id=&#34;后续问题&#34;&gt;后续问题
+&lt;/h1&gt;&lt;p&gt;解决这个GRPO是怎么调整参数的，然后看一下数据库情况，试着部署一下。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>261002</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/</link>
+        <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/title.jpg" alt="Featured image of post 261002" /&gt;&lt;h1 id=&#34;上次nano-emox遗留的问题&#34;&gt;上次Nano-EmoX遗留的问题
+&lt;/h1&gt;&lt;h2 id=&#34;0文本信息怎么来的人工标注还是怎么提取&#34;&gt;0、文本信息怎么来的？人工标注还是怎么提取？
+&lt;/h2&gt;&lt;p&gt;数据集一共使用了FERV39K、CAER、CREMA-D、M3ED、MIntRec、MIntRec2.0、AvaMERG、MER-Caption+、MERR-Fine这些。其中&lt;/p&gt;
+&lt;p&gt;FERV39K 没有文字描述&lt;/p&gt;
+&lt;p&gt;CAER 没有文字描述，但其基于《老友记》视频素材制作，所以视频中有字幕，可以进行提取&lt;/p&gt;
+&lt;p&gt;CREMA-D、M3ED 都是音频数据，自带描述文件&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/thuiar/MIntRec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MIntRec&lt;/a&gt;有文字：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image.png&#34;
+	width=&#34;683&#34;
+	height=&#34;636&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image_hu_2cf785b10529500c.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image_hu_8d0981e24079eac4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;107&#34;
+		data-flex-basis=&#34;257px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://avamerg.github.io/MM25-challenge/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AvaMERG&lt;/a&gt;也有文字：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/fig1.png&#34;
+	width=&#34;744&#34;
+	height=&#34;657&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/fig1_hu_d5c3e053db612620.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/fig1_hu_5e22fa1ac8c94d03.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;113&#34;
+		data-flex-basis=&#34;271px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MER-Caption+的意思就是加字幕的&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/pdf/2510.23506&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MERRFine&lt;/a&gt;也有文字：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image-1.png&#34;
+	width=&#34;527&#34;
+	height=&#34;222&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image-1_hu_f93773d1cff5f200.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image-1_hu_726f4b66d25ecaab.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;237&#34;
+		data-flex-basis=&#34;569px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1为什么用了脸部信息还要用视觉信息&#34;&gt;1、为什么用了脸部信息，还要用视觉信息？
+&lt;/h2&gt;&lt;p&gt;在消融实验中，VT（视觉信息）和FT（脸部信息）的结果都没有VFT（视觉+脸部）效果好。\&lt;/p&gt;
+&lt;p&gt;附录中提到，视觉信息是在大尺度上进行分析，而脸部信息是在几个小块上进行精细分析，通过 MLP 融合为统一表征，以&amp;quot;平衡面部细节与全局结构&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image-2.png&#34;
+	width=&#34;731&#34;
+	height=&#34;477&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image-2_hu_b55382ee3a829ddb.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261002/image-2_hu_fc7120b38585bb68.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;153&#34;
+		data-flex-basis=&#34;367px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2为什么要加入融合模型底层逻辑在哪&#34;&gt;2、为什么要加入融合模型？底层逻辑在哪？
+&lt;/h2&gt;&lt;p&gt;附录C-2提到，融合experts能够利用情感上更稳定的语音线索来处理视觉流中最突出的情感信息。并且消融实验证明了融合模型不可或缺。&lt;/p&gt;
+&lt;h2 id=&#34;3训练的时候怎么做到在某个阶段只启动部分模型代码是怎么设计的&#34;&gt;3、训练的时候怎么做到在某个阶段只启动部分模型？代码是怎么设计的？
+&lt;/h2&gt;&lt;p&gt;在Nano_EmoX.py中，代码为每个模型设置了frozen_*的开关，这些开关最终控制了模型的require_gard参数，这决定了模型是否参与训练。&lt;/p&gt;
+&lt;h2 id=&#34;4对某些任务进行测量时是关闭那些模型还是整体一起测试&#34;&gt;4、对某些任务进行测量时是关闭那些模型？还是整体一起测试？
+&lt;/h2&gt;&lt;p&gt;同上，forward方法没有任何限制，使用了全模型&lt;/p&gt;
+&lt;h2 id=&#34;5看一下interspeech的时间节点3月份可以写小论文投稿&#34;&gt;5、看一下interspeech的时间节点（3月份？），可以写小论文投稿。
+&lt;/h2&gt;</description>
+        </item>
+        <item>
         <title>260925</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/260925/</link>
         <pubDate>Fri, 25 Sep 2026 00:00:00 +0000</pubDate>

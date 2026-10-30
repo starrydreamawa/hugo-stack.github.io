@@ -262,9 +262,9 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#训练流程">训练流程</a></li>
-    <li><a href="#erv-相关">ERV 相关</a></li>
-    <li><a href="#奖励">奖励</a></li>
+    <li><a href="#docker-准备">docker 准备</a></li>
+    <li><a href="#环境配置">环境配置</a></li>
+    <li><a href="#模型问题">模型问题</a></li>
   </ol>
 </nav>
         </div>
@@ -346,93 +346,310 @@
     <section class="article-content">
     
     
-    <h1 id="nano-emox-数据集规模">Nano-EmoX 数据集规模
-</h1><div class="table-wrapper"><table>
-	<thead>
-			<tr>
-					<th>数据集</th>
-					<th>数据类型</th>
-					<th>数据量</th>
-					<th>数据大小</th>
-					<th>下载方式及说明</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>FERV39K</td>
-					<td>视频（视觉、面部表情）</td>
-					<td>38,935 个视频片段，其中训练集 31,088、测试集 7,847</td>
-					<td>未知</td>
-					<td>GitHub。需要向作者申请下载权限，官方未公布完整数据容量</td>
-			</tr>
-			<tr>
-					<td>CAER</td>
-					<td>视频（视觉、面部表情）</td>
-					<td>13,000+ 个视频片段</td>
-					<td>7.1 GB</td>
-					<td>官方网站。数据可下载，7.1 GB 为压缩包大小；不包括 CAER-S 的 70,000 张静态图片</td>
-			</tr>
-			<tr>
-					<td>CREMA-D</td>
-					<td>语音（音频）</td>
-					<td>7,442 条情绪语音样本</td>
-					<td>约 1.6 GB</td>
-					<td>GitHub。通过 Git LFS 下载，估计值参考纯音频处理后数据量，不含视频；原仓库完整数据约 7.55 GB</td>
-			</tr>
-			<tr>
-					<td>M3ED</td>
-					<td>语音（音频）</td>
-					<td>24,449 条中文语音片段（utterances）</td>
-					<td>958 MB</td>
-					<td>论文 / 项目仓库。958 MB 为发现的压缩包大小，尚未核实内部文件及完整性；作者提供音频片段和声学特征下载入口</td>
-			</tr>
-			<tr>
-					<td>MIntRec 1.0</td>
-					<td>音频 + 视频（跨模态融合）</td>
-					<td>2,224 个视频片段，来自 43 个原始视频</td>
-					<td>2.9 GB</td>
-					<td>GitHub。Google Drive 下载，2.9 GB 为压缩包大小</td>
-			</tr>
-			<tr>
-					<td>MIntRec 2.0</td>
-					<td>音频 + 视频（跨模态融合）</td>
-					<td>15,040 条样本</td>
-					<td>20.44 GB</td>
-					<td>GitHub。In-scope 13 GB、Out-of-scope 7.44 GB；合计 20.44 GB，实际使用范围需依据论文训练配置确认</td>
-			</tr>
-			<tr>
-					<td>AvaMERG</td>
-					<td>文本 + 语音 + 说话人视频</td>
-					<td>33,048 段对话，包含 152,021 条语句及对应音视频</td>
-					<td>43 GB</td>
-					<td>官方网站。43 GB 为压缩包大小；平均每条音视频长 5.67 秒</td>
-			</tr>
-			<tr>
-					<td>MER-Caption+</td>
-					<td>视频 + 音频 + 情绪描述文本</td>
-					<td>31,327 条样本</td>
-					<td>未知</td>
-					<td>Hugging Face。需要申请数据集权限；官方未单独公布 MER-Caption+ 子集的媒体容量</td>
-			</tr>
-			<tr>
-					<td>MERR-Fine</td>
-					<td>视频 + 音频 + 情绪推理文本</td>
-					<td>4,487 条细粒度情绪标注样本</td>
-					<td>未知</td>
-					<td>Emotion-LLaMA。原始媒体来自 MER2023，受版权及访问限制，需要申请；官方未公布该子集的独立容量</td>
-			</tr>
-	</tbody>
-</table></div>
-<h1 id="erv论文">ERV论文
-</h1><p>解决的问题：情绪感知模型有时虽然能给出正确的情绪，但其描述有时会发生偏差（比如情绪是happy，描述却是“surprised face”），这容易损害可解释性、可信度和人机交互的可靠性。</p>
-<p>解决方案：使用强化学习优化模型，在 GRPO 的奖励函数中加入由轻量级模型 ERV 计算的情感一致性奖励 $R_E$ 。</p>
-<p>实验步骤：先用数据集 EMER (带人工解释的高质量数据) 对 HumanOmni 做 SFT，再用加入$R_E$的 GRPO 做强化学习训练。</p>
-<h2 id="训练流程">训练流程
-</h2><p>输入数据包括视频、音频和提示词。</p>
-<p>第一步是使用 EMER 数据集 （包含视频-音频对、情感标签和详细解释描述）对基准模型 HumanOmni 做 SFT 监督微调。其主要目标是让模型学会多模态输入、情感标签和文本解释之间的基本结构关系，尤其是学会&quot;&lt;\think&gt;&hellip;&lt;/think&gt; &lt;\answer&gt;&hellip;&lt;/answer&gt;&ldquo;的输出格式。</p>
-<p>然后是 GRPO 训练。数据输入待训练的policy模型和冻结的reference模型，给出G条回$o_1$到$o_G$，根据GRPO算法，给每个回答$o_i$计算三种Reward，然后计算每个回答相对全组的组优势，结合参考模型的KL散度修正来更新梯度。</p>
-<p>选择GRPO的原因：省去了PPO算法的critic模型，大大优化算力成本。ds用了都说好。</p>
-<p><img src="/hugo-stack.github.io/p/261023/image.png"
+    <h1 id="前情提要">前情提要
+</h1><p>ERV 项目的目的是解决情绪感知模型的思考与识别结果可能存在不匹配的问题。其通过加入小模型ERV进行打分，通过强化训练机制调整模型，提升其对齐效果。</p>
+<h1 id="erv-部署">ERV 部署
+</h1><p>已通过 docker <del>和伟大的ChatGPT</del> 完成了ERV模型自己的“仅推理”部署，但是能不能优化大模型还是未知数。</p>
+<p>部署<a class="link" href="https://github.com/Rhatanii/ERV"  target="_blank" rel="noopener"
+    >ERV</a>需要部署<a class="link" href="https://github.com/StarsfieldAI/R1-V"  target="_blank" rel="noopener"
+    >R1-V</a>的环境，而后者自带的setup脚本中存在自我冲突，怀疑是对CUDA的版本要求严格，于是采用docker环境进行部署。</p>
+<h2 id="docker-准备">docker 准备
+</h2><p>首先拉取对应版本CUDA，并查看是否能够使用GPU：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run --rm --gpus all `
+</span></span><span class="line"><span class="cl">  nvidia/cuda:12.4.1-base-ubuntu22.04 `
+</span></span><span class="line"><span class="cl">  nvidia-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后安装了对应pytorch：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker pull pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>拉取两个github项目到本地，然后docker挂载运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd D:\workspace\github\ERV
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker run -it `
+</span></span><span class="line"><span class="cl">  --name erv-test `
+</span></span><span class="line"><span class="cl">  --gpus all `
+</span></span><span class="line"><span class="cl">  --ipc=host `
+</span></span><span class="line"><span class="cl">  --shm-size=4g `
+</span></span><span class="line"><span class="cl">  -v &#34;${PWD}:/workspace/ERV&#34; `
+</span></span><span class="line"><span class="cl">  -v &#34;D:\workspace\erv-models:/workspace/models&#34; `
+</span></span><span class="line"><span class="cl">  -v &#34;D:\workspace\hf-cache:/root/.cache/huggingface&#34; `
+</span></span><span class="line"><span class="cl">  -w /workspace/ERV `
+</span></span><span class="line"><span class="cl">  pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel `
+</span></span><span class="line"><span class="cl">  bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>三个目录分别存放项目代码、模型文件和 Hugging Face 缓存。进入docker内部测试CUDA：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python -c &#34;import torch; print(torch.__version__, torch.version.cuda, torch.cuda.is_available())&#34;
+</span></span><span class="line"><span class="cl">nvcc --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果输出结果为：2.5.1 12.4 True<br>
+则成功。</p>
+<h2 id="环境配置">环境配置
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt-get update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apt-get install -y --no-install-recommends \
+</span></span><span class="line"><span class="cl">  git \
+</span></span><span class="line"><span class="cl">  ffmpeg \
+</span></span><span class="line"><span class="cl">  libgl1 \
+</span></span><span class="line"><span class="cl">  libglib2.0-0 \
+</span></span><span class="line"><span class="cl">  build-essential \
+</span></span><span class="line"><span class="cl">  ninja-build
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python -m pip install \
+</span></span><span class="line"><span class="cl">  &#34;numpy==1.26.4&#34; \
+</span></span><span class="line"><span class="cl">  &#34;pandas==2.2.3&#34; \
+</span></span><span class="line"><span class="cl">  &#34;protobuf==3.20.3&#34; \
+</span></span><span class="line"><span class="cl">  &#34;transformers==4.49.0&#34; \
+</span></span><span class="line"><span class="cl">  &#34;accelerate&#34; \
+</span></span><span class="line"><span class="cl">  &#34;huggingface-hub==0.28.1&#34; \
+</span></span><span class="line"><span class="cl">  &#34;safetensors&#34; \
+</span></span><span class="line"><span class="cl">  &#34;sentencepiece&#34; \
+</span></span><span class="line"><span class="cl">  &#34;bitsandbytes&#34; \
+</span></span><span class="line"><span class="cl">  &#34;imageio&#34; \
+</span></span><span class="line"><span class="cl">  &#34;decord&#34; \
+</span></span><span class="line"><span class="cl">  &#34;moviepy==1.0.3&#34; \
+</span></span><span class="line"><span class="cl">  &#34;opencv-python-headless&#34; \
+</span></span><span class="line"><span class="cl">  &#34;ipdb==0.13.13&#34; \
+</span></span><span class="line"><span class="cl">  &#34;h5py&#34; \
+</span></span><span class="line"><span class="cl">  &#34;pyyaml&#34; \
+</span></span><span class="line"><span class="cl">  &#34;librosa&#34; \
+</span></span><span class="line"><span class="cl">  &#34;einops==0.8.1&#34; \
+</span></span><span class="line"><span class="cl">  &#34;timm==1.0.15&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上是我的安装过程中全部安装的库，然后运行下面的命令检查：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd /workspace/ERV
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python -c &#34;from humanomni import model_init, mm_infer; print(&#39;ERV imports OK&#39;)&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果还是有问题，推荐参考<a class="link" href="https://github.com/StarsfieldAI/R1-V/blob/main/src/requirements.txt"  target="_blank" rel="noopener"
+    >R1-V项目中的requirements文件</a>进行处理，<del>或者问ChatGPT</del></p>
+<h2 id="模型问题">模型问题
+</h2><p>由于原代码使用的是ERV-7B模型，而我只是想验证能不能跑，所以我用的ERV-0.5B，所以我让ChatGPT帮我重写了一份脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from transformers import BertTokenizer
+</span></span><span class="line"><span class="cl">from humanomni import model_init, mm_infer
+</span></span><span class="line"><span class="cl">from humanomni.utils import disable_torch_init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 1. 配置模型
+</span></span><span class="line"><span class="cl">config = {
+</span></span><span class="line"><span class="cl">    &#34;model&#34;: {
+</span></span><span class="line"><span class="cl">        &#34;mm_vision_tower&#34;: &#34;google/siglip-base-patch16-224&#34;,
+</span></span><span class="line"><span class="cl">        &#34;mm_audio_tower&#34;: &#34;openai/whisper-large-v3&#34;,
+</span></span><span class="line"><span class="cl">        &#34;model_size&#34;: &#34;0.5B&#34;,
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 2. 加载模型
+</span></span><span class="line"><span class="cl">bert_tokenizer = BertTokenizer.from_pretrained(&#34;bert-base-uncased&#34;)
+</span></span><span class="line"><span class="cl">disable_torch_init()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">model, processor, tokenizer = model_init(
+</span></span><span class="line"><span class="cl">    &#34;/workspace/models/ERV-0.5B&#34;,
+</span></span><span class="line"><span class="cl">    **config
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">model.eval()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 3. 处理单个视频
+</span></span><span class="line"><span class="cl">video_path = &#34;/workspace/ERV/test_videos/test.mp4&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">video_tensor = processor[&#34;video&#34;](video_path)
+</span></span><span class="line"><span class="cl">audio_tensor = processor[&#34;audio&#34;](video_path)[0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 4. 模型推理
+</span></span><span class="line"><span class="cl">prompt = (
+</span></span><span class="line"><span class="cl">    &#34;As an emotion recognition expert, what is the most obvious &#34;
+</span></span><span class="line"><span class="cl">    &#34;emotion conveyed by the characters throughout this video? &#34;
+</span></span><span class="line"><span class="cl">    &#34;Output the thinking process in &lt;think&gt; &lt;/think&gt; &#34;
+</span></span><span class="line"><span class="cl">    &#34;and the final emotion in &lt;answer&gt; &lt;/answer&gt; tags.&#34;
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">result = mm_infer(
+</span></span><span class="line"><span class="cl">    video_tensor,
+</span></span><span class="line"><span class="cl">    prompt,
+</span></span><span class="line"><span class="cl">    model=model,
+</span></span><span class="line"><span class="cl">    tokenizer=tokenizer,
+</span></span><span class="line"><span class="cl">    modal=&#34;video_audio&#34;,
+</span></span><span class="line"><span class="cl">    question=prompt,
+</span></span><span class="line"><span class="cl">    bert_tokeni=bert_tokenizer,
+</span></span><span class="line"><span class="cl">    audio=audio_tensor,
+</span></span><span class="line"><span class="cl">    model_size=&#34;0.5B&#34;,
+</span></span><span class="line"><span class="cl">    do_sample=False,
+</span></span><span class="line"><span class="cl">    max_new_tokens=128,
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(result)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>除了ERV以外，项目还用到了bert-base-uncased模型，下面是下载方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">huggingface</span><span class="o">-</span><span class="n">cli</span> <span class="n">download</span> <span class="n">Rhatanii</span><span class="o">/</span><span class="n">ERV</span><span class="o">-</span><span class="mf">0.5</span><span class="n">B</span> <span class="o">--</span><span class="n">local</span><span class="o">-</span><span class="n">dir</span> <span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">ERV</span><span class="o">-</span><span class="mf">0.5</span><span class="n">B</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">huggingface</span><span class="o">-</span><span class="n">cli</span> <span class="n">download</span> <span class="n">google</span><span class="o">-</span><span class="n">bert</span><span class="o">/</span><span class="n">bert</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">uncased</span> <span class="o">--</span><span class="n">local</span><span class="o">-</span><span class="n">dir</span> <span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">bert</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">uncased</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不知道为什么第一次下载ERV-0.5B模型时缺少了config文件，再下一次就好了，不行也可以手动下。</p>
+<p>最后，将代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">humanomni/model/humanomni_arch.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>中硬编码的bert-base-uncased模型路径修改，把输入的视频放到对应文件夹，然后就可以跑推理了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python infer.py --video /workspace/ERV/test_videos/test.mp4 --model /workspace/models/ERV-0.5B --modal video_audio --max-new-tokens 128
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="grpo-拾遗">GRPO 拾遗
+</h1><p><img src="/hugo-stack.github.io/p/261023/image.png"
 	width="957"
 	height="672"
 	srcset="/hugo-stack.github.io/p/261023/image_hu_bf48f25d41a759a7.png 480w, /hugo-stack.github.io/p/261023/image_hu_428d89e61ad38c3.png 1024w"
@@ -444,17 +661,78 @@
 		data-flex-basis="341px"
 	
 ></p>
-<h2 id="erv-相关">ERV 相关
-</h2><p>ERV 是一个“文本解释情感分类器”，输出 回答$o$中的解释对目标情感的反映程度来给奖励。</p>
-<p>由于现有数据集不够大，训练结果不好，团队基于DFEW 和 MAFW 视频数据集，用 R1-Omni 生成解释文本，再利用GPT4-1给每条描述分配最多两个代表性情感标签。这样得到约 20K 情感文本-标签对，构造了论文构造伪标签数据集, 用于训练 ERV。</p>
-<p>对“恶心、恐惧、失望、中立、无助等”代表性不足的类别用 GPT-4.1 生成额外情感描述进行增强。最终得到的数据在23K。</p>
-<p>ERV 使用在 GoEmotions 上训练过的 RoBERTa 作为 backbone，训练使其能从文本描述预测情感标签。</p>
-<h2 id="奖励">奖励
-</h2><p>$R_E$ 是ERV接受解释与情感结果之后给出的打分。由于整段解释中存在大量与情感无关的解释信息，例如对画面的分析等，因此ERV将结果按句子划分，对每个句子预测最多两个情感标签。（因为一个句子可能有多种情感，用阈值决定）。</p>
-<p>若正确情感为“中立”，则得分为预测中立的句子数/总句子数；若为其他，则得分为正确预测的句子数/（总句子数-预测中立句子数）。如此得到了打分$R_E$。</p>
-<p>$R_\mathbb{Answer}$是模型回答符合正确答案的打分（0或1），$R_\mathbb{Format}$是模型按正确格式（&quot;&lt;\think&gt;&hellip;&lt;/think&gt; &lt;\answer&gt;&hellip;&lt;/answer&gt;&quot;）回答的打分（0或1），三者相加得到实质奖励。</p>
-<h1 id="后续问题">后续问题
-</h1><p>解决这个GRPO是怎么调整参数的，然后看一下数据库情况，试着部署一下。</p>
+<p>GRPO的损失函数如下：</p>
+$$
+\max_{\pi_\theta} \mathbb{E}_{o \sim \pi_\theta(x)} \left[ R(o) - \beta \cdot \mathrm{KL} \left( \pi_\theta(o|x) \parallel \pi_{\mathrm{ref}}(o|x) \right) \right]
+$$<p>$R(o)$是输出序列（回答）为 $o$ 时的奖励；<br>
+其中$\pi_\theta$就是模型前向传播的函数，其所有参数为$\theta$；<br>
+$\pi_\theta(o|x)$表示上下文为$x$时，输出序列为 $o$ 的概率；<br>
+KL表示参考模型与策略模型的偏差，一致时为0，越大偏差越大。 $\beta$ 是这部分的权重;<br>
+所以方括号里的就是奖励减去偏差，表示<strong>输出序列 $o$的优化收益</strong>。</p>
+<p>$\mathbb{E}<em>{o \sim \pi</em>\theta(x)}$ 表示基于上下文 $x$ 给出的全部 $G$ 个输出序列 $o$ ，右边那一堆的期望。而 $max_{\pi_\theta}$ 表示让这个期望最大的参数 $\theta$ 的选择。</p>
+<p>所以这个损失函数依旧是关于参数 $\theta$ 的可微函数，符合正常的模型训练逻辑。奖励函数起到的作用就是评价生成结果 $o$ 的好坏，从而让模型向着高优势的结果的方向进行反向传播。</p>
+<h1 id="数据库情况">数据库情况
+</h1><div class="table-wrapper"><table>
+	<thead>
+			<tr>
+					<th>数据集</th>
+					<th>大小（存储空间）</th>
+					<th>数据量</th>
+					<th>数据格式</th>
+					<th>是否有中文数据</th>
+					<th>评价</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>MAFW</td>
+					<td>未公开</td>
+					<td>10,045 个视频片段；11 类单一表情、32 类复合表情</td>
+					<td>视频、音频、中英双语情绪描述、表情标签、面部关键点及人脸框等</td>
+					<td>有；包含中国影视片段及中文情绪描述，但中文样本比例未知</td>
+					<td>标注丰富，支持多标签与复合情绪识别；适合多模态情绪分析，但主要侧重面部表情，下载需要申请</td>
+			</tr>
+			<tr>
+					<td>DFEW</td>
+					<td>未公开</td>
+					<td>16,372 个电影视频片段；7 类基本情绪</td>
+					<td>电影视频片段、离散情绪标签、7 维情绪分布及数据划分</td>
+					<td>未明确；官方没有给出中文语音数量或语言分布</td>
+					<td>规模较大，包含光照、遮挡、姿态变化等真实场景干扰；适合动态面部表情识别，但缺少细粒度情绪描述</td>
+			</tr>
+			<tr>
+					<td>MERR（Emotion-LLaMA）</td>
+					<td>未公开，可下载标注及部分预提取特征</td>
+					<td>28,618 条粗粒度标注；4,487 条细粒度标注</td>
+					<td>多模态视频、音频、文本转录、情绪标签、情绪原因或表现描述、预提取特征</td>
+					<td>有中文相关资源；使用中文 HuBERT，原始样本的中文语音比例未明确</td>
+					<td>适合训练多模态情绪理解与情绪推理模型；细粒度文本描述具有研究价值，但原始视频需要另行申请，部分标注由模型生成</td>
+			</tr>
+			<tr>
+					<td>MER2024</td>
+					<td>有标签视频压缩包约 4.05 GB，字幕及相关压缩包约 7.97 GB</td>
+					<td>5,030 条有标签数据；115,595 条无标签数据；合计 120,625 条</td>
+					<td>视频、音频、中文及英文转录 CSV、离散情绪标签、开放词汇情绪描述、部分音频及字幕预处理文件</td>
+					<td>有；明确提供中文及英文字幕、中文开放词汇情绪标签</td>
+					<td>数据规模大，适合半监督、噪声鲁棒性和开放词汇多模态情绪识别；无标签样本占比高，需要申请访问</td>
+			</tr>
+	</tbody>
+</table></div>
+<h1 id="模型情况">模型情况
+</h1><p><img src="/hugo-stack.github.io/p/261023/image-1.png"
+	width="1638"
+	height="1242"
+	srcset="/hugo-stack.github.io/p/261023/image-1_hu_bea9b2d0e5269455.png 480w, /hugo-stack.github.io/p/261023/image-1_hu_9d65331232797878.png 1024w"
+	loading="lazy"
+	
+		alt="前沿模型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="131"
+		data-flex-basis="316px"
+	
+></p>
 
 </section>
 
@@ -520,6 +798,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/hugo-stack.github.io/p/261023/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-stack.github.io/p/261023/title.f5f8eed9616d203cc011957035de0934_hu_800a946e37e58639.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 261023"
+                        data-key="261023" 
+                        data-hash="md5-9fju2WFtIDzAEZVwNd4JNA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">261023</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -612,30 +914,6 @@
 
         <div class="article-details">
             <h2 class="article-title">260911</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/hugo-stack.github.io/p/251215/">
-        
-        
-            <div class="article-image">
-                <img src="/hugo-stack.github.io/p/251215/title.9b636e90b5f1c1f840b731d01bcb725b_hu_d1d1640cef3c7383.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 251215"
-                        data-key="251215" 
-                        data-hash="md5-m2NukLXxwfhAtzHQG8tyWw==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">251215</h2>
         </div>
     </a>
 </article>

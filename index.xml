@@ -7,7 +7,662 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>starrydream</copyright>
-        <lastBuildDate>Fri, 30 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 06 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://starrydreamawa.github.io/hugo-stack.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>261106</title>
+        <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/</link>
+        <pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/</guid>
+        <description>&lt;img src="https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/title.jpg" alt="Featured image of post 261106" /&gt;&lt;h1 id=&#34;erv-效果测试&#34;&gt;ERV 效果测试
+&lt;/h1&gt;&lt;p&gt;7B模型对几个视频的识别结果和0.5B差不多，对比较细致的情感的感受有偏差，比较明显的情感结果都很好。在4060 8GB显卡上跑一次7B的推理要花3分钟。上次的命令128ttoken不够，目前使用384基本稳定出现answer。&lt;/p&gt;
+&lt;p&gt;然后我找到了使用强化学习的原因：有工作证明了强化学习对于CoT的提升很大，尤其是GRPO。新看的论文里也提到了这一点。&lt;/p&gt;
+&lt;h1 id=&#34;jopr-联合情感感知与推理-for-会话情感识别&#34;&gt;JoPR (联合情感感知与推理 for 会话情感识别)
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;解决的问题：&lt;/strong&gt; 现有基于 LLM 的对话情绪识别（ERC）方法，虽然能够利用上下文进行情绪分类，但缺乏充分的情绪推理能力，尤其难以区分相似情绪（例如 happy 与 excited、angry 与 frustrated），导致细粒度情绪识别效果不佳。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解决方案：&lt;/strong&gt; 提出 JoPR 框架，将 SFT、DPO、课程学习（CL）和 GRPO 结合。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 DeepSeek 生成长 CoT 推理数据，让模型学会从对话上下文、说话者信息和相似情绪差异等角度进行分析。&lt;/li&gt;
+&lt;li&gt;使用 DPO 优化推理过程，使模型更倾向于生成正确、合理的情绪解释。&lt;/li&gt;
+&lt;li&gt;提出多维度感知课程学习（PCL），评估训练样本的难度，在 GRPO 阶段逐渐从简单样本过渡到困难样本。&lt;/li&gt;
+&lt;li&gt;在 GRPO 奖励函数中加入情绪分级奖励 $R_{grading}$，根据预测情绪与真实情绪的相似程度给予不同奖励，而不是只判断正确或错误。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;实验步骤：&lt;/strong&gt; 使用 IEMOCAP、MELD、EmoryNLP 三个对话情绪识别数据集，以 Llama3-8B 为主要基础模型。先使用 DeepSeek-R1-Distill-Qwen-32B 生成情绪推理链，对模型进行 SFT；再构建正确与错误推理的偏好数据进行 DPO；最后通过 PCL 选择训练样本，使用具有情绪分级奖励的 GRPO 进行强化学习训练。&lt;/p&gt;
+&lt;h2 id=&#34;训练流程&#34;&gt;训练流程
+&lt;/h2&gt;&lt;p&gt;输入数据包括多轮对话文本、说话者信息、目标语句和对应的真实情绪标签。&lt;/p&gt;
+&lt;h3 id=&#34;第一步sft长-cot-指令微调&#34;&gt;第一步：SFT（长 CoT 指令微调）
+&lt;/h3&gt;&lt;p&gt;作者使用 &lt;strong&gt;DeepSeek-R1-Distill-Qwen-32B&lt;/strong&gt; 生成结构化的情绪推理过程。&lt;/p&gt;
+&lt;p&gt;生成时，向 DeepSeek 提供对话文本、目标语句以及真实情绪标签，让模型解释为什么该语句属于这种情绪。输出的分析内容包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Historical Context：分析对话历史和上下文。&lt;/li&gt;
+&lt;li&gt;Speaker Information：分析说话者特征和信息。&lt;/li&gt;
+&lt;li&gt;Similar Emotion Decision Making：分析相似情绪之间的区别，判断最终情绪。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;使用这些生成的 CoT 和原始情绪标签对基础模型进行 SFT，让模型学会结构化情绪分析和输出格式。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/image-2.png&#34;
+	width=&#34;1425&#34;
+	height=&#34;691&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/image-2_hu_3dda00f5154705e9.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/image-2_hu_b5f01041128f493d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;494px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;第二步dpo直接偏好优化&#34;&gt;第二步：DPO（直接偏好优化）
+&lt;/h3&gt;&lt;p&gt;作者构造偏好数据对，正确推理$y^+$是利用&lt;strong&gt;真实情绪标签&lt;/strong&gt;作为条件，通过大模型生成正确推理，并由&lt;strong&gt;五名人类&lt;/strong&gt;审查和修正的数据。错误推理$y^-$则是在不提供真实情绪标签的情况下生成，包含不准确、有偏差或存在幻觉的推理。&lt;/p&gt;
+&lt;p&gt;使用 DPO 训练模型，使其提高正确推理 $y^+$ 的相对概率，降低错误推理 $y^-$ 的相对概率。&lt;/p&gt;
+&lt;p&gt;DPO 不需要单独训练奖励模型，而是直接通过偏好数据优化模型。&lt;/p&gt;
+&lt;p&gt;其主要目标是让模型的推理过程更加合理，并与最终情绪答案保持一致。&lt;/p&gt;
+&lt;h3 id=&#34;第三步pcl--grpo&#34;&gt;第三步：PCL + GRPO
+&lt;/h3&gt;&lt;p&gt;CL是课程学习，主旨是让模型从简单的数据开始训练，逐渐过渡到复杂的数据。而**PCL(感知课程学习)**则是本论文的创新内容&lt;/p&gt;
+&lt;p&gt;首先通过 PCL 计算样本难度，并动态选择训练样本；然后使用 GRPO 对模型生成的情绪推理和分类结果进行优化。&lt;/p&gt;
+&lt;p&gt;PCL 使模型逐渐接触更困难的情绪样本，GRPO 则通过奖励函数更新模型参数。&lt;/p&gt;
+&lt;p&gt;GRPO 对每个输入采样 $G$ 条回答，计算每条回答的奖励，再根据组内奖励的均值和标准差计算优势：&lt;/p&gt;
+$$
+A_i=\frac{r_i-\operatorname{mean}({r_j})}{\operatorname{std}({r_j})}
+$$&lt;p&gt;随后利用策略概率比和参考模型的 KL 散度构造优化目标，更新 policy 模型。&lt;/p&gt;
+&lt;p&gt;论文使用的 GRPO group size 为 8。&lt;/p&gt;
+&lt;h2 id=&#34;pcl感知课程学习&#34;&gt;PCL（感知课程学习）
+&lt;/h2&gt;&lt;p&gt;PCL 是本文的主要创新之一，目的是使模型按照从简单到困难的顺序学习情绪识别。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一步：多维度样本难度评估。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作者分别微调五个 Llama3-8B 专家模型，从以下维度评估情绪样本：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;维度&lt;/th&gt;
+					&lt;th&gt;评估内容&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Context&lt;/td&gt;
+					&lt;td&gt;上下文对情绪的影响&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Speaker&lt;/td&gt;
+					&lt;td&gt;说话者身份、个性和意图&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Commonsense&lt;/td&gt;
+					&lt;td&gt;理解情绪所需的常识知识&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Linguistic Features&lt;/td&gt;
+					&lt;td&gt;语言表达和话语结构&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Interpretability&lt;/td&gt;
+					&lt;td&gt;情绪识别的可解释性&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;五个专家分别预测样本的情绪类别，并计算其对真实类别的置信度。&lt;/p&gt;
+&lt;p&gt;样本难度定义为：&lt;/p&gt;
+$$
+d=1-\frac{1}{|E|}\sum\_{j\in E}c_j
+$$&lt;p&gt;其中 $E$ 是专家集合，$c_j$ 是第 $j$ 个专家预测真实情绪类别的 softmax 概率。&lt;/p&gt;
+&lt;p&gt;如果专家普遍能够准确判断真实情绪，则 $d$ 较低，说明样本较简单；反之则较困难。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第二步：动态课程采样。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作者首先标准化样本难度：&lt;/p&gt;
+$$
+\tilde d_i=\frac{d_i-\mu_d}{\sigma_d}
+$$&lt;p&gt;再根据训练进度计算每个样本的采样权重：&lt;/p&gt;
+$$
+w_i^{(t)}=\operatorname{sigmoid}\left(
+-\tilde d_i\left(1-\frac{t}{T}\right)^\gamma
+\right)
+$$&lt;p&gt;$t$ 表示当前训练进度，$T$ 为总训练步数，$\gamma$ 控制难度权重变化速度。&lt;/p&gt;
+&lt;p&gt;训练早期，简单样本有更高的采样权重；随着训练进行，难度对采样的影响逐渐减弱，困难样本被纳入训练的机会提高。&lt;/p&gt;
+&lt;p&gt;然后使用 Efraimidis–Spirakis 加权随机采样算法选择训练样本：&lt;/p&gt;
+$$
+k_i^{(t)}=r_i^{1/w_i^{(t)}}
+$$&lt;p&gt;其中 $r_i$ 是 $(0,1]$ 范围内的随机数，选取随机键值最大的 $m$ 个样本用于训练。&lt;/p&gt;
+&lt;p&gt;这一过程并不是简单地先训练全部简单样本，再训练全部困难样本，而是根据权重动态抽样。&lt;/p&gt;
+&lt;h2 id=&#34;grpo-奖励&#34;&gt;GRPO 奖励
+&lt;/h2&gt;&lt;p&gt;JoPR 的奖励函数由三部分构成：&lt;/p&gt;
+$$
+R=R\_{format}+R\_{len}+R\_{grading}
+$$&lt;p&gt;&lt;strong&gt;1. 格式奖励 $R_{format}$&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用于判断回答是否满足规定的结构化格式，通过正则表达式验证：&lt;/p&gt;
+$$
+R\_{format}=
+\begin{cases}
+1,&amp;\text{格式正确}\\
+0,&amp;\text{格式错误}
+\end{cases}
+$$&lt;p&gt;主要要求模型按照 &lt;code&gt;&amp;lt;think&amp;gt;...&amp;lt;/think&amp;gt;&amp;lt;answer&amp;gt;...&amp;lt;/answer&amp;gt;&lt;/code&gt; 的格式输出。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 长度奖励 $R_{len}$&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用于限制过长或无关的推理过程。论文根据回答单词数量 $r_i$ 计算：&lt;/p&gt;
+$$
+R\_{len}(o_i)=
+\begin{cases}
+1,&amp;r_i&lt;200\\
+\frac{200}{r_i},&amp;r_i\geq200
+\end{cases}
+$$&lt;p&gt;回答少于 200 个单词时获得完整奖励；超过 200 个单词后，奖励随长度增加而降低。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 情绪分级奖励 $R_{grading}$&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这是本文另一个主要创新。&lt;/p&gt;
+&lt;p&gt;传统情绪分类奖励通常使用 0/1 判断正确与否，而作者参考心理学中的 Valence-Arousal 情绪模型，根据不同情绪之间的相似关系设置多级奖励。&lt;/p&gt;
+$$
+R\_{grading}=
+\begin{cases}
+1,&amp;A\_{pred}\in C_0(A\_{gt})\\
+0.5,&amp;A\_{pred}\in C_1(A\_{gt})\\
+0.25,&amp;A\_{pred}\in C_2(A\_{gt})\\
+0,&amp;\text{其他情况}
+\end{cases}
+$$&lt;p&gt;其中 $A_{pred}$ 是预测情绪，$A_{gt}$ 是真实情绪，$C_0,C_1,C_2$ 分别代表不同情绪距离层级。&lt;/p&gt;
+&lt;p&gt;例如，在 IEMOCAP 数据集中，真实情绪为 happy 时：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;预测情绪&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;奖励&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;happy&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;excited&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;0.5&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;neutral&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;0.25&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;angry、frustrated、sad&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;因此，即使模型预测错误，只要预测情绪与真实情绪比较接近，也能够得到部分奖励。&lt;/p&gt;
+&lt;p&gt;作者希望通过这种方式提高模型对相似情绪及模糊情绪边界的辨别能力。&lt;/p&gt;
+&lt;p&gt;与 ERV 中使用分类器评估 &lt;strong&gt;CoT 文本解释与情绪标签的一致性&lt;/strong&gt;不同，JoPR 的 $R_{grading}$ 主要根据&lt;strong&gt;最终预测情绪与真实情绪之间的预设相似关系&lt;/strong&gt;评分，并不直接评价整段 CoT 是否合理。&lt;/p&gt;
+&lt;h2 id=&#34;实验数据&#34;&gt;实验数据
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;数据集&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;是否包含中文&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;是否公开&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;情感类型&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;IEMOCAP&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;否&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;是&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;6种&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MELD&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;否&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;是&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;7种&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;EmoryNLP&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;否&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;是&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;7种&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;前俩都是多模态数据集，这里只取文字&lt;/p&gt;
+&lt;h2 id=&#34;实验结果&#34;&gt;实验结果
+&lt;/h2&gt;&lt;p&gt;评价指标为 weighted-F1（加权 F1）。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;模型&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;IEMOCAP&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;MELD&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;EmoryNLP&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Baseline（CoT SFT）&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;69.95&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;68.02&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;39.23&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;JoPR&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;73.56&lt;/strong&gt;&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;70.72&lt;/strong&gt;&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;42.35&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;提升&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;+3.61&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;+2.70&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;+3.12&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;消融实验以 IEMOCAP 为例：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;配置&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;weighted-F1&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;完整 JoPR&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;73.56&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;去掉 SFT&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;69.11&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;去掉 DPO&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;71.33&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;去掉 PCL&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;71.11&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;去掉 GRPO&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;70.24&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;去掉情绪分级奖励&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;71.89&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;可以看到，去掉 SFT、PCL 或 GRPO 后性能均有明显下降，说明这些模块在论文的实验设置下都有作用。&lt;/p&gt;
+&lt;p&gt;作者还在 Llama2-7B 和 Qwen2.5-7B 上验证了该训练框架，并将 PCL 应用于其他已有的 ERC 模型，均观察到性能提升。&lt;/p&gt;
+&lt;h2 id=&#34;总结与问题&#34;&gt;总结与问题
+&lt;/h2&gt;&lt;p&gt;这篇论文的主要贡献是针对相似情绪难以区分的问题，对现有训练流程进行组合和改进。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;PCL：&lt;/strong&gt; 利用五个专家模型评估样本难度，动态调整 GRPO 训练样本的选择。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;情绪分级奖励：&lt;/strong&gt; 不再将所有错误情绪统一记为 0 分，而是根据情绪相似程度提供分级奖励。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;值得关注的问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GRPO 的必要性：&lt;/strong&gt; 论文证明去掉 GRPO 后性能下降，但没有直接证明在相同数据和计算预算下，继续进行 SFT 或 DPO 无法达到类似效果。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CoT 的真实性：&lt;/strong&gt; DeepSeek 在已知正确标签的条件下生成推理，可能产生事后合理化的解释。模型学会输出 CoT，不一定代表它真正依靠该推理进行情绪判断。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计算成本：&lt;/strong&gt; 需要基础模型、多阶段训练以及五个独立的难度专家模型，训练开销较大。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;情绪相似度的主观性：&lt;/strong&gt; 分级奖励依赖预先设定的情绪关系，不同语境下情绪之间的相似程度可能不同。&lt;/li&gt;
+&lt;li&gt;**情绪感知类型的限制：**模型只主要比较了happy 和 excited，angry 和 frustrated。情绪类型选取不够广。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;整体评价：&lt;/strong&gt; JoPR 更偏向于对已有训练方法的任务适配与组合创新。其价值主要在于多维课程学习与分级情绪奖励的设计，而不是 GRPO 或 CoT 本身。&lt;/p&gt;
+&lt;h1 id=&#34;affectgpt&#34;&gt;AffectGPT
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;解决的问题：&lt;/strong&gt; 传统情绪识别通常只能从少量预设标签中选择情绪，而开放词汇多模态情绪识别（OV-MER）允许模型自由生成情绪词，从而描述更细致的情绪。但目前主要采用 SFT 训练，使用 token-level loss 优化模型生成内容，与 OV-MER 实际采用的情绪语义评价指标不一致。例如 joyful 和 awful 可能具有某种词形或 token 层面的相似性，但表示的情绪完全不同。同时，基于情绪轮（Emotion Wheel）的评价指标不可直接微分，无法作为普通 SFT 损失进行反向传播。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解决方案：&lt;/strong&gt; 提出 AffectGPT-RL 框架，将开放词汇情绪识别的评价指标直接转化为强化学习奖励，使用 GRPO 更新模型。此外，提出五种奖励函数，分别约束输出格式、情绪预测正确性、推理与答案的一致性、推理与真实标签的一致性，以及推理与视频内容的一致性，并研究不同奖励对模型性能的影响。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实验步骤：&lt;/strong&gt; 基于 AffectGPT，采用两阶段训练。第一阶段使用 MER-Caption+ 的 31,327 条情绪描述数据进行冷启动 SFT，使模型具有情绪理解和格式输出能力。第二阶段使用 MER2025-OV 的 1,000 条人工标注开放词汇情绪数据进行 GRPO 训练。最后在 OV-MERD+ 和 MER-UniBench 上进行测试。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实验结果：&lt;/strong&gt; 在音频、视频、文本三模态输入下，OV-MERD+ 的评价分数从 62.52 提升至 68.05（采用长度惩罚）；不加长度惩罚时达到 68.39。MER-UniBench 的综合得分从 74.77 提高至 79.48。&lt;/p&gt;
+&lt;p&gt;论文还得到一个比较特别的结论：&lt;strong&gt;去除 &lt;code&gt;&amp;lt;think&amp;gt;&lt;/code&gt; 推理过程，直接输出情绪标签，反而取得更好的识别效果。&lt;/strong&gt; 因此作者认为，复杂的显式推理过程并不一定有利于开放词汇情绪识别。&lt;/p&gt;
+&lt;h2 id=&#34;训练流程-1&#34;&gt;训练流程
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/image.png&#34;
+	width=&#34;2073&#34;
+	height=&#34;486&#34;
+	srcset=&#34;https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/image_hu_5d310618f520286d.png 480w, https://starrydreamawa.github.io/hugo-stack.github.io/p/261106/image_hu_f9e62a9a24e71574.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;$o^t$ 是 think 中的情绪描述，$o^a$ 是 answer 中的开放词汇情绪标签，$y$ 是人工标注的真实情绪标签。&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;426&#34;
+		data-flex-basis=&#34;1023px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入是包含情绪信息的多模态视频片段（同时有视频和音频）及用户提示词。&lt;/p&gt;
+&lt;h3 id=&#34;第一步cold-start-sft&#34;&gt;第一步：Cold-Start SFT
+&lt;/h3&gt;&lt;p&gt;使用 MER-Caption+ 数据集训练基础 AffectGPT。&lt;/p&gt;
+&lt;p&gt;MER-Caption+ 提供丰富的情绪描述和开放词汇情绪标签。论文直接将描述文本作为 &lt;code&gt;&amp;lt;think&amp;gt;&lt;/code&gt; 的内容，将情绪标签作为 &lt;code&gt;&amp;lt;answer&amp;gt;&lt;/code&gt; 的内容。&lt;/p&gt;
+&lt;p&gt;训练目的主要有两个：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;让模型学会根据多模态内容理解和表达情绪。&lt;/li&gt;
+&lt;li&gt;让模型建立描述性情绪分析与最终情绪标签之间的关系，并学习指定输出格式。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这里的 think 并不一定是严格的逐步逻辑推理，而更接近对视频中表情、语音、行为等情绪线索的解释性描述。&lt;/p&gt;
+&lt;p&gt;论文还发现，冷启动数据量越大，后续 GRPO 的效果通常越好。这说明强化学习依赖一个已经具有较强情绪识别能力的基础模型。&lt;/p&gt;
+&lt;h3 id=&#34;第二步grpo-强化学习&#34;&gt;第二步：GRPO 强化学习
+&lt;/h3&gt;&lt;p&gt;使用 MER2025-OV 数据集，其中包含 1,000 条高质量的人工开放词汇情绪标注。&lt;/p&gt;
+&lt;p&gt;该阶段输入真实情绪标签，根据不同奖励函数对每条回答生成的G组回答进行评分，使用 GRPO 更新模型参数。&lt;/p&gt;
+&lt;p&gt;论文默认设置 $G=4$，因为实验发现从 2 增加到 4 能提升性能，而继续增加到 8 或 16 收益不明显，却会增加计算成本。&lt;/p&gt;
+&lt;p&gt;评分标准如下：&lt;/p&gt;
+&lt;p&gt;格式奖励&lt;br&gt;
+准确性奖励（推理结果与真实结果比较）&lt;br&gt;
+一致性奖励（think过程与推理结果比较）&lt;br&gt;
+双重奖励（think过程与真实结果比较）&lt;br&gt;
+感知奖励（用Qwen2.5-Omni比较组内的不同描述，使用 Bradley-Terry 模型打分）&lt;/p&gt;
+&lt;h2 id=&#34;reward-hacking-与长度惩罚&#34;&gt;Reward Hacking 与长度惩罚
+&lt;/h2&gt;&lt;p&gt;训练过程中，作者观察到模型会生成大量冗余情绪词来获得更高的 EW 奖励。&lt;/p&gt;
+&lt;p&gt;例如，假设真实情绪为 &lt;code&gt;happy, excited&lt;/code&gt;，模型可能输出：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;happy, excited, joyful, delighted, enthusiastic, optimistic, cheerful...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于 EW 评价会合并同义词，而增加更多不同的情绪词可能提高命中真实标签的概率，因此模型可以通过输出大量情绪词提高得分，而不是真正提高识别能力。&lt;/p&gt;
+&lt;p&gt;这属于 Reward Hacking，即模型利用奖励函数设计中的漏洞获得高分。&lt;/p&gt;
+&lt;p&gt;为此，作者设计了三种长度惩罚函数。令 $n=|o^a|$ 为预测的情绪词数量，$m=|y|$ 为真实情绪词数量。&lt;/p&gt;
+$$
+P_1=
+\begin{cases}
+1,&amp;n\le m\\
+\frac{1}{n-m+1},&amp;n&gt;m
+\end{cases}
+$$$$
+P_2=
+\begin{cases}
+1,&amp;n\le m\\
+\frac{m}{n},&amp;n&gt;m
+\end{cases}
+$$$$
+P_3=
+\begin{cases}
+1,&amp;n\le m\\
+\frac{\log m}{\log n},&amp;n&gt;m
+\end{cases}
+$$&lt;p&gt;然后用长度惩罚乘以原本的 EW 奖励：&lt;/p&gt;
+$$
+R_{\mathrm{accuracy}}=P_k\cdot EW(o^a,y)
+$$&lt;p&gt;Dual Reward 也可以采用类似方式，对提取出的 think 情绪词数量进行惩罚。&lt;/p&gt;
+&lt;p&gt;与 JoPR 中限制回答总单词数不同，这篇论文主要限制&lt;strong&gt;最终预测的情绪词数量&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;实验结果如下：&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;惩罚策略&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;OV-MERD+ 得分&lt;/th&gt;
+					&lt;th&gt;是否出现冗长输出&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;不使用惩罚&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;68.39&lt;/td&gt;
+					&lt;td&gt;是&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;P1&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;67.60&lt;/td&gt;
+					&lt;td&gt;否&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;P2&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;67.79&lt;/td&gt;
+					&lt;td&gt;否&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;P3&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;68.05&lt;/td&gt;
+					&lt;td&gt;否&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;论文认为 P2 和 P3 更合适，因为 P1 过于严格，导致模型奖励退化。&lt;/p&gt;
+&lt;h2 id=&#34;为什么使用强化学习&#34;&gt;为什么使用强化学习
+&lt;/h2&gt;&lt;p&gt;这一部分是论文最重要的研究动机。&lt;/p&gt;
+&lt;p&gt;普通 SFT 使用交叉熵损失，根据预测 token 与目标 token 的差异更新模型。&lt;/p&gt;
+&lt;p&gt;但开放词汇情绪识别并不希望模型只记住某个固定情绪词，而是希望它识别语义正确的情绪。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;正确情绪是 &lt;code&gt;happy&lt;/code&gt;，模型输出 &lt;code&gt;joyful&lt;/code&gt;，虽然词不相同，但语义非常接近。&lt;/li&gt;
+&lt;li&gt;正确情绪是 &lt;code&gt;happy&lt;/code&gt;，模型输出 &lt;code&gt;angry&lt;/code&gt;，则属于明显的情绪错误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此 OV-MER 使用 Emotion Wheel（情绪轮）衡量情绪语义相似性，而不仅是比较生成的单词是否与标注一致。&lt;/p&gt;
+&lt;p&gt;但情绪轮评价包含离散的单词映射、情绪集合交并运算等操作，无法直接对模型参数求梯度。&lt;/p&gt;
+&lt;p&gt;GRPO 则可以将这些不可微的指标作为奖励，通过生成回答的概率进行策略梯度优化，间接更新模型参数。&lt;/p&gt;
+&lt;p&gt;所以论文选择强化学习的主要理由是：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SFT 优化的是 token 预测损失，而实际评价的是情绪语义相似性；GRPO 允许将实际评价指标直接作为奖励优化。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这不代表 SFT 完全不能用于该任务，而是普通的 token-level SFT 不能直接优化作者所采用的离散情绪轮评价指标。&lt;/p&gt;
+&lt;h2 id=&#34;emotion-wheel-评价指标&#34;&gt;Emotion Wheel 评价指标
+&lt;/h2&gt;&lt;p&gt;论文使用五种情绪轮衡量开放词汇情绪标签之间的相似程度。&lt;/p&gt;
+&lt;p&gt;评价分为三个层次：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L1：词形归一化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如将 &lt;code&gt;happiness&lt;/code&gt;、&lt;code&gt;happier&lt;/code&gt; 等映射为 &lt;code&gt;happy&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L2：同义词归一化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如将 &lt;code&gt;joyful&lt;/code&gt; 和 &lt;code&gt;happy&lt;/code&gt; 映射到统一的情绪词。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L3：情绪轮分组&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;将细分情绪映射到情绪轮中对应的核心类别，从而判断不同情绪之间的语义关系。&lt;/p&gt;
+&lt;p&gt;然后按照集合计算 Precision、Recall 和 F1，并对五种情绪轮的 F1 取平均，得到 EW 指标：&lt;/p&gt;
+$$
+EW(Y,\hat Y)=\frac{1}{5}\sum_{k=1}^{5}F_{1,k}
+$$&lt;p&gt;其中 $Y$ 为真实情绪集合，$\hat Y$ 为预测情绪集合。&lt;/p&gt;
+&lt;p&gt;这里的 EW 并不是通过一个大模型直接预测相似性分数，而是使用预先构建的词语归一化映射和情绪轮结构计算评价分数。&lt;/p&gt;
+&lt;h2 id=&#34;reward-hacking-与长度惩罚-1&#34;&gt;Reward Hacking 与长度惩罚
+&lt;/h2&gt;&lt;p&gt;训练过程中，作者观察到模型会生成大量冗余情绪词来获得更高的 EW 奖励。&lt;/p&gt;
+&lt;p&gt;例如，假设真实情绪为 &lt;code&gt;happy, excited&lt;/code&gt;，模型可能输出：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;happy, excited, joyful, delighted, enthusiastic, optimistic, cheerful...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于 EW 评价会合并同义词，而增加更多不同的情绪词可能提高命中真实标签的概率，因此模型可以通过输出大量情绪词提高得分，而不是真正提高识别能力。&lt;/p&gt;
+&lt;p&gt;这属于 Reward Hacking，即模型利用奖励函数设计中的漏洞获得高分。&lt;/p&gt;
+&lt;p&gt;为此，作者设计了三种长度惩罚函数。令 $n=|o^a|$ 为预测的情绪词数量，$m=|y|$ 为真实情绪词数量。&lt;/p&gt;
+&lt;h2 id=&#34;实验结果-1&#34;&gt;实验结果
+&lt;/h2&gt;&lt;h3 id=&#34;数据集&#34;&gt;数据集
+&lt;/h3&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;数据集&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;样本数&lt;/th&gt;
+					&lt;th&gt;用途&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER-Caption+&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;31,327&lt;/td&gt;
+					&lt;td&gt;冷启动 SFT&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER2025-OV&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;1,000&lt;/td&gt;
+					&lt;td&gt;GRPO 强化学习&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;OV-MERD+&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;532&lt;/td&gt;
+					&lt;td&gt;开放词汇情绪识别测试&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER-UniBench&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;12,799&lt;/td&gt;
+					&lt;td&gt;综合情绪识别能力评测&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;MER-UniBench 包含情感极性分析、基本情绪识别和细粒度开放词汇情绪识别等任务。&lt;/p&gt;
+&lt;p&gt;其中 OV-MERD+ 使用基于情绪轮的 F1 作为评价指标，&lt;strong&gt;结果不是传统意义上的分类准确率&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;1-不同奖励的效果&#34;&gt;1. 不同奖励的效果
+&lt;/h3&gt;&lt;p&gt;论文第 6 页 Figure 3(a)(b) 比较了不同奖励。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;奖励&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;OV-MERD+ 得分&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;无 RL&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;62.52&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Accuracy&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;63.35&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Format&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;59.22&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Alignment&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;57.55&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Dual&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;64.98&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Perception&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;59.93&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Accuracy + Format&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;66.49&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Accuracy + Format + Alignment&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;65.38&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;全部五种奖励&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;60.99&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;实验发现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单独使用准确性奖励和 Dual Reward 时能提升性能，其中 Dual Reward 单独使用时效果更好。&lt;/li&gt;
+&lt;li&gt;格式奖励、一致性奖励和感知奖励单独使用时反而使性能下降。&lt;/li&gt;
+&lt;li&gt;将准确性奖励与格式奖励组合，能达到 66.49，比只使用准确性奖励更好。&lt;/li&gt;
+&lt;li&gt;并不是奖励函数越多越好，全部五种奖励同时使用时，性能只有 60.99。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;作者认为，过多奖励可能相互干扰，使模型难以同时优化不同目标。&lt;/p&gt;
+&lt;h3 id=&#34;2-think-是否有用&#34;&gt;2. Think 是否有用？
+&lt;/h3&gt;&lt;p&gt;这是论文比较重要的消融实验。&lt;/p&gt;
+&lt;p&gt;作者对比了两种训练方式：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RL (w/ think)&lt;/strong&gt;：先生成情绪描述与推理过程，再生成最终情绪标签。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RL (w/o think)&lt;/strong&gt;：完全取消 think，只要求模型输出情绪标签，并直接计算准确性奖励。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;方案&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;OV-MERD+ 得分&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;RL (w/ think)&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;66.49&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;RL (w/o think)&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;68.39&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;作者认为去除推理过程效果更好的原因有两点：&lt;/p&gt;
+&lt;p&gt;第一，冷启动阶段的情绪描述来源于相对粗粒度的数据，描述中可能存在噪声或错误推理，反而干扰最终情绪识别。&lt;/p&gt;
+&lt;p&gt;第二，额外生成 think 增加了模型的训练难度，使模型无法将全部学习能力集中在开放词汇情绪预测上。&lt;/p&gt;
+&lt;p&gt;因此作者在后续实验中默认采用不输出 think 的方式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这说明至少在本文的训练数据、模型和评价指标下，显式 CoT 并不是提升情绪识别能力的必要条件。&lt;/strong&gt; 但不能据此断言所有情绪识别任务都不需要推理。&lt;/p&gt;
+&lt;h3 id=&#34;3-grpo-的提升是否只是来自更多训练数据&#34;&gt;3. GRPO 的提升是否只是来自更多训练数据？
+&lt;/h3&gt;&lt;p&gt;论文还做了一个比较有说服力的对照实验，让普通 AffectGPT 也使用相同的两阶段数据训练，再与 AffectGPT-RL 比较。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;模型&lt;/th&gt;
+					&lt;th&gt;训练数据&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;OV-MERD+&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;AffectGPT&lt;/td&gt;
+					&lt;td&gt;MER-Caption+&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;62.52&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;AffectGPT&lt;/td&gt;
+					&lt;td&gt;MER-Caption+ + MER2025-OV&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;62.84&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;AffectGPT-RL&lt;/td&gt;
+					&lt;td&gt;MER-Caption+ + MER2025-OV&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;68.39&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;结果表明，普通训练在增加 MER2025-OV 后只提升 0.32，而使用强化学习后提升 5.87。&lt;/p&gt;
+&lt;p&gt;因此，在作者设计的对照条件下，性能提升主要来自强化学习的训练目标，而不仅仅是数据量增加。&lt;/p&gt;
+&lt;h3 id=&#34;4-对其他情绪任务的泛化&#34;&gt;4. 对其他情绪任务的泛化
+&lt;/h3&gt;&lt;p&gt;论文在 MER-UniBench 上测试了更多任务，以下是使用音频、视频、文本三模态输入的结果。&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;任务&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;AffectGPT&lt;/th&gt;
+					&lt;th style=&#34;text-align: right&#34;&gt;AffectGPT-RL&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER2023&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;78.54&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;84.32&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MER2024&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;78.80&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;93.75&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;MELD&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;55.65&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;63.12&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;IEMOCAP&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;60.54&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;74.26&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;OV-MERD+&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;62.52&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;68.05&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;综合均分&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;74.77&lt;/td&gt;
+					&lt;td style=&#34;text-align: right&#34;&gt;&lt;strong&gt;79.48&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;虽然基本情绪识别和开放词汇情绪识别都有提高，但部分情感极性分析数据集出现下降。&lt;/p&gt;
+&lt;p&gt;作者认为，这是因为模型习惯生成具体的情绪词，而情感极性分析只需要判断 positive、negative 等更粗粒度的情绪倾向。&lt;/p&gt;
+&lt;p&gt;这说明针对开放词汇情绪优化的模型，并不一定适合所有情绪相关任务。&lt;/p&gt;
+&lt;h2 id=&#34;论文局限与个人分析&#34;&gt;论文局限与个人分析
+&lt;/h2&gt;&lt;h3 id=&#34;1-显式推理可能不利于情绪识别&#34;&gt;1. 显式推理可能不利于情绪识别
+&lt;/h3&gt;&lt;p&gt;这篇论文原本希望研究 think 与 answer 的关系，但最后发现取消 think 反而效果更好。&lt;/p&gt;
+&lt;p&gt;本文将情绪描述直接用作 think，且冷启动数据可能含有噪声，因此实验结果不能证明高质量情绪推理必然无效。&lt;/p&gt;
+&lt;h3 id=&#34;2-reward-hacking-暴露了评价指标的问题&#34;&gt;2. Reward Hacking 暴露了评价指标的问题
+&lt;/h3&gt;&lt;p&gt;由于 EW 指标允许同义词合并，并且输出更多情绪词可能增加匹配真实标签的机会，模型可以通过生成冗余情绪词获得高分。&lt;/p&gt;
+&lt;p&gt;长度惩罚虽然缓解了这一问题，但也说明模型可能学到的是如何优化评价规则，而不完全是真正的情绪理解。&lt;/p&gt;
+&lt;h3 id=&#34;3-奖励函数的质量比数量更重要&#34;&gt;3. 奖励函数的质量比数量更重要
+&lt;/h3&gt;&lt;p&gt;准确性奖励和 Dual Reward 效果最好，但感知奖励反而造成性能下降。&lt;/p&gt;
+&lt;p&gt;尤其是感知奖励需要 Qwen2.5-Omni 判断描述是否符合视频，评分本身存在误差，可能向 GRPO 引入噪声。&lt;/p&gt;
+&lt;p&gt;因此，加入一个看起来合理的奖励，并不代表一定能提升模型性能。&lt;/p&gt;
+&lt;h3 id=&#34;4-强化学习依赖基础模型的能力&#34;&gt;4. 强化学习依赖基础模型的能力
+&lt;/h3&gt;&lt;p&gt;论文发现，SFT 阶段使用更多数据能同时提高冷启动模型和后续强化学习的性能。&lt;/p&gt;
+&lt;p&gt;这说明 GRPO 并不是替代基础训练，而更像是在已有能力的基础上优化模型的输出行为。&lt;/p&gt;
+&lt;h3 id=&#34;5-数据规模仍有限&#34;&gt;5. 数据规模仍有限
+&lt;/h3&gt;&lt;p&gt;主要 GRPO 实验只使用 1,000 条数据。论文第 8 页认为增加强化学习数据仍有改善空间，但附录 L 进一步将样本扩充到 2,000 条后，分数只从 68.39 提高到 68.91。因而继续扩大数据规模的收益是否明显，还需要更多实验。&lt;/p&gt;
+&lt;h3 id=&#34;关于强化学习&#34;&gt;关于强化学习
+&lt;/h3&gt;&lt;p&gt;这篇论文对之前提出的“为什么使用强化学习，而不是直接用监督学习”提供了相对明确的回答。&lt;/p&gt;
+&lt;p&gt;首先，作者指出了一个具体的优化问题：&lt;strong&gt;SFT 的 token-level loss 与实际采用的开放词汇情绪评价指标不一致，而且 EW 指标不可微。&lt;/strong&gt; GRPO 能将这个指标作为奖励进行优化。&lt;/p&gt;
+&lt;p&gt;其次，作者进行了额外的监督训练对照实验。在相同训练数据下，普通 AffectGPT 的指标为 62.84，而使用 GRPO 后达到 68.39。这比单纯展示 GRPO 相对于初始 SFT 的提升更有说服力。&lt;/p&gt;
+&lt;p&gt;最后，这篇论文还有一个值得注意的负面结果：增加推理过程和增加奖励函数不一定有效。模型取消 think 后，成绩反而更好；将五种奖励全部加入 GRPO，也不如只选择合适的奖励。&lt;/p&gt;
+&lt;p&gt;因此，这篇论文的核心结论可以概括为：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;强化学习在开放词汇情绪识别中的主要价值，是能够直接优化传统 SFT 难以处理的任务评价指标，而不是必须通过更复杂的思维链来提高情绪识别能力。&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>261030</title>
         <link>https://starrydreamawa.github.io/hugo-stack.github.io/p/261030/</link>
         <pubDate>Fri, 30 Oct 2026 00:00:00 +0000</pubDate>
